@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black;
+}
+
+::selection {
+  background-color: rgb(16, 69, 7); /* Tailwind green-500 */
+  color: white;
+}
+
+/* * {
+  outline: 1px solid pink;
+} */

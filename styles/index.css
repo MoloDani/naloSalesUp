@@ -1,0 +1,8 @@
+::selection {
+  background-color: lightgreen;
+  color: inherit; /* Keep text color the same */
+}
+body {
+  user-select: text;
+  color: black;
+}
