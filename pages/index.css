@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "firstFont";
+  src: url("/fonts/EuropaGroteskSH-Med.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "secondFont";
+  src: url("/fonts/HelveticaNeueMedium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

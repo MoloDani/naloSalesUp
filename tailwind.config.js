@@ -16,10 +16,14 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        first: ['firstFont', 'sans-serif'], // for "firstFont"
+        second: ['secondFont', 'sans-serif'], // for "secondFont"
+      },
       screens: {
         '3xl': '2000px',
         "sm2": "720px",
-        "xs" : "520px",
+        "xs": "520px",
         "xxs": "300px",
       },
       colors: {
@@ -44,12 +48,10 @@ module.exports = {
         slide_right: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-2926px)' }, 
-          // (250 + 16) * 11
         },
         slide_left: {
           '0%': { transform: 'translateX(-580px)' },
           '100%': { transform: 'translateX(-0%)' },
-          // (100 + 16) * 5
         },
         wiggle_animation: {
           '0%': { transform: 'translateY(0) translateX(0) scale(1)'},
@@ -66,9 +68,28 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // Inject custom fonts using @layer
+    function ({ addBase }) {
+      addBase([
+        {
+          '@font-face': {
+            fontFamily: 'firstFont',
+            src: 'url("/fonts/EuropaGroteskSH-Med.otf") format("opentype")',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+          },
+        },
+        {
+          '@font-face': {
+            fontFamily: 'secondFont',
+            src: 'url("/fonts/HelveticaNeueMedium.otf") format("opentype")',
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+          },
+        },
+      ]);
+    },
+  ],
 };
-
-
-
-
