@@ -26,20 +26,20 @@ function Page() {
 
       <div className="flex flex-col items-center justify-center pb-20">
         <img
-          src="/assets/Coming_Soon_Graffiti_Text.png"
+          src="/assets/HQ_Coming_Soon_Graffiti_Text.png"
           alt="Middle Image"
-          className="font-first -my-[5.3em] scale-[1.2]"
+          className="font-first scale-[1.2] -my-[1.6rem] lg:-my-[9rem] lg:scale-[0.6]"
         />
-        <h1 className="font-bold text-2xl py-8 text-center">
+        <h1 className="font-bold text-xl text-center py-5 lg:py-8 lg:text-2xl">
           Stay updated, get free editing assets
         </h1>
-        <div className="flex w-[48%] items-center justify-center border-solid border-custom border-[2px] pb-2 pt-1 px-5">
+        <div className="flex  items-center justify-center border-solid border-custom border-[2px] py-2 px-5 lg:w-[28vw]">
           <input
             type="text"
             value={text}
             onChange={handleChange}
             placeholder="Email"
-            className="bg-transparent text-2xl focus:outline-none placeholder:text-white w-full"
+            className="bg-transparent text-xl focus:outline-none placeholder:text-white w-full lg:text-2xl"
           />
           <img
             src="/assets/Email_Arrow.png"
