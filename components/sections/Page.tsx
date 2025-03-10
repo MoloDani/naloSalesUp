@@ -28,23 +28,24 @@ function Page() {
         <img
           src="/assets/HQ_Coming_Soon_Graffiti_Text.png"
           alt="Middle Image"
-          className="font-first scale-[1.2] -my-[1.6rem] lg:-my-[9rem] lg:scale-[0.6]"
+          className="font-first scale-[1.2] -my-[1.6rem] lg:-my-[8.6rem] lg:scale-[0.6]"
         />
-        <h1 className="font-bold text-xl text-center py-5 lg:py-8 lg:text-2xl">
-          Stay updated, get free editing assets
+        <h1 className="font-bold text-xl text-center pt-2 pb-5 lg:pt-4 lg:pb-7 lg:text-2xl">
+          Stay updated, get <span className="text-custom">free</span> editing
+          assets
         </h1>
-        <div className="flex  items-center justify-center border-solid border-custom border-[2px] py-2 px-5 lg:w-[28vw]">
+        <div className="flex items-center relative justify-center border-solid border-custom border-[2px] py-2 pl-2 pr-8 lg:w-[16vw]">
           <input
             type="text"
             value={text}
             onChange={handleChange}
             placeholder="Email"
-            className="bg-transparent text-xl focus:outline-none placeholder:text-white w-full lg:text-2xl"
+            className="bg-transparent text-lg focus:outline-none placeholder:text-white w-full lg:text-xl"
           />
           <img
             src="/assets/Email_Arrow.png"
             alt="Icon"
-            className="ml-2 w-6 h-6"
+            className="absolute w-6 h-6 right-[4px]"
           />
         </div>
       </div>
