@@ -1,9 +1,11 @@
+import LoadingScreen from "@/components/sections/LoadingScreenn";
 import Navbar from "@/components/ui/Navbar";
 import BackToTop from "@/components/utils/BackToTop";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,6 +13,13 @@ const inter = Inter({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate an API request
+    setTimeout(() => setLoading(false), 6500);
+  }, []);
+
   return (
     <main className={`text-white ${inter.className} font-sans`}>
       <Head>
@@ -38,11 +47,17 @@ export default function App({ Component, pageProps }: AppProps) {
           property="og:image"
           content={`https://media.discordapp.net/attachments/1044673805966135306/1148215648154046584/logo512.webp`}
         ></meta>
-        <title>NALO Visuals</title>
+        <title>NALO Sale</title>
       </Head>
       <BackToTop />
       <Navbar />
-      <Component {...pageProps} />
+      <div>
+        {loading ? (
+          <LoadingScreen onFinish={() => setLoading(false)} />
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </div>
     </main>
   );
 }

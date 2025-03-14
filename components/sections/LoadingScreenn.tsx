@@ -1,0 +1,21 @@
+import { FC } from "react";
+
+interface LoadingScreenProps {
+  onFinish: () => void;
+}
+
+const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
+      <video
+        src="/assets/LOADING_SCREEN_1.mp4"
+        autoPlay
+        muted
+        onEnded={onFinish}
+        className="w-auto h-[25vh] object-cover"
+      />
+    </div>
+  );
+};
+
+export default LoadingScreen;
