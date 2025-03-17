@@ -7,7 +7,7 @@ const EditAnimation: React.FC = () => {
         <div className="max-w-screen-lg w-full -mb-20">
           <video
             className="w-full h-auto rounded-lg shadow-lg"
-            src={"/assets/LQ_Timeline_animation.webm"}
+            src={"/assets/LQ_Timeline_Animation.webm"}
             autoPlay
             loop
             muted
