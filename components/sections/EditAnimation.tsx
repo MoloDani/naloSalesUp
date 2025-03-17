@@ -2,7 +2,7 @@ import React from "react";
 
 const EditAnimation: React.FC = () => {
   return (
-    <section id="edit animation">
+    <section id="edit-animation">
       <div className="h-screen w-full flex flex-col items-center justify-center bg-black pb-10">
         <div className="max-w-screen-lg w-full -mb-20">
           <video
@@ -11,14 +11,19 @@ const EditAnimation: React.FC = () => {
             autoPlay
             loop
             muted
-          />
+            controls={false} // To ensure no controls are displayed
+            onError={() => alert("Sorry, the video couldn't load.")}
+          >
+            <track kind="captions" src="path_to_captions.vtt" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div className="text-center mt-6">
           <h1 className="text-white text-[2.3rem] lg:text-[4rem] font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
           <p className="text-white font-bold text-base lg:text-lg mt-2 px-[40px]">
-            Wheater you are a director, editor or artist, this pack is for you.
+            Whether you are a director, editor, or artist, this pack is for you.
           </p>
         </div>
       </div>
