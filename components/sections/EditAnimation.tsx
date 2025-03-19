@@ -3,11 +3,11 @@ import React from "react";
 const EditAnimation: React.FC = () => {
   return (
     <section id="edit-animation">
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-black pb-10">
-        <div className="max-w-screen-lg w-full -mb-20">
+      <div className="h-screen w-full flex flex-col items-center justify-center bg-black pb-52">
+        <div className="max-w-screen-lg w-full -mb-60">
           <video
-            className="w-full h-auto rounded-lg shadow-lg"
-            src={"/assets/LQ_Timeline_Animation.webm"}
+            className="w-[50vw] h-auto rounded-lg shadow-lg"
+            src={"/assets/LQ5_Timeline_Animation.webm"}
             autoPlay
             loop
             muted
