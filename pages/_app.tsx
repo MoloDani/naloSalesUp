@@ -14,10 +14,14 @@ const inter = Inter({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
+  const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
     // Simulate an API request
-    setTimeout(() => setLoading(false), 6500);
+    setTimeout(() => {
+      setLoading(false);
+      setTimeout(() => setFadeIn(true), 50); // Delay fade-in slightly for smoother effect
+    }, 3100);
   }, []);
 
   return (
@@ -55,7 +59,11 @@ export default function App({ Component, pageProps }: AppProps) {
         {loading ? (
           <LoadingScreen onFinish={() => setLoading(false)} />
         ) : (
-          <Component {...pageProps} />
+          <div
+            className={`transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100" : "opacity-0"}`}
+          >
+            <Component {...pageProps} />
+          </div>
         )}
       </div>
     </main>

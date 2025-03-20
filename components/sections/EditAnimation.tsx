@@ -2,11 +2,14 @@ import React from "react";
 
 const EditAnimation: React.FC = () => {
   return (
-    <section id="edit-animation">
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-black pb-52">
-        <div className="max-w-screen-lg w-full -mb-60">
+    <section
+      id="edit-animation"
+      className="flex flex-col items-center justify-center"
+    >
+      <div className="h-screen w-full bg-black">
+        <div className="max-w-screen-lg flex flex-col items-center justify-center w-full">
           <video
-            className="w-[50vw] h-auto rounded-lg shadow-lg"
+            className="w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
             src={"/assets/LQ5_Timeline_Animation.webm"}
             autoPlay
             loop
@@ -18,12 +21,14 @@ const EditAnimation: React.FC = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="text-center mt-6">
+        <div className="text-center">
           <h1 className="text-white text-[2.3rem] lg:text-[4rem] font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
-          <p className="text-white font-bold text-base lg:text-lg mt-2 px-[40px]">
-            Whether you are a director, editor, or artist, this pack is for you.
+          <p className="text-white font-bold text-lg lg:text-xl px-[40px] -mt-2">
+            Whether you are a{" "}
+            <span className="text-custom">director, editor, or artist,</span>{" "}
+            this pack is for you.
           </p>
         </div>
       </div>

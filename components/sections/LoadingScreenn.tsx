@@ -8,7 +8,7 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
       <video
-        src="/assets/LOADING_SCREEN_1.mp4"
+        src="/assets/Crown_just_green_Loading_Animation.mp4"
         autoPlay
         muted
         onEnded={onFinish}
