@@ -22,7 +22,7 @@ const VideoPlayer: React.FC = () => {
     <div className="relative">
       {videoSource ? (
         <video
-          className="w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
+          className="w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%] bg-transparent"
           src={videoSource}
           autoPlay
           loop
