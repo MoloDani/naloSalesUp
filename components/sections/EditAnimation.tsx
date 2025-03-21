@@ -6,7 +6,7 @@ const EditAnimation: React.FC = () => {
       id="edit-animation"
       className="flex flex-col items-center justify-center"
     >
-      <div className="h-screen w-full bg-black">
+      <div className="h-screen w-full">
         <div className="max-w-screen-lg flex flex-col items-center justify-center w-full">
           <video
             className="w-[90vw] lg:w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
@@ -17,18 +17,7 @@ const EditAnimation: React.FC = () => {
             controls={false} // Ensures no controls are displayed
             onError={() => alert("Sorry, the video couldn't load.")}
           >
-            {/* Safari (HEVC .mov) */}
-            <source
-              src="/assets/LQ5_Timeline_Animation.mov"
-              type="video/quicktime"
-            />
-            {/* Chrome, Edge, Firefox (WebM VP9) */}
-            <source
-              src="/assets/LQ5_Timeline_Animation.webm"
-              type="video/webm"
-            />
-            <track kind="captions" src="path_to_captions.vtt" />
-            Your browser does not support the video tag.
+            <source src="/assets/LQ5_Timeline_Animation.mov" />
           </video>
         </div>
         <div className="text-center">
