@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
     // Simulate an API request
     setTimeout(() => {
       setLoading(false);
-      setTimeout(() => setFadeIn(true), 50); // Delay fade-in slightly for smoother effect
+      setTimeout(() => setFadeIn(true), 60); // Delay fade-in slightly for smoother effect
     }, 3100);
   }, []);
 
