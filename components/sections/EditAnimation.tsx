@@ -1,39 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const EditAnimation: React.FC = () => {
+const VideoPlayer: React.FC = () => {
+  const [videoSource, setVideoSource] = useState<string | null>(null);
+
+  useEffect(() => {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isWebMSupported = !!document
+      .createElement("video")
+      .canPlayType("video/webm; codecs=vp9");
+
+    if (isSafari) {
+      setVideoSource("/assets/LQ5_Timeline_Animation.mov");
+    } else if (isWebMSupported) {
+      setVideoSource("/assets/LQ5_Timeline_Animation.webm");
+    } else {
+      setVideoSource(null);
+    }
+  }, []);
+
   return (
-    <section
-      id="edit-animation"
-      className="flex flex-col items-center justify-center"
-    >
-      <div className="h-screen w-full bg-black">
-        <div className="max-w-screen-lg flex flex-col items-center justify-center w-full">
-          <video
-            className="w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
-            src={"/assets/LQ5_Timeline_Animation.webm"}
-            autoPlay
-            loop
-            muted
-            controls={false} // To ensure no controls are displayed
-            onError={() => alert("Sorry, the video couldn't load.")}
-          >
-            <track kind="captions" src="path_to_captions.vtt" />
-            Your browser does not support the video tag.
-          </video>
+    <div className="relative">
+      {videoSource ? (
+        <video
+          className="w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
+          src={videoSource}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+        >
+          <track kind="captions" src="path_to_captions.vtt" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <div className="w-[35vw] h-auto rounded-lg shadow-lg flex items-center justify-center text-white">
+          Video format not supported.
         </div>
-        <div className="text-center">
-          <h1 className="text-white text-[2.3rem] lg:text-[4rem] font-bold">
-            Effects Made <span className="text-custom">Simple.</span>
-          </h1>
-          <p className="text-white font-bold text-lg lg:text-xl px-[40px] -mt-2">
-            Whether you are a{" "}
-            <span className="text-custom">director, editor, or artist,</span>{" "}
-            this pack is for you.
-          </p>
-        </div>
-      </div>
-    </section>
+      )}
+    </div>
   );
 };
 
-export default EditAnimation;
+export default VideoPlayer;
