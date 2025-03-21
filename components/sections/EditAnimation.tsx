@@ -17,7 +17,15 @@ const EditAnimation: React.FC = () => {
             controls={false} // Ensures no controls are displayed
             onError={() => alert("Sorry, the video couldn't load.")}
           >
-            <source src="/assets/LQ5_Timeline_Animation.mov" />
+            <source
+              src="/assets/LQ5_Timeline_Animation_1.mov"
+              type="video/quicktime"
+            />
+
+            <source
+              src="/assets/LQ5_Timeline_Animation_2.webm"
+              type="video/webm"
+            />
           </video>
         </div>
         <div className="text-center">
