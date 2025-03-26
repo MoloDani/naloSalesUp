@@ -1,55 +1,80 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const VideoScrollController: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const totalFrames = 25; // Adjust based on your video FPS * duration
+const LaptopAnimation: React.FC = () => {
+  const images = [
+    "/assets/laptopAnim/Comp 1_00003.png",
+    "/assets/laptopAnim/Comp 1_00004.png",
+    "/assets/laptopAnim/Comp 1_00005.png",
+    "/assets/laptopAnim/Comp 1_00006.png",
+    "/assets/laptopAnim/Comp 1_00007.png",
+    "/assets/laptopAnim/Comp 1_00008.png",
+    "/assets/laptopAnim/Comp 1_00009.png",
+    "/assets/laptopAnim/Comp 1_00010.png",
+    "/assets/laptopAnim/Comp 1_00011.png",
+    "/assets/laptopAnim/Comp 1_00012.png",
+    "/assets/laptopAnim/Comp 1_00013.png",
+    "/assets/laptopAnim/Comp 1_00014.png",
+    "/assets/laptopAnim/Comp 1_00015.png",
+    "/assets/laptopAnim/Comp 1_00016.png",
+    "/assets/laptopAnim/Comp 1_00017.png",
+    "/assets/laptopAnim/Comp 1_00018.png",
+    "/assets/laptopAnim/Comp 1_00019.png",
+    "/assets/laptopAnim/Comp 1_00020.png",
+    "/assets/laptopAnim/Comp 1_00021.png",
+    "/assets/laptopAnim/Comp 1_00022.png",
+    "/assets/laptopAnim/Comp 1_00023.png",
+    "/assets/laptopAnim/Comp 1_00024.png",
+    "/assets/laptopAnim/Comp 1_00025.png",
+    "/assets/laptopAnim/Comp 1_00026.png",
+    "/assets/laptopAnim/Comp 1_00027.png",
+    "/assets/laptopAnim/Comp 1_00028.png",
+  ];
 
-  // Bounds as a percentage of the component's height
-  const lowerBound = 0.8; // Start controlling at 20% visibility
-  const upperBound = 1; // Stop controlling at 80% visibility
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const topPoint = 0; // Define the top scroll position (in px)
+  const bottomPoint = 200; // Define the bottom scroll position (in px)
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+
+    // Ensure scroll position stays within the top and bottom points
+    if (scrollTop >= topPoint && scrollTop <= bottomPoint) {
+      const scrollRange = bottomPoint - topPoint;
+      const scrollProgress = ((scrollTop - topPoint) / scrollRange) * 100;
+
+      setScrollPercentage(scrollProgress);
+      setCurrentImageIndex(
+        Math.min(
+          Math.floor(scrollProgress / (100 / images.length)),
+          images.length - 1
+        )
+      );
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current || !videoRef.current) return;
-
-      const container = containerRef.current;
-      const rect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-
-      // Calculate how much of the component is in view (0 to 1)
-      const visibilityRatio = Math.max(
-        0,
-        Math.min(1, (viewportHeight - rect.top) / viewportHeight)
-      );
-
-      // Check if we're within the bounds
-      if (visibilityRatio >= lowerBound && visibilityRatio <= upperBound) {
-        const progress =
-          (visibilityRatio - lowerBound) / (upperBound - lowerBound);
-        const newFrame = Math.round(progress * totalFrames);
-
-        videoRef.current.currentTime = newFrame / 30; // Assuming 30 FPS
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-[100vh] flex items-center justify-center"
+    <section
+      id="scroll-image"
+      className="flex flex-col items-center justify-center w-full"
     >
-      <video
-        ref={videoRef}
-        src="/assets/laptop_animation.webm"
-        className="w-[90%]"
-        controls={false}
-      />
-    </div>
+      <div className="flex flex-col items-center justify-center w-full h-screen relative mt-[10vh] -mb-[10vh]">
+        <img
+          src={images[currentImageIndex]}
+          alt={`Image ${currentImageIndex + 1}`}
+          className="object-cover w-[70%] h-auto transition-all duration-500 ease-in-out"
+        />
+      </div>
+    </section>
   );
 };
 
-export default VideoScrollController;
+export default LaptopAnimation;

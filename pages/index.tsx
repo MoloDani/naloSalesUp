@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <main className="relative flex flex-col items-center justify-start w-full box-border overflow-hidden">
       <BgImage></BgImage>
-      <EditAnimation></EditAnimation>
       <LaptopAnimation></LaptopAnimation>
+      <EditAnimation></EditAnimation>
     </main>
   );
 }

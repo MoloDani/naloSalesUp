@@ -9,7 +9,7 @@ const EditAnimation: React.FC = () => {
       <div className="h-screen w-full">
         <div className="max-w-screen-lg flex flex-col items-center justify-center w-full">
           <video
-            className="w-[90vw] lg:w-[35vw] h-auto rounded-lg shadow-lg align-middle -mb-[18%]"
+            className="w-[90vw] lg:w-[35vw] h-auto align-middle -mb-[18%]"
             autoPlay
             loop
             muted
@@ -17,11 +17,6 @@ const EditAnimation: React.FC = () => {
             controls={false} // Ensures no controls are displayed
             onError={() => alert("Sorry, the video couldn't load.")}
           >
-            <source
-              src="/assets/LQ5_Timeline_Animation_1.mov"
-              type="video/quicktime"
-            />
-
             <source
               src="/assets/LQ5_Timeline_Animation_2.webm"
               type="video/webm"
