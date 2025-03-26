@@ -70,7 +70,7 @@ const LaptopAnimation: React.FC = () => {
         <img
           src={images[currentImageIndex]}
           alt={`Image ${currentImageIndex + 1}`}
-          className="object-cover w-[70%] h-auto transition-all duration-500 ease-in-out"
+          className="object-cover w-screen lg:w-[70%] h-auto transition-all duration-500 ease-in-out"
         />
       </div>
     </section>
