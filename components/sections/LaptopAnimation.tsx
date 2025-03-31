@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const LaptopAnimation: React.FC = () => {
   const images = [
@@ -32,29 +32,40 @@ const LaptopAnimation: React.FC = () => {
 
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const topPoint = 0; // Define the top scroll position (in px)
-  const bottomPoint = 200; // Define the bottom scroll position (in px)
-
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-
-    // Ensure scroll position stays within the top and bottom points
-    if (scrollTop >= topPoint && scrollTop <= bottomPoint) {
-      const scrollRange = bottomPoint - topPoint;
-      const scrollProgress = ((scrollTop - topPoint) / scrollRange) * 100;
-
-      setScrollPercentage(scrollProgress);
-      setCurrentImageIndex(
-        Math.min(
-          Math.floor(scrollProgress / (100 / images.length)),
-          images.length - 1
-        )
-      );
-    }
-  };
+  const [isFixed, setIsFixed] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Calculate scroll progress inside the section
+      const progress = Math.min(
+        Math.max((scrollTop - sectionTop + windowHeight) / sectionHeight, 0),
+        1
+      );
+
+      setScrollPercentage(progress * 100);
+
+      // Change image based on scroll progress
+      setCurrentImageIndex(
+        Math.min(Math.floor(progress * images.length), images.length - 1)
+      );
+
+      // Make it fixed while scrolling in the section, but absolute when reaching the bottom
+      if (progress >= 1) {
+        setIsFixed(false); // Reached the bottom
+      } else {
+        setIsFixed(true); // Stay fixed while scrolling
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -62,15 +73,19 @@ const LaptopAnimation: React.FC = () => {
   }, []);
 
   return (
-    <section
-      id="scroll-image"
-      className="flex flex-col items-center justify-center w-full"
-    >
-      <div className="flex flex-col items-center justify-center w-full h-screen relative mt-[10vh] -mb-[10vh]">
+    <section ref={sectionRef} className="relative w-full h-[160vh]">
+      {/* Scroll space before image */}
+      <div
+        className={`${
+          scrollPercentage < 100
+            ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            : "absolute bottom-0 left-1/2 -translate-x-1/2"
+        } transition-all duration-0`}
+      >
         <img
           src={images[currentImageIndex]}
           alt={`Image ${currentImageIndex + 1}`}
-          className="object-cover w-screen lg:w-[70%] h-auto transition-all duration-500 ease-in-out"
+          className="w-[80vw] h-auto transition-all duration-0"
         />
       </div>
     </section>
