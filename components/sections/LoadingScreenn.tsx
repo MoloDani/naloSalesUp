@@ -12,7 +12,7 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
         autoPlay
         muted
         onEnded={onFinish}
-        className="h-auto w-[300px] object-cover"
+        className="w-[80vw] max-w-[300px] h-auto object-cover"
       />
     </div>
   );
