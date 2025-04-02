@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#30ad31" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1"
+          content="width=device-width, initial-scale=1.0"
         ></meta>
         <meta property="og:title" content={"NALO Visuals"} />
         <meta property="og:type" content="product"></meta>

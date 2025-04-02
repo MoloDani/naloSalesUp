@@ -14,6 +14,7 @@ const EditAnimation: React.FC = () => {
           loop
           muted
           playsInline
+          preload="auto"
           controls={false} // Ensures no controls are displayed
           onError={() => alert("Sorry, the video couldn't load.")}
         >
