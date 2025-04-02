@@ -9,7 +9,7 @@ const EditAnimation: React.FC = () => {
       {/* Video Container */}
       <div className="flex flex-col items-center justify-center w-full relative">
         <video
-          className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80"
+          className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
           autoPlay
           loop
           muted
@@ -17,8 +17,8 @@ const EditAnimation: React.FC = () => {
           controls={false} // Ensures no controls are displayed
           onError={() => alert("Sorry, the video couldn't load.")}
         >
-          {/* WebM for Chrome, Firefox, Edge
-          <source src="/assets/LQ5_Timeline_Animation.webm" type="video/webm" /> */}
+          {/* WebM for Chrome, Firefox, Edge */}
+          <source src="/assets/LQ5_Timeline_Animation.webm" type="video/webm" />
 
           {/* MOV for Safari */}
           <source
