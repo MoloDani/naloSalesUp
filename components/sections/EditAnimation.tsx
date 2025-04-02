@@ -4,30 +4,31 @@ const EditAnimation: React.FC = () => {
   return (
     <section
       id="edit-animation"
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center h-screen w-full"
     >
-      <div className="h-screen w-full">
-        <div className="max-w-screen-lg flex flex-col items-center justify-center w-full">
-          <video
-            className="w-[90vw] lg:w-[35vw] h-auto align-middle -mb-[18%]"
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false} // Ensures no controls are displayed
-            onError={() => alert("Sorry, the video couldn't load.")}
-          >
-            <source
-              src="/assets/LQ5_Timeline_Animation_2.webm"
-              type="video/webm"
-            />
-          </video>
-        </div>
-        <div className="text-center">
-          <h1 className="text-white text-[2.3rem] lg:text-[4rem] font-bold">
+      {/* Video Container */}
+      <div className="flex flex-col items-center justify-center w-full relative">
+        <video
+          className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80"
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false} // Ensures no controls are displayed
+          onError={() => alert("Sorry, the video couldn't load.")}
+        >
+          <source
+            src="/assets/LQ5_Timeline_Animation_2.webm"
+            type="video/webm"
+          />
+        </video>
+
+        {/* Text Positioned at the Bottom, Over the Video */}
+        <div className="absolute bottom-0 w-full text-center p-4 z-10">
+          <h1 className="text-white text-[2rem] lg:text-[3rem] font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
-          <p className="text-white font-bold text-lg lg:text-xl px-[40px] -mt-2">
+          <p className="text-white font-bold text-lg lg:text-xl mt-1">
             Whether you are a{" "}
             <span className="text-custom">director, editor, or artist,</span>{" "}
             this pack is for you.
