@@ -6,7 +6,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
+    <div className="fixed inset-0 flex items-center w-full h-full justify-center bg-black z-50">
       <video
         src="/assets/Crown_just_green_Loading_Animation.mp4"
         autoPlay
