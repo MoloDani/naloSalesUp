@@ -17,9 +17,13 @@ const EditAnimation: React.FC = () => {
           controls={false} // Ensures no controls are displayed
           onError={() => alert("Sorry, the video couldn't load.")}
         >
+          {/* WebM for Chrome, Firefox, Edge */}
+          <source src="/assets/LQ5_Timeline_Animation.webm" type="video/webm" />
+
+          {/* WebM for Chrome, Firefox, Edge */}
           <source
-            src="/assets/LQ5_Timeline_Animation_2.webm"
-            type="video/webm"
+            src="/assets/LQ5_Timeline_Animation_1.mov"
+            type="video/quicktime"
           />
         </video>
 
