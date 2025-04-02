@@ -4,9 +4,11 @@ const EditAnimation = () => {
   const [isSafari, setIsSafari] = useState(false);
 
   useEffect(() => {
-    // Function to check for browser support
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-    console.log(isSafari);
+    // Detect if the browser is Safari
+    const safariCheck = /^((?!chrome|android).)*safari/i.test(
+      navigator.userAgent
+    );
+    setIsSafari(safariCheck);
   }, []);
 
   return (
@@ -17,6 +19,7 @@ const EditAnimation = () => {
       {/* Video Container */}
       <div className="flex flex-col items-center justify-center w-full relative">
         <video
+          key={isSafari ? "safari" : "non-safari"} // Change the key based on isSafari state
           className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
           autoPlay
           loop
