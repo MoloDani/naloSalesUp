@@ -13,6 +13,8 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
         muted
         onEnded={onFinish}
         playsInline
+        preload="auto"
+        controls={false}
         className="w-[80vw] max-w-[300px] h-auto object-cover"
       />
     </div>
