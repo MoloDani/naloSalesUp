@@ -6,7 +6,7 @@ const BuySection = () => {
     dolar = 167;
 
   return (
-    <section id="buy-now" className="flex flex-col w-screen items-center">
+    <section id="buy-now" className="flex flex-col w-full items-center">
       <img className="hidden lg:block w-[40vw] mb-4" src="" alt="Picture" />
       <div className="flex flex-col ">
         <div className="flex flex-row">
