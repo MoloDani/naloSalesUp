@@ -5,9 +5,18 @@ const BuySection = () => {
   const pound = 129,
     dolar = 167;
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <section id="buy-now" className="flex flex-col w-full items-center">
-      <img className="hidden lg:block w-[40vw] mb-4" src="" alt="Picture" />
+    <section
+      id="buy-now"
+      className="flex flex-row w-full items-center justify-center"
+    >
+      <img
+        className="hidden lg:block max-w-[50vw] max-h-[50vh] pr-32"
+        src="/assets/IPHONE_png_v2bg.png"
+        alt="Picture"
+      />
       <div className="flex flex-col ">
         <div className="flex flex-row">
           <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2">
@@ -45,9 +54,15 @@ const BuySection = () => {
         <a
           href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
           target="_blank"
-          rel="noopener noreferrer"
-          className="px-5 py-3 text-center text-white text-xl font-bold rounded-xl bg-gradient-to-t from-[#65b87c] to-[#085f2b] transition-all duration-200 
-             hover:from-transparent hover:to-transparent hover:border-2 hover:border-[#085f2b] hover:text-[#085f2b]"
+          className="p-2 pb-3 text-2xl text-white rounded-xl hover:border-2 hover:border-custom font-bold box-border transition-all duration-150 text-center hover:text-custom"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            background: isHovered
+              ? "transparent"
+              : "linear-gradient(to bottom, #085f20, #64b76c)",
+            borderRadius: "0.8rem",
+          }}
         >
           Buy Now
         </a>

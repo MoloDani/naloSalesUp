@@ -27,7 +27,8 @@ module.exports = {
         "xxs": "300px",
       },
       colors: {
-        custom: "rgba(3, 172, 19, 1)",
+        // custom: "rgba(3, 172, 19, 1)",
+        custom: "rgba(55, 243, 73)",
         darkGreen: "rgba(16, 124, 26, 1)",
       },
       height: {
