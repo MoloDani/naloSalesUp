@@ -13,6 +13,7 @@ const NoBgVideo: React.FC<NoBgVideoProps> = ({ srcBase }) => {
       /Safari/.test(navigator.userAgent) &&
       /Apple Computer/.test(navigator.vendor);
     setIsSafari(detectedSafari);
+    console.log(videoSrc);
   }, []);
 
   // Choose the video file based on the browser
