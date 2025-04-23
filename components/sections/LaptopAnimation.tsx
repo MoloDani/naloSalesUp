@@ -102,7 +102,7 @@ const LaptopVideo = ({
       >
         <div className="flex flex-col">
           <p className="text-[3.6rem] font-bold text-white opacity-100">
-            Invest In Effects <span className="text-custom">TODAY</span>
+            Invest In Effects <span className="text-custom">Today</span>
           </p>
           <a
             href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"

@@ -54,7 +54,7 @@ const BuySection = () => {
         <a
           href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
           target="_blank"
-          className="p-2 pb-3 text-2xl text-white rounded-xl hover:border-2 hover:border-custom font-bold box-border transition-all duration-150 text-center hover:text-custom"
+          className="p-2 pb-3 text-2xl text-white rounded-xl font-bold box-border transition-all duration-150 text-center group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
@@ -62,9 +62,13 @@ const BuySection = () => {
               ? "transparent"
               : "linear-gradient(to bottom, #085f20, #64b76c)",
             borderRadius: "0.8rem",
+            border: isHovered ? "2px solid #64b76c" : "2px solid black",
+            boxSizing: "border-box", // Ensures the border doesn't affect the size
           }}
         >
-          Buy Now
+          <span className="transition-all duration-300 text-white">
+            Buy Now
+          </span>
         </a>
       </div>
     </section>
