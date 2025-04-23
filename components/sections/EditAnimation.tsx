@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import NoBgVideo from "../utils/NoBgVideo";
 
 const EditAnimation = () => {
-  const [isSafari, setIsSafari] = useState(false);
-
-  useEffect(() => {
-    // Function to check for browser support
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-    console.log(isSafari);
-  }, []);
+  const isSafari =
+    /Safari/.test(navigator.userAgent) &&
+    /Apple Computer/.test(navigator.vendor);
 
   return (
     <section
@@ -26,7 +22,6 @@ const EditAnimation = () => {
           preload="auto"
           controls={false} // Ensures no controls are displayed
           onError={() => alert("Sorry, the video couldn't load.")}
-          poster="/assets/video-placeholder.png" // Placeholder image while loading
         >
           {isSafari ? (
             <source
