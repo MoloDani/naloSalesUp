@@ -15,24 +15,28 @@ const NoBgVideo: React.FC<NoBgVideoProps> = ({ srcBase }) => {
   }, []);
 
   const videoSrc = isSafari ? `${srcBase}.mov` : `${srcBase}.webm`;
-
   const videoType = isSafari ? "video/quicktime" : "video/webm";
 
   return (
-    <video
-      key={videoSrc}
-      className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="auto"
-      controls={false}
-      onError={() => alert("Sorry, the video couldn't load.")}
-    >
-      <source src={videoSrc} type={videoType} />
-      Sorry, your browser doesn't support the video tag.
-    </video>
+    <div className="relative">
+      <video
+        key={videoSrc}
+        className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto" // Can be "metadata" or "none" depending on network conditions
+        controls={false}
+        onError={() => {
+          console.error(`Error loading video: ${videoSrc}`);
+          // Optionally show a fallback image or message here instead of an alert
+        }}
+      >
+        <source src={videoSrc} type={videoType} />
+        Sorry, your browser doesn't support the video tag.
+      </video>
+    </div>
   );
 };
 
