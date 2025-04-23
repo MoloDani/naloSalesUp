@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import NoBgVideo from "../utils/NoBgVideo";
 
 const EditAnimation = () => {
-  const isSafari =
-    /Safari/.test(navigator.userAgent) &&
-    /Apple Computer/.test(navigator.vendor);
+  const [isSafari, setIsSafari] = useState(false);
+
+  useEffect(() => {
+    // Function to check for browser support
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    console.log(isSafari);
+  }, []);
 
   return (
     <section
@@ -22,6 +26,7 @@ const EditAnimation = () => {
           preload="auto"
           controls={false} // Ensures no controls are displayed
           onError={() => alert("Sorry, the video couldn't load.")}
+          poster="/assets/video-placeholder.png" // Placeholder image while loading
         >
           {isSafari ? (
             <source
@@ -34,9 +39,8 @@ const EditAnimation = () => {
               type="video/webm"
             />
           )}
-          {/* Fallback content if video fails to load */}
-          Sorry, your browser doesn't support the video tag.
         </video>
+        <h1>{isSafari}</h1>
         {/* Text Positioned at the Bottom, Over the Video */}
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
           <h1 className="text-white text-[2rem] lg:text-[3rem] font-bold">
