@@ -14,8 +14,8 @@ const NoBgVideo: React.FC<NoBgVideoProps> = ({ srcBase }) => {
     setIsSafari(detectedSafari);
   }, []);
 
-  const videoSrc = isSafari ? `${srcBase}.mov` : `${srcBase}.webm`;
-  const videoType = isSafari ? "video/quicktime" : "video/webm";
+  const videoSrc = `${srcBase}.webm`; // Force using .webm for compatibility
+  const videoType = "video/webm"; // Use .webm for all browsers
 
   return (
     <div className="relative">
@@ -26,7 +26,7 @@ const NoBgVideo: React.FC<NoBgVideoProps> = ({ srcBase }) => {
         loop
         muted
         playsInline
-        preload="auto" // Can be "metadata" or "none" depending on network conditions
+        preload="auto"
         controls={false}
         onError={() => {
           console.error(`Error loading video: ${videoSrc}`);
