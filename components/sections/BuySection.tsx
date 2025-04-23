@@ -17,7 +17,7 @@ const BuySection = () => {
         src="/assets/IPHONE_png_v2bg.png"
         alt="Picture"
       />
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <div className="flex flex-row">
           <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2">
             Get it all for <span className="text-custom">just</span>
@@ -63,6 +63,7 @@ const BuySection = () => {
               : "linear-gradient(to bottom, #085f20, #64b76c)",
             borderRadius: "0.8rem",
             border: isHovered ? "2px solid #64b76c" : "2px solid black",
+            padding: "10px 20px", // Make sure padding remains consistent
             boxSizing: "border-box", // Ensures the border doesn't affect the size
           }}
         >

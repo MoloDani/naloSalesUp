@@ -28,17 +28,10 @@ const EditAnimation = () => {
           onError={() => alert("Sorry, the video couldn't load.")}
           poster="/assets/video-placeholder.png" // Placeholder image while loading
         >
-          {isSafari ? (
-            <source
-              src="/assets/LQ5_Timeline_Animation_1.mov"
-              type="video/quicktime"
-            />
-          ) : (
-            <source
-              src="/assets/LQ5_Timeline_Animation.webm"
-              type="video/webm"
-            />
-          )}
+          <source
+            src="/assets/LQ5_Timeline_Animation_1.mov"
+            type="video/quicktime"
+          />
         </video>
         <h1>{isSafari}</h1>
         {/* Text Positioned at the Bottom, Over the Video */}
