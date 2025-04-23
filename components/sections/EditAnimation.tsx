@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import NoBgVideo from "../utils/NoBgVideo";
 
 const EditAnimation = () => {
-  const isSafari =
-    /Safari/.test(navigator.userAgent) &&
-    /Apple Computer/.test(navigator.vendor);
+  const [isSafari, setIsSafari] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const platform = navigator.platform;
+
+    // Check for iOS Safari (Safari on iPhone/iPad)
+    const isIphoneOrIpad = /iPhone|iPad|iPod/.test(platform);
+    const isSafariBrowser =
+      /Safari/.test(userAgent) && /Apple Computer/.test(navigator.vendor);
+
+    // If it's iOS Safari or Desktop Safari, set isSafari to true
+    setIsSafari(isIphoneOrIpad || isSafariBrowser);
+  }, []);
 
   return (
     <section
@@ -14,7 +24,6 @@ const EditAnimation = () => {
       {/* Video Container */}
       <div className="flex flex-col items-center justify-center w-full relative">
         <video
-          key={isSafari ? "safari" : "non-safari"} // Change the key based on isSafari state
           className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
           autoPlay
           loop
@@ -30,10 +39,16 @@ const EditAnimation = () => {
               type="video/quicktime"
             />
           ) : (
-            <source
-              src="/assets/LQ5_Timeline_Animation.webm"
-              type="video/webm"
-            />
+            <>
+              <source
+                src="/assets/LQ5_Timeline_Animation_1.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="/assets/LQ5_Timeline_Animation_1.webm"
+                type="video/webm"
+              />
+            </>
           )}
           {/* Fallback content if video fails to load */}
           Sorry, your browser doesn't support the video tag.
