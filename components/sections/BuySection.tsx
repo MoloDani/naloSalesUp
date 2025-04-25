@@ -13,7 +13,7 @@ const BuySection = () => {
       className="flex flex-row w-full items-center justify-center"
     >
       <img
-        className="hidden lg:block max-w-[50vw] max-h-[50vh] pr-32"
+        className="hidden lg:block max-w-[50vw] max-h-[95vh] pr-48"
         src="/assets/IPHONE_png_v2bg.png"
         alt="Picture"
       />
@@ -54,7 +54,7 @@ const BuySection = () => {
         <a
           href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
           target="_blank"
-          className="p-2 pb-3 text-2xl text-white rounded-xl font-bold box-border transition-all duration-150 text-center group"
+          className="p-2 pb-3 text-2xl text-white rounded-xl font-bold box-border transition-all duration-150 text-center group -mt-5"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
