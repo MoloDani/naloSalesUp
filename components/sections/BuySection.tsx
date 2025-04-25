@@ -19,7 +19,7 @@ const BuySection = () => {
       />
       <div className="flex flex-col">
         <div className="flex flex-row">
-          <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2">
+          <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2 px-5">
             Get it all for <span className="text-custom">just</span>
           </h2>
 
