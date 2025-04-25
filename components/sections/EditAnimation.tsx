@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const EditAnimation = () => {
-  const [isSafari, setIsSafari] = useState(false);
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent;
-    const platform = navigator.platform;
-
-    // Check for iOS Safari (Safari on iPhone/iPad)
-    const isIphoneOrIpad = /iPhone|iPad|iPod/.test(platform);
-    const isSafariBrowser =
-      /Safari/.test(userAgent) && /Apple Computer/.test(navigator.vendor);
-
-    // If it's iOS Safari or Desktop Safari, set isSafari to true
-    setIsSafari(isIphoneOrIpad || isSafariBrowser);
-  }, []);
+  const isSafari =
+    /Safari/.test(navigator.userAgent) &&
+    /Apple Computer/.test(navigator.vendor);
 
   return (
     <section
@@ -35,17 +24,13 @@ const EditAnimation = () => {
         >
           {isSafari ? (
             <source
-              src="/assets/LQ5_Timeline_Animation_1.mov"
+              src="/assets/LQ5_Timeline_Animation.mov"
               type="video/quicktime"
             />
           ) : (
             <>
               <source
-                src="/assets/LQ5_Timeline_Animation_1.mp4"
-                type="video/mp4"
-              />
-              <source
-                src="/assets/LQ5_Timeline_Animation_1.webm"
+                src="/assets/LQ5_Timeline_Animation.webm"
                 type="video/webm"
               />
             </>
