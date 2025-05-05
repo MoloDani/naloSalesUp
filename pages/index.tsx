@@ -1,5 +1,6 @@
 import BgImage from "@/components/sections/BgImage";
 import BuySection from "@/components/sections/BuySection";
+import BuySectionWithPhone from "@/components/sections/BuySectionWithPhone";
 import EditAnimation from "@/components/sections/EditAnimation";
 import InnitSection from "@/components/sections/InnitSection";
 import LaptopAnimation from "@/components/sections/LaptopAnimation";
@@ -10,6 +11,7 @@ export default function Home() {
       <LaptopAnimation></LaptopAnimation>
       <BuySection></BuySection>
       <EditAnimation></EditAnimation>
+      <BuySectionWithPhone />
       <InnitSection />
     </main>
   );
