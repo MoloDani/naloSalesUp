@@ -7,16 +7,35 @@ const BuySection = () => {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const isSafari =
+    /Safari/.test(navigator.userAgent) &&
+    /Apple Computer/.test(navigator.vendor);
+
   return (
     <section
       id="buy-now"
-      className="flex flex-row w-full items-center justify-center"
+      className="flex flex-row w-full items-center justify-center -mt-32"
     >
-      <img
-        className="hidden lg:block max-w-[50vw] max-h-[95vh] pr-48"
-        src="/assets/IPHONE_png_v2bg.png"
-        alt="Picture"
-      />
+      <video
+        className="w-[45vw] h-auto align-middle -mx-20 -ml-64"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        controls={false} // Ensures no controls are displayed
+        onError={() => alert("Sorry, the video couldn't load.")}
+      >
+        {isSafari ? (
+          <source src="/assets/USB_LOOP.mov" type="video/quicktime" />
+        ) : (
+          <>
+            <source src="/assets/USB_LOOP.webm" type="video/webm" />
+          </>
+        )}
+        {/* Fallback content if video fails to load */}
+        Sorry, your browser doesn't support the video tag.
+      </video>
       <div className="flex flex-col">
         <div className="flex flex-row">
           <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2 px-5">
