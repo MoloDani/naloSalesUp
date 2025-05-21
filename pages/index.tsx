@@ -1,3 +1,4 @@
+import AffiliateTab from "@/components/sections/AfiliateTab";
 import BgImage from "@/components/sections/BgImage";
 import BuySection from "@/components/sections/BuySection";
 import BuySectionWithPhone from "@/components/sections/BuySectionWithPhone";
@@ -12,6 +13,7 @@ export default function Home() {
       <BuySection></BuySection>
       <EditAnimation></EditAnimation>
       <BuySectionWithPhone />
+      <AffiliateTab />
       <InnitSection />
     </main>
   );
