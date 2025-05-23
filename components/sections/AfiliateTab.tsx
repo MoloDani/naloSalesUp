@@ -13,7 +13,7 @@ const AffiliateTab = () => {
       {/* Video Container */}
       <div className="flex flex-col items-center justify-center w-full relative">
         <video
-          className="lg:w-[70vw] h-auto align-middle -mt-40 mb-24"
+          className="lg:w-[45vw] h-auto align-middle -mt-40 mb-24"
           autoPlay
           loop
           muted
