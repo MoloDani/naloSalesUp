@@ -45,7 +45,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   const [started, setStarted] = useState(false);
 
   // decide which video to show
-  const [showAlt, setShowAlt] = useState(false);
+  const [showAlt, setShowAlt] = useState(true);
 
   // for z-index of the overlay text
   const [overlayZ, setOverlayZ] = useState(-1);
@@ -120,7 +120,6 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
         <video
           ref={mainRef}
           src={MAIN_SRC}
-          muted
           loop
           playsInline
           onLoadedMetadata={onMainLoaded}
