@@ -1,120 +1,168 @@
-import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  useEffect,
+  useState,
+} from "react";
+import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const PADDING = 20;
-const FPS = 30; // adjust this to match your video's frame rate
+const FPS = 20;
+const MAIN_SRC = "/assets/laptop_animation.webm";
+const ALT_SRC = "/assets/promo_video.webm"; // make sure this file name no longer trips your ad-blocker
 
 const LaptopAnimation: React.FC = () => {
-  const targetRef = useRef(null);
-
+  const targetRef = useRef<HTMLDivElement>(null);
   return (
     <section id="Laptop Animation">
-      <div
-        className="relative h-[150vh]"
-        style={{
-          paddingLeft: PADDING,
-          paddingRight: PADDING,
-          width: `calc(100vw - ${2 * PADDING}px)`,
-        }}
-        ref={targetRef}
-      >
-        <LaptopVideo targetRef={targetRef} />
-      </div>
+      <LaptopVideo ref={targetRef} />
     </section>
   );
 };
 
-const LaptopVideo = ({
-  targetRef,
-}: {
-  targetRef: React.RefObject<HTMLElement>;
-}) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+type LaptopVideoProps = {};
+
+// forwardRef so the parent can scroll-track this wrapper div
+const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLVideoElement>(null);
+  const altRef = useRef<HTMLVideoElement>(null);
+
+  // let parent use this div for useScroll
+  useImperativeHandle(ref, () => wrapperRef.current!);
+
   const { scrollYProgress } = useScroll({
-    target: targetRef,
+    target: wrapperRef,
     offset: ["start start", "end end"],
   });
 
-  const [frameCount, setFrameCount] = useState(0);
-  const frameIndexMotion = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, frameCount]
-  );
+  // total frames in the MAIN clip
+  const [frames, setFrames] = useState(0);
+  const frameIndex = useTransform(scrollYProgress, [0, 1], [0, frames]);
+  const [currentFrame, setCurrentFrame] = useState(0);
+  // once we scrub past frame 0, we consider the animation "started"
+  const [started, setStarted] = useState(false);
 
-  const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
-  const [indexButton, setIndexButton] = useState(-1);
+  // decide which video to show
+  const [showAlt, setShowAlt] = useState(false);
 
-  // when video loads metadata, set frame count
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      const duration = videoRef.current.duration;
-      const frames = Math.floor(duration * FPS);
-      setFrameCount(frames);
+  // for z-index of the overlay text
+  const [overlayZ, setOverlayZ] = useState(-1);
+
+  // when MAIN loads, record its total frames
+  const onMainLoaded = () => {
+    if (mainRef.current) {
+      setFrames(Math.floor(mainRef.current.duration * FPS));
     }
   };
 
-  // listen for scroll-driven frameIndex changes
-  useMotionValueEvent(frameIndexMotion, "change", (latest) => {
-    setCurrentFrameIndex(Math.floor(latest));
+  // update currentFrame + mark started
+  useMotionValueEvent(frameIndex, "change", (latest) => {
+    const idx = Math.floor(latest);
+    setCurrentFrame(idx);
+    if (idx > 0) setStarted(true);
   });
 
-  // Update video currentTime based on scroll position
-  useEffect(() => {
-    if (videoRef.current && frameCount > 0) {
-      const playbackTime = currentFrameIndex / FPS;
-      videoRef.current.currentTime = playbackTime; // Set the video to the correct frame
+  // swap showAlt based on "started" and scroll < 15%
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (started && progress < 0.15) {
+      setShowAlt(true);
+    } else {
+      setShowAlt(false);
     }
-  }, [currentFrameIndex, frameCount]);
+  });
 
+  // when MAIN is showing, scrub its currentTime
   useEffect(() => {
-    if (currentFrameIndex > frameCount / 2 + 3) setIndexButton(30);
-    else setIndexButton(-1);
-  }, [currentFrameIndex, frameCount]);
+    if (!showAlt && mainRef.current) {
+      mainRef.current.currentTime = currentFrame / FPS;
+    }
+  }, [currentFrame, showAlt]);
+
+  // when ALT is showing, ensure it plays; pause otherwise
+  useEffect(() => {
+    const alt = altRef.current;
+    if (!alt) return;
+    if (showAlt) alt.play().catch(() => {});
+    else alt.pause();
+  }, [showAlt]);
+
+  // once you pass halfway + 3 frames, bring your overlay in front
+  useEffect(() => {
+    if (frames > 0 && currentFrame > frames / 2 + 3) {
+      setOverlayZ(30);
+    } else {
+      setOverlayZ(-1);
+    }
+  }, [currentFrame, frames]);
 
   return (
     <div
+      ref={wrapperRef}
+      className="relative h-[150vh]"
       style={{
-        height: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
-        top: PADDING,
-        position: "sticky",
+        position: "relative",
+        paddingLeft: PADDING,
+        paddingRight: PADDING,
+        width: `calc(100vw - ${2 * PADDING}px)`,
       }}
-      className="relative overflow-hidden w-full"
     >
-      {/* Video Container */}
-      <video
-        ref={videoRef}
-        src="/assets/laptop_animation.webm"
-        muted
-        loop
-        playsInline
-        onLoadedMetadata={handleLoadedMetadata}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      {/* Text + Button in Front */}
       <div
-        className="absolute inset-0 flex justify-center items-start"
+        className="relative overflow-hidden w-full"
         style={{
-          top: "28%",
-          zIndex: indexButton,
+          position: "sticky",
+          top: PADDING,
+          height: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
         }}
       >
-        <div className="flex flex-col">
-          <p className="text-[3.6rem] font-bold text-white opacity-100">
-            Invest In Effects <span className="text-custom">Today</span>
-          </p>
-          <a
-            href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
-            target="_blank"
-            className="mt-2 p-2 pb-3 text-2xl text-white border-2 border-custom rounded-xl font-bold box-border transition-all duration-150 cursor-pointer text-center"
-          >
-            Buy Now
-          </a>
+        {/* MAIN video: scrub by scroll when visible */}
+        <video
+          ref={mainRef}
+          src={MAIN_SRC}
+          muted
+          loop
+          playsInline
+          onLoadedMetadata={onMainLoaded}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ display: showAlt ? "none" : "block" }}
+        />
+
+        {/* ALT video: free-play when visible */}
+        <video
+          ref={altRef}
+          src={ALT_SRC}
+          muted
+          autoPlay
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ display: showAlt ? "block" : "none" }}
+        />
+
+        {/* Overlay text/button with dynamic z-index */}
+        <div
+          className="absolute inset-0 flex justify-center items-start"
+          style={{ top: "28%", zIndex: overlayZ }}
+        >
+          <div className="flex flex-col">
+            <p className="text-[3.6rem] font-bold text-white">
+              Invest In Effects <span className="text-custom">Today</span>
+            </p>
+            <a
+              href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 p-2 pb-3 text-2xl text-white border-2 border-custom rounded-xl font-bold transition-all duration-150 cursor-pointer text-center"
+            >
+              Buy Now
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
-};
+});
 
+LaptopVideo.displayName = "LaptopVideo";
 export default LaptopAnimation;

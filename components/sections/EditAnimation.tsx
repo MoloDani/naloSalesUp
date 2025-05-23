@@ -24,7 +24,7 @@ const EditAnimation = () => {
         >
           {isSafari ? (
             <source
-              src="/assets/LQ5_Timeline_Animation.mov"
+              src="/assets/LQ5_Timeline_Animation_HEVC.mov"
               type="video/quicktime"
             />
           ) : (

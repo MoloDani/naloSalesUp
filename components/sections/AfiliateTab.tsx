@@ -23,10 +23,10 @@ const AffiliateTab = () => {
           onError={() => alert("Sorry, the video couldn't load.")}
         >
           {isSafari ? (
-            <source src="/assets/Laptop_Affiliate.mov" type="video/quicktime" />
+            <source src="/assets/coin_laptop_HEVC.mov" type="video/quicktime" />
           ) : (
             <>
-              <source src="/assets/Laptop_Affiliate.webm" type="video/webm" />
+              <source src="/assets/coin_laptop.webm" type="video/webm" />
             </>
           )}
           {/* Fallback content if video fails to load */}
@@ -35,13 +35,13 @@ const AffiliateTab = () => {
         {/* Text Positioned at the Bottom, Over the Video */}
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
           <h1 className="text-white text-[2rem] lg:text-[3rem] font-bold">
-            Earn While You <span className="text-custom">Edit</span>
+            <span className="text-custom">Earn</span> While You Edit
           </h1>
           <p className="text-white font-bold text-lg lg:text-xl mt-1">
             Get <span className="text-custom">£100+</span> per referral and{" "}
             <span className="text-custom">50% off</span> the pack if accepted
-            into the affiliate <br /> program. Don’t{" "}
-            <span className="text-custom">miss out</span>.
+            into the affiliate program
+            <br /> Don’t <span className="text-custom">miss out</span>.
           </p>
         </div>
       </div>
