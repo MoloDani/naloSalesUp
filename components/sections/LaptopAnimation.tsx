@@ -9,8 +9,13 @@ import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const PADDING = 20;
 const FPS = 20;
-const MAIN_SRC = "/assets/laptop_animation.webm";
-const ALT_SRC = "/assets/promo_video.webm"; // make sure this file name no longer trips your ad-blocker
+// For non-Safari browsers:
+const MAIN_SRC_WEBM = "/assets/laptop_animation.webm";
+const ALT_SRC_WEBM = "/assets/promo_video1.webm";
+
+// For Safari (QuickTime) browsers:
+const MAIN_SRC_QT = "/assets/laptop_animation.mov";
+const ALT_SRC_QT = "/assets/promo_video.mov";
 
 const LaptopAnimation: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -29,8 +34,14 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   const mainRef = useRef<HTMLVideoElement>(null);
   const altRef = useRef<HTMLVideoElement>(null);
 
-  // let parent use this div for useScroll
+  // Let parent use this div for useScroll
   useImperativeHandle(ref, () => wrapperRef.current!);
+
+  // Detect Safari/QuickTime (only on client side)
+  const isSafari =
+    typeof navigator !== "undefined" &&
+    /Safari/.test(navigator.userAgent) &&
+    /Apple Computer/.test(navigator.vendor);
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -44,7 +55,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   // once we scrub past frame 0, we consider the animation "started"
   const [started, setStarted] = useState(false);
 
-  // decide which video to show
+  // decide which video to show (ALT initially, then switch)
   const [showAlt, setShowAlt] = useState(true);
 
   // for z-index of the overlay text
@@ -119,25 +130,39 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
         {/* MAIN video: scrub by scroll when visible */}
         <video
           ref={mainRef}
-          src={MAIN_SRC}
           loop
           playsInline
+          muted={false} // if you want sound on MAIN, change as needed
           onLoadedMetadata={onMainLoaded}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "none" : "block" }}
-        />
+        >
+          {isSafari ? (
+            <source src={MAIN_SRC_QT} type="video/quicktime" />
+          ) : (
+            <source src={MAIN_SRC_WEBM} type="video/webm" />
+          )}
+          {/* You can add a fallback message if needed: */}
+          Your browser does not support the video tag.
+        </video>
 
         {/* ALT video: free-play when visible */}
         <video
           ref={altRef}
-          src={ALT_SRC}
           muted
           autoPlay
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "block" : "none" }}
-        />
+        >
+          {isSafari ? (
+            <source src={ALT_SRC_QT} type="video/quicktime" />
+          ) : (
+            <source src={ALT_SRC_WEBM} type="video/webm" />
+          )}
+          Your browser does not support the video tag.
+        </video>
 
         {/* Overlay text/button with dynamic z-index */}
         <div
