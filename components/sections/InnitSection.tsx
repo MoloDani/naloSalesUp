@@ -1,10 +1,11 @@
+// InnitSection.tsx
 import React from "react";
 
 const InnitSection = () => {
   return (
-    <section id="oppinon">
-      <div className="text-4xl font-bold mt-10 mb-20 opacity-60">
-        <h1>
+    <section id="oppinon" className="py-16 w-full px-4">
+      <div className="max-w-[800px] mx-auto text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold opacity-60">
           <span className="text-custom">Mad</span> pack innit
         </h1>
       </div>

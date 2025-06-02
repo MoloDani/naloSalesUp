@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// EditAnimation.tsx
+import React from "react";
 
 const EditAnimation = () => {
   const isSafari =
@@ -8,18 +9,29 @@ const EditAnimation = () => {
   return (
     <section
       id="edit-animation"
-      className="flex flex-col items-center justify-center h-screen w-full"
+      className="
+        flex flex-col items-center justify-center 
+        w-full 
+        py-16 
+        px-4
+      "
     >
-      {/* Video Container */}
-      <div className="flex flex-col items-center justify-center w-full relative">
+      <div className="relative w-full max-w-[800px]">
         <video
-          className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
+          className="
+            w-full 
+            h-auto 
+            rounded-lg 
+            shadow-xl
+            mb-10
+            sm:-mb-10
+          "
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          controls={false} // Ensures no controls are displayed
+          controls={false}
           onError={() => alert("Sorry, the video couldn't load.")}
         >
           {isSafari ? (
@@ -28,22 +40,21 @@ const EditAnimation = () => {
               type="video/quicktime"
             />
           ) : (
-            <>
-              <source
-                src="/assets/LQ5_Timeline_Animation.webm"
-                type="video/webm"
-              />
-            </>
+            <source
+              src="/assets/LQ5_Timeline_Animation.webm"
+              type="video/webm"
+            />
           )}
-          {/* Fallback content if video fails to load */}
+          {/* Fallback */}
           Sorry, your browser doesn't support the video tag.
         </video>
-        {/* Text Positioned at the Bottom, Over the Video */}
-        <div className="absolute bottom-0 w-full text-center p-4 z-10">
-          <h1 className="text-white text-[2rem] lg:text-[3rem] font-bold">
+
+        {/* Overlay Text */}
+        <div className="absolute bottom-4 inset-x-0 text-center px-4">
+          <h1 className="text-white text-3xl sm:text-4xl lg:text-[4rem] font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
-          <p className="text-white font-bold text-lg lg:text-xl mt-1">
+          <p className="text-white font-semibold text-lg sm:text-xl lg:text-2xl mt-2">
             Whether you are a{" "}
             <span className="text-custom">director, editor, or artist,</span>{" "}
             this pack is for you.
