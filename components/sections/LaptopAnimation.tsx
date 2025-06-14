@@ -9,35 +9,65 @@ import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const PADDING = 20;
 const FPS = 20;
-// For non-Safari browsers:
+
 const MAIN_SRC_WEBM = "/assets/laptop_animation.webm";
 const ALT_SRC_WEBM = "/assets/promo_video1.webm";
-
-// For Safari (QuickTime) browsers:
 const MAIN_SRC_QT = "/assets/laptop_animation.mov";
 const ALT_SRC_QT = "/assets/promo_video.mov";
 
 const LaptopAnimation: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   return (
-    <section id="Laptop Animation">
-      <LaptopVideo ref={targetRef} />
+    <section id="Laptop Animation" className="w-full">
+      {/* Desktop/Tablet Animation */}
+      <div className="hidden lg:block">
+        <LaptopVideo ref={targetRef} />
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="w-full overflow-hidden">
+        <div className="relative left-1/2 -translate-x-1/2 w-[130vw] -mb-20">
+          <video
+            className="w-full max-w-none h-auto rounded-xl"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            controls={false}
+          >
+            <source src={ALT_SRC_WEBM} type="video/webm" />
+            <source src={ALT_SRC_QT} type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div className="text-center mt-6 px-4">
+          <p className="text-3xl font-bold text-white">
+            Invest In Effects <span className="text-custom">Today</span>
+          </p>
+          <a
+            href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-block px-6 py-3 text-xl text-white border-2 border-custom rounded-xl font-bold transition-all duration-150"
+          >
+            Buy Now
+          </a>
+        </div>
+      </div>
     </section>
   );
 };
 
-type LaptopVideoProps = {};
-
-// forwardRef so the parent can scroll-track this wrapper div
-const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
+// Keep the original animation untouched
+const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLVideoElement>(null);
   const altRef = useRef<HTMLVideoElement>(null);
 
-  // Let parent use this div for useScroll
   useImperativeHandle(ref, () => wrapperRef.current!);
 
-  // Detect Safari/QuickTime (only on client side)
   const isSafari =
     typeof navigator !== "undefined" &&
     /Safari/.test(navigator.userAgent) &&
@@ -45,37 +75,28 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end 110%"],
   });
 
-  // total frames in the MAIN clip
   const [frames, setFrames] = useState(0);
   const frameIndex = useTransform(scrollYProgress, [0, 1], [0, frames]);
   const [currentFrame, setCurrentFrame] = useState(0);
-  // once we scrub past frame 0, we consider the animation "started"
   const [started, setStarted] = useState(false);
-
-  // decide which video to show (ALT initially, then switch)
   const [showAlt, setShowAlt] = useState(true);
-
-  // for z-index of the overlay text
   const [overlayZ, setOverlayZ] = useState(-1);
 
-  // when MAIN loads, record its total frames
   const onMainLoaded = () => {
     if (mainRef.current) {
       setFrames(Math.floor(mainRef.current.duration * FPS));
     }
   };
 
-  // update currentFrame + mark started
   useMotionValueEvent(frameIndex, "change", (latest) => {
     const idx = Math.floor(latest);
     setCurrentFrame(idx);
     if (idx > 0) setStarted(true);
   });
 
-  // swap showAlt based on "started" and scroll < 15%
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     if (started && progress < 0.15) {
       setShowAlt(true);
@@ -84,14 +105,12 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
     }
   });
 
-  // when MAIN is showing, scrub its currentTime
   useEffect(() => {
     if (!showAlt && mainRef.current) {
       mainRef.current.currentTime = currentFrame / FPS;
     }
   }, [currentFrame, showAlt]);
 
-  // when ALT is showing, ensure it plays; pause otherwise
   useEffect(() => {
     const alt = altRef.current;
     if (!alt) return;
@@ -99,7 +118,6 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
     else alt.pause();
   }, [showAlt]);
 
-  // once you pass halfway + 3 frames, bring your overlay in front
   useEffect(() => {
     if (frames > 0 && currentFrame > frames / 2 + 3) {
       setOverlayZ(30);
@@ -111,42 +129,34 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-[150vh]"
+      className="relative h-[160vh]"
       style={{
-        position: "relative",
         paddingLeft: PADDING,
         paddingRight: PADDING,
         width: `calc(100vw - ${2 * PADDING}px)`,
       }}
     >
       <div
-        className="relative overflow-hidden w-full"
+        className="relative overflow-hidden w-full sticky top-5"
         style={{
-          position: "sticky",
-          top: PADDING,
           height: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
         }}
       >
-        {/* MAIN video: scrub by scroll when visible */}
         <video
           ref={mainRef}
           loop
           playsInline
-          muted={false} // if you want sound on MAIN, change as needed
+          muted={false}
           onLoadedMetadata={onMainLoaded}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "none" : "block" }}
         >
-          {isSafari ? (
-            <source src={MAIN_SRC_QT} type="video/quicktime" />
-          ) : (
-            <source src={MAIN_SRC_WEBM} type="video/webm" />
-          )}
-          {/* You can add a fallback message if needed: */}
-          Your browser does not support the video tag.
+          <source
+            src={isSafari ? MAIN_SRC_QT : MAIN_SRC_WEBM}
+            type="video/webm"
+          />
         </video>
 
-        {/* ALT video: free-play when visible */}
         <video
           ref={altRef}
           muted
@@ -156,15 +166,12 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "block" : "none" }}
         >
-          {isSafari ? (
-            <source src={ALT_SRC_QT} type="video/quicktime" />
-          ) : (
-            <source src={ALT_SRC_WEBM} type="video/webm" />
-          )}
-          Your browser does not support the video tag.
+          <source
+            src={isSafari ? ALT_SRC_QT : ALT_SRC_WEBM}
+            type="video/webm"
+          />
         </video>
 
-        {/* Overlay text/button with dynamic z-index */}
         <div
           className="absolute inset-0 flex justify-center items-start"
           style={{ top: "28%", zIndex: overlayZ }}
