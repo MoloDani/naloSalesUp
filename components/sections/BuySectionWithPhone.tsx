@@ -1,53 +1,61 @@
 import React, { useState } from "react";
 
-const BuySection = () => {
-  const [isPound, setIsPound] = useState(true);
-  const pound = 129,
-    dolar = 167;
-
+const BuySectionWithPhone = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <section
-      id="buy-now"
-      className="flex flex-row w-full items-center justify-center"
+      id="buy-now-phone"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 pt-12"
     >
+      {/* iPhone mock-up */}
       <img
-        className="hidden lg:block max-w-[50vw] max-h-[95vh] pr-10 -ml-40"
         src="/assets/IPHONE_png_v2bg.png"
-        alt="Picture"
+        alt="Phone"
+        className="w-auto lg:h-[80vh] lg:pr-10"
       />
-      <div className="flex flex-col pb-40">
-        <h1 className="text-5xl font-bold mb-20">Never fall behind</h1>
 
-        <p className=" text-xl mb-20 w-[30vw]">
-          Regular updates to the Ultimate library mean you'll always be a step
-          ahead of other editors
+      {/* Text + CTA */}
+      <div className="flex flex-col items-center lg:items-start pb-16 lg:pb-40 w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-4 text-center lg:text-left">
+          <span className="text-custom">Never</span> fall behind
+        </h1>
+
+        <p className="text-base sm:text-lg mb-8 font-semibold text-center lg:text-left">
+          Regular updates to the{" "}
+          <span className="text-custom">ultimate library</span> mean you’ll
+          always be a <span className="text-custom">step ahead</span> of other
+          editors.
         </p>
 
         <a
           href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
           target="_blank"
-          className=" p-2 pb-3 text-2xl text-white rounded-xl font-bold box-border transition-all duration-150 text-center group w-[200px] -mt-5"
+          rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          style={{
-            background: isHovered
-              ? "transparent"
-              : "linear-gradient(to bottom, #085f20, #64b76c)",
-            borderRadius: "0.8rem",
-            border: isHovered ? "2px solid #64b76c" : "2px solid black",
-            padding: "10px 20px", // Make sure padding remains consistent
-            boxSizing: "border-box", // Ensures the border doesn't affect the size
-          }}
+          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-10 h-[150px]"
         >
-          <span className="transition-all duration-300 text-white">
-            Buy Now
-          </span>
+          <img
+            src="/assets/button_idle.png"
+            alt="Buy now"
+            draggable={false}
+            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+              isHovered ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <img
+            src="/assets/button_hovered.png"
+            alt=""
+            draggable={false}
+            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
+          />
         </a>
       </div>
     </section>
   );
 };
 
-export default BuySection;
+export default BuySectionWithPhone;

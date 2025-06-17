@@ -1,29 +1,63 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-interface props {
+interface ButtonProps {
   x: string;
   y: string;
   text: string;
   onClick: () => void;
-  opacity: number;
-  scale: number;
+  opacity?: number;
+  scale?: number;
 }
 
-const Button: React.FC<props> = ({ x, y, text, onClick, opacity, scale }) => {
+const Button: React.FC<ButtonProps> = ({
+  x,
+  y,
+  text,
+  onClick,
+  opacity = 1,
+  scale = 0,
+}) => {
+  const variants = {
+    rest: {
+      background: "linear-gradient(to bottom, #64b76c, #085f20)",
+      border: "none",
+      color: "#000",
+      WebkitBackgroundClip: "initial",
+      WebkitTextFillColor: "initial",
+    },
+    hover: {
+      background: "transparent",
+      border: "4px solid transparent",
+      borderImageSlice: 1,
+      borderImageSource: "linear-gradient(to bottom, #64b76c, #085f20)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+      backgroundImage: "linear-gradient(to bottom, #64b76c, #085f20)",
+      color: "transparent",
+    },
+  };
+
   return (
-    <div
-      className={`text-center hover:bg-custom hover:border-0 border-green-900 px-10 py-3 rounded-3xl hover:cursor-pointer font-bold tracking-[-0.05em] shadow-[0_0_10px] bg-transparentborder-darkGreen border-4 bg-opacity-50 transition duration-500 shadow-custom/10 text-xl lg:text-3xl w-auto absolute`}
+    <motion.div
       onClick={onClick}
+      initial="rest"
+      animate="rest"
+      whileHover="hover"
+      transition={{ duration: 0.3 }}
+      variants={variants}
+      className="absolute text-center font-bold tracking-tight shadow-lg rounded-full px-8 py-4 text-xl lg:text-3xl"
       style={{
         top: y,
         left: x,
         transform: `translate(-50%, -50%) scale(${scale + 0.3})`,
-        opacity: opacity,
+        opacity,
+        cursor: "pointer",
       }}
     >
       {text}
-    </div>
+    </motion.div>
   );
 };
 

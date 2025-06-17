@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const EditAnimation = () => {
   const isSafari =
@@ -10,16 +10,15 @@ const EditAnimation = () => {
       id="edit-animation"
       className="flex flex-col items-center justify-center h-screen w-full"
     >
-      {/* Video Container */}
-      <div className="flex flex-col items-center justify-center w-full relative">
+      <div className="flex flex-col items-center justify-center w-full relative -mb-4 sm:-mb-10">
         <video
-          className="w-[90vw] lg:w-[35vw] h-auto align-middle -mt-80 mb-10 lg:mb-0"
+          className="w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 mb-6 sm:mb-10"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          controls={false} // Ensures no controls are displayed
+          controls={false}
           onError={() => alert("Sorry, the video couldn't load.")}
         >
           {isSafari ? (
@@ -28,22 +27,18 @@ const EditAnimation = () => {
               type="video/quicktime"
             />
           ) : (
-            <>
-              <source
-                src="/assets/LQ5_Timeline_Animation.webm"
-                type="video/webm"
-              />
-            </>
+            <source
+              src="/assets/LQ5_Timeline_Animation.webm"
+              type="video/webm"
+            />
           )}
-          {/* Fallback content if video fails to load */}
-          Sorry, your browser doesn't support the video tag.
         </video>
-        {/* Text Positioned at the Bottom, Over the Video */}
+
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
-          <h1 className="text-white text-[2rem] lg:text-[3rem] font-bold">
+          <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
-          <p className="text-white font-bold text-lg lg:text-xl mt-1">
+          <p className="text-white text-base sm:text-lg lg:text-xl mt-1 font-semibold">
             Whether you are a{" "}
             <span className="text-custom">director, editor, or artist,</span>{" "}
             this pack is for you.

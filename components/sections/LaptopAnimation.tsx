@@ -9,59 +9,26 @@ import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const PADDING = 20;
 const FPS = 20;
-
+// For non-Safari browsers:
 const MAIN_SRC_WEBM = "/assets/laptop_animation.webm";
 const ALT_SRC_WEBM = "/assets/promo_video1.webm";
+
+// For Safari (QuickTime) browsers:
 const MAIN_SRC_QT = "/assets/laptop_animation.mov";
 const ALT_SRC_QT = "/assets/promo_video.mov";
 
 const LaptopAnimation: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   return (
-    <section id="Laptop Animation" className="w-full">
-      {/* Desktop/Tablet Animation */}
-      <div className="hidden lg:block">
-        <LaptopVideo ref={targetRef} />
-      </div>
-
-      {/* Mobile Layout */}
-      <div className="w-full overflow-hidden">
-        <div className="relative left-1/2 -translate-x-1/2 w-[130vw] -mb-20">
-          <video
-            className="w-full max-w-none h-auto rounded-xl"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            controls={false}
-          >
-            <source src={ALT_SRC_WEBM} type="video/webm" />
-            <source src={ALT_SRC_QT} type="video/quicktime" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div className="text-center mt-6 px-4">
-          <p className="text-3xl font-bold text-white">
-            Invest In Effects <span className="text-custom">Today</span>
-          </p>
-          <a
-            href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-4 inline-block px-6 py-3 text-xl text-white border-2 border-custom rounded-xl font-bold transition-all duration-150"
-          >
-            Buy Now
-          </a>
-        </div>
-      </div>
+    <section id="Laptop Animation">
+      <LaptopVideo ref={targetRef} />
     </section>
   );
 };
 
-// Keep the original animation untouched
-const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
+type LaptopVideoProps = {};
+
+const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLVideoElement>(null);
   const altRef = useRef<HTMLVideoElement>(null);
@@ -75,7 +42,7 @@ const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
-    offset: ["start start", "end 110%"],
+    offset: ["start start", "end end"],
   });
 
   const [frames, setFrames] = useState(0);
@@ -129,16 +96,19 @@ const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-[160vh]"
+      className="relative h-[130vh] mb-20"
       style={{
+        position: "relative",
         paddingLeft: PADDING,
         paddingRight: PADDING,
         width: `calc(100vw - ${2 * PADDING}px)`,
       }}
     >
       <div
-        className="relative overflow-hidden w-full sticky top-5"
+        className="relative overflow-hidden w-full"
         style={{
+          position: "sticky",
+          top: PADDING,
           height: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
         }}
       >
@@ -151,10 +121,12 @@ const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "none" : "block" }}
         >
-          <source
-            src={isSafari ? MAIN_SRC_QT : MAIN_SRC_WEBM}
-            type="video/webm"
-          />
+          {isSafari ? (
+            <source src={MAIN_SRC_QT} type="video/quicktime" />
+          ) : (
+            <source src={MAIN_SRC_WEBM} type="video/webm" />
+          )}
+          Your browser does not support the video tag.
         </video>
 
         <video
@@ -166,10 +138,12 @@ const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "block" : "none" }}
         >
-          <source
-            src={isSafari ? ALT_SRC_QT : ALT_SRC_WEBM}
-            type="video/webm"
-          />
+          {isSafari ? (
+            <source src={ALT_SRC_QT} type="video/quicktime" />
+          ) : (
+            <source src={ALT_SRC_WEBM} type="video/webm" />
+          )}
+          Your browser does not support the video tag.
         </video>
 
         <div
@@ -177,7 +151,7 @@ const LaptopVideo = forwardRef<HTMLDivElement>((_, ref) => {
           style={{ top: "28%", zIndex: overlayZ }}
         >
           <div className="flex flex-col">
-            <p className="text-[3.6rem] font-bold text-white">
+            <p className="text-[3.7vw] font-bold text-white">
               Invest In Effects <span className="text-custom">Today</span>
             </p>
             <a

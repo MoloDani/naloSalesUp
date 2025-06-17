@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 const BuySection = () => {
   const [isPound, setIsPound] = useState(true);
-  const pound = 129,
-    dolar = 167;
-
   const [isHovered, setIsHovered] = useState(false);
+
+  const price = isPound ? 179 : 245;
+  const symbol = isPound ? "£" : "$";
 
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
@@ -13,82 +13,81 @@ const BuySection = () => {
 
   return (
     <section
-      id="buy-now"
-      className="flex flex-row w-full items-center justify-center -mt-32"
+      id="buy-now-desktop"
+      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 pt-12"
     >
+      {/* USB loop */}
       <video
-        className="w-[45vw] h-auto align-middle -mx-20 -ml-64"
+        className="w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[45vw] h-auto mb-10 lg:mb-0 lg:-mx-28"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        controls={false} // Ensures no controls are displayed
-        onError={() => alert("Sorry, the video couldn't load.")}
+        controls={false}
       >
         {isSafari ? (
           <source src="/assets/USB_LOOP.mov" type="video/quicktime" />
         ) : (
-          <>
-            <source src="/assets/USB_LOOP.webm" type="video/webm" />
-          </>
+          <source src="/assets/USB_LOOP.webm" type="video/webm" />
         )}
-        {/* Fallback content if video fails to load */}
-        Sorry, your browser doesn't support the video tag.
       </video>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <h2 className="text-2xl lg:text-4xl font-semibold pl-10 mb-2 px-5">
+
+      {/* Price + CTA */}
+      <div className="flex flex-col items-center lg:items-start">
+        <div className="flex items-center mb-2">
+          <h2 className="text-lg sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
             Get it all for <span className="text-custom">just</span>
           </h2>
 
-          {/* Toggle Switch with Currency Inside */}
-          <div className="flex z-10 items-center mx-5">
-            <label className="relative inline-block w-20 h-7 lg:w-24 lg:h-9 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={!isPound}
-                onChange={() => setIsPound(!isPound)}
-                className="sr-only peer cursor-pointer"
-              />
-              {/* Track */}
-              <div className="w-full h-full bg-custom rounded-full peer-checked:bg-gray-300 transition-all pointer-events-none"></div>
-              {/* Thumb with Currency Text */}
-              <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-sm font-semibold text-gray-700 transition-all peer-checked:left-[2.3rem] lg:peer-checked:left-[3rem] pointer-events-none">
-                {isPound ? "GBP" : "USD"}
-              </div>
-            </label>
-          </div>
+          {/* Currency toggle */}
+          <label className="relative inline-block w-16 sm:w-20 lg:w-24 h-7 lg:h-9 cursor-pointer ml-2">
+            <input
+              type="checkbox"
+              checked={!isPound}
+              onChange={() => setIsPound(!isPound)}
+              className="sr-only peer"
+            />
+            <div className="w-full h-full bg-custom rounded-full peer-checked:bg-gray-300 transition-all" />
+            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[1.rem] lg:peer-checked:left-[3rem]">
+              {isPound ? "GBP" : "USD"}
+            </div>
+          </label>
         </div>
 
-        {/* Price Display with Smooth Transition */}
+        {/* ---------- PRICE (colour now swaps!) ---------- */}
         <h1
-          className={`text-[10rem] lg:text-[12rem] font-bold -mt-16 text-custom transition-all animate-fade-in hover:cursor-default ${!isPound ? "text-custom" : "text-white"}`}
+          className={`text-[4.5rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-bold -mt-6 sm:-mt-10 md:-mt-12 lg:-mt-16
+            ${isPound ? "white" : "text-custom"}`}
         >
-          {isPound ? "£" : "$"}
-          {isPound ? pound : dolar}
+          {symbol}
+          {price}
         </h1>
 
-        {/* Stripe Payment Button */}
         <a
           href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
           target="_blank"
-          className="p-2 pb-3 text-2xl text-white rounded-xl font-bold box-border transition-all duration-150 text-center group -mt-5"
+          rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          style={{
-            background: isHovered
-              ? "transparent"
-              : "linear-gradient(to bottom, #085f20, #64b76c)",
-            borderRadius: "0.8rem",
-            border: isHovered ? "2px solid #64b76c" : "2px solid black",
-            padding: "10px 20px", // Make sure padding remains consistent
-            boxSizing: "border-box", // Ensures the border doesn't affect the size
-          }}
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-20 h-[150px]"
         >
-          <span className="transition-all duration-300 text-white">
-            Buy Now
-          </span>
+          <img
+            src="/assets/button_idle.png"
+            alt="Buy now"
+            draggable={false}
+            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+              isHovered ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <img
+            src="/assets/button_hovered.png"
+            alt=""
+            draggable={false}
+            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+              isHovered ? "opacity-100" : "opacity-0"
+            }`}
+          />
         </a>
       </div>
     </section>
