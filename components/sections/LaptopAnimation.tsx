@@ -11,7 +11,7 @@ const PADDING = 20;
 const FPS = 20;
 // For non-Safari browsers:
 const MAIN_SRC_WEBM = "/assets/laptop_animation.webm";
-const ALT_SRC_WEBM = "/assets/promo_video1.webm";
+const ALT_SRC_WEBM = "/assets/promo_video.webm";
 
 // For Safari (QuickTime) browsers:
 const MAIN_SRC_QT = "/assets/laptop_animation.mov";

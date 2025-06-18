@@ -5,13 +5,25 @@ import BuySectionWithPhone from "@/components/sections/BuySectionWithPhone";
 import EditAnimation from "@/components/sections/EditAnimation";
 import InnitSection from "@/components/sections/InnitSection";
 import LaptopAnimation from "@/components/sections/LaptopAnimation";
+import LaptopAnimationPhone from "@/components/sections/LaptopAnimationPhone";
+
 export default function Home() {
   return (
     <main className="relative flex flex-col items-center justify-start w-full box-border">
-      <BgImage></BgImage>
-      <LaptopAnimation></LaptopAnimation>
-      <BuySection></BuySection>
-      <EditAnimation></EditAnimation>
+      <BgImage />
+
+      {/* show on small→medium screens */}
+      <div className="w-full block lg:hidden">
+        <LaptopAnimationPhone />
+      </div>
+
+      {/* show on large+ screens */}
+      <div className="w-full hidden lg:block">
+        <LaptopAnimation />
+      </div>
+
+      <BuySection />
+      <EditAnimation />
       <BuySectionWithPhone />
       <AffiliateTab />
       <InnitSection />
