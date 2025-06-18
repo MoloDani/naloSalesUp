@@ -28,7 +28,7 @@ const LaptopAnimationPhone: React.FC = () => {
       </video>
 
       <div className="mt-6 flex flex-col items-center text-center">
-        <p className="text-[6vw] sm:text-[4vw] md:text-[3.7vw] font-bold text-white">
+        <p className="text-[5vw] sm:text-[3.6vw] md:text-[3.3vw] font-bold text-white">
           Invest In Effects <span className="text-custom">Today</span>
         </p>
         <a
