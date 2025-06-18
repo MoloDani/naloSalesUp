@@ -22,10 +22,13 @@ const BuySectionWithPhone = () => {
         </h1>
 
         <p className="text-base sm:text-lg mb-8 font-semibold text-center lg:text-left">
-          Regular updates to the{" "}
-          <span className="text-custom">ultimate library</span> mean you’ll
-          always be a <span className="text-custom">step ahead</span> of other
-          editors.
+          +5 New assets delivered to you{" "}
+          <span className="text-custom">
+            {" "}
+            every single <br />
+            month
+          </span>
+          , from out team.
         </p>
 
         <a

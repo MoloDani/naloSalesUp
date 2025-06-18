@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AffiliateTab = () => {
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
     /Apple Computer/.test(navigator.vendor);
+
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <section
@@ -12,7 +14,7 @@ const AffiliateTab = () => {
     >
       <div className="relative flex flex-col items-center w-full">
         <video
-          className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-40 mb-20"
+          className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-40 mb-28"
           autoPlay
           loop
           muted
@@ -33,7 +35,7 @@ const AffiliateTab = () => {
           </h1>
           <p className="text-white font-semibold text-base sm:text-lg lg:text-xl mt-1">
             Get <span className="text-custom">£100+</span> per referral and{" "}
-            <span className="text-custom">50% off</span> the pack if accepted{" "}
+            <span className="text-custom">50% OFF</span> the pack if accepted{" "}
             <br />
             into the affiliate programme.
           </p>
