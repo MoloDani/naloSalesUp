@@ -151,7 +151,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           style={{ top: "28%", zIndex: overlayZ }}
         >
           <div className="flex flex-col">
-            <p className="text-[3.7vw] font-bold text-white">
+            <p className="text-[3.3vw] font-bold text-white">
               Invest In Effects <span className="text-custom">Today</span>
             </p>
             <a

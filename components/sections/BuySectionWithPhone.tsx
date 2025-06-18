@@ -34,7 +34,7 @@ const BuySectionWithPhone = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-10 h-[150px] scale-[0.7] -ml-6"
+          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-16 h-[150px] scale-[0.7] -ml-16"
         >
           <img
             src="/assets/button_idle.png"
