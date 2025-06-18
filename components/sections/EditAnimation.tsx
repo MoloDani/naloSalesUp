@@ -45,31 +45,6 @@ const EditAnimation = () => {
             <span className="text-custom">director, editor, or artist,</span>{" "}
             this pack is for you.
           </p>
-          <a
-            href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-10 h-[150px] scale-[0.7] -ml-16"
-          >
-            <img
-              src="/assets/button_idle.png"
-              alt="Buy now"
-              draggable={false}
-              className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
-                isHovered ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <img
-              src="/assets/button_hovered.png"
-              alt=""
-              draggable={false}
-              className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
-                isHovered ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          </a>
         </div>
       </div>
     </section>
