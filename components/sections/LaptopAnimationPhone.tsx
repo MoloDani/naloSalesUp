@@ -14,10 +14,10 @@ const LaptopAnimationPhone: React.FC = () => {
   return (
     <section
       id="promo-video"
-      className="flex flex-col items-center my-20 -mx-14"
+      className="flex flex-col items-center my-20 w-screen"
     >
       <video
-        className="w-full h-auto rounded-2xl shadow-lg -mb-14"
+        className="w-full h-auto rounded-2xl shadow-lg -mb-14 overflow-hidden"
         autoPlay
         loop
         muted
@@ -26,9 +26,8 @@ const LaptopAnimationPhone: React.FC = () => {
         <source src={videoSrc} type={videoType} />
         Your browser does not support the video tag.
       </video>
-
       <div className="mt-6 flex flex-col items-center text-center">
-        <p className="text-[5vw] sm:text-[3.6vw] md:text-[3.4vw] font-bold text-white">
+        <p className="text-[6vw] sm:text-[3.6vw] md:text-[3.4vw] font-bold text-white">
           Invest In Effects <span className="text-custom">Today</span>
         </p>
         <a

@@ -36,12 +36,12 @@ const BuySection = () => {
       {/* Price + CTA */}
       <div className="flex flex-col items-center lg:items-start">
         <div className="flex items-center mb-2">
-          <h2 className="text-lg sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
+          <h2 className="text-2xl sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
             Get it all for <span className="text-custom">just</span>
           </h2>
 
           {/* Currency toggle */}
-          <label className="relative inline-block w-16 sm:w-20 lg:w-24 h-7 lg:h-9 cursor-pointer ml-2">
+          <label className="relative inline-block w-[4.5rem] sm:w-20 lg:w-24 h-7 lg:h-9 cursor-pointer ml-2 -mb-2 sm:mb-0">
             <input
               type="checkbox"
               checked={!isPound}
@@ -49,7 +49,7 @@ const BuySection = () => {
               className="sr-only peer"
             />
             <div className="w-full h-full bg-custom rounded-full peer-checked:bg-gray-300 transition-all" />
-            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[1.rem] lg:peer-checked:left-[3rem]">
+            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[1.7rem] lg:peer-checked:left-[3rem]">
               {isPound ? "GBP" : "USD"}
             </div>
           </label>
@@ -70,7 +70,7 @@ const BuySection = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-20 h-[150px] scale-[0.7] -ml-16"
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-14 sm:-mt-20 h-[150px] scale-[0.7] sm:-ml-16"
         >
           <img
             src="/assets/button_idle.png"

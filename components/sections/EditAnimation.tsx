@@ -10,11 +10,11 @@ const EditAnimation = () => {
   return (
     <section
       id="edit-animation"
-      className="flex flex-col items-center justify-center h-screen w-full"
+      className="flex flex-col items-center justify-center my-44 w-full"
     >
       <div className="flex flex-col items-center justify-center w-full relative -mb-4 sm:-mb-10">
         <video
-          className="w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 -mb-6 sm:mb-16"
+          className="w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 mb-6 sm:mb-16"
           autoPlay
           loop
           muted
@@ -37,10 +37,10 @@ const EditAnimation = () => {
         </video>
 
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
-          <h1 className="text-white text-3xl sm:text-5xl font-bold">
+          <h1 className="text-white text-3xl sm:text-6xl font-bold">
             Effects Made <span className="text-custom">Simple.</span>
           </h1>
-          <p className="text-white text-base sm:text-lg lg:text-xl mt-1 font-semibold">
+          <p className="text-white text-base sm:text-lg lg:text-2xl mt-1 font-semibold">
             Whether you are a{" "}
             <span className="text-custom">director, editor, or artist,</span>{" "}
             this pack is for you.

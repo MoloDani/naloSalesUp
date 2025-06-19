@@ -6,22 +6,22 @@ const BuySectionWithPhone = () => {
   return (
     <section
       id="buy-now-phone"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 pt-12"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12"
     >
       {/* iPhone mock-up */}
       <img
         src="/assets/IPHONE_png_v2bg.png"
         alt="Phone"
-        className="w-auto lg:h-[80vh] lg:pr-10"
+        className="hidden sm:block w-auto lg:h-[80vh] lg:pr-10"
       />
 
       {/* Text + CTA */}
-      <div className="flex flex-col items-center lg:items-start pb-16 lg:pb-40 w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
-        <h1 className="text-3xl sm:text-5xl font-bold mb-4 text-center lg:text-left">
+      <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
+        <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center lg:text-left">
           <span className="text-custom">Never</span> fall behind
         </h1>
 
-        <p className="text-base sm:text-lg mb-8 font-semibold text-center lg:text-left">
+        <p className="text-base sm:text-xl mb-8 font-semibold text-center lg:text-left">
           +5 New assets delivered to you{" "}
           <span className="text-custom">
             {" "}
@@ -37,7 +37,7 @@ const BuySectionWithPhone = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-16 h-[150px] scale-[0.7] -ml-16"
+          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-16 h-[150px] scale-[0.7] "
         >
           <img
             src="/assets/button_idle.png"

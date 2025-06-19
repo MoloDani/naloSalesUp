@@ -53,8 +53,6 @@ export default function App({ Component, pageProps }: AppProps) {
         ></meta>
         <title>NALO Sale</title>
       </Head>
-      <BackToTop />
-      <Navbar />
       <div>
         {loading ? (
           <LoadingScreen onFinish={() => setLoading(false)} />
