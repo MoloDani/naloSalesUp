@@ -35,7 +35,7 @@ const BuySection = () => {
 
       {/* Price + CTA */}
       <div className="flex flex-col items-center lg:items-start">
-        <div className="flex items-center mb-2 pr-36">
+        <div className="flex items-center mb-2 pr-0 sm:pr-36">
           <h2 className="text-2xl sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
             Get it all for <span className="text-custom">just</span>
           </h2>
