@@ -35,7 +35,7 @@ const BuySection = () => {
 
       {/* Price + CTA */}
       <div className="flex flex-col items-center lg:items-start">
-        <div className="flex items-center mb-2 pr-0 sm:pr-36">
+        <div className="flex items-center mb-2 lg:pr-36 sm:pr-0">
           <h2 className="text-2xl sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
             Get it all for <span className="text-custom">just</span>
           </h2>
@@ -49,7 +49,7 @@ const BuySection = () => {
               className="sr-only peer"
             />
             <div className="w-full h-full bg-custom rounded-full peer-checked:bg-gray-300 transition-all" />
-            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[1.7rem] lg:peer-checked:left-[3rem]">
+            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[2.2rem] lg:peer-checked:left-[3rem]">
               {isPound ? "GBP" : "USD"}
             </div>
           </label>
@@ -70,7 +70,7 @@ const BuySection = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.7] "
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-8 h-[100px] scale-[0.7] "
         >
           <img
             src="/assets/button_idle.png"

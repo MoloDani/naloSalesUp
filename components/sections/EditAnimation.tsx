@@ -43,6 +43,7 @@ const EditAnimation = () => {
           <p className="text-white text-base sm:text-lg lg:text-2xl mt-1 font-semibold">
             Whether you are a{" "}
             <span className="text-custom">director, editor, or artist,</span>{" "}
+            <br />
             this pack is for you.
           </p>
         </div>

@@ -12,12 +12,12 @@ const BuySectionWithPhone = () => {
       <img
         src="/assets/IPHONE_png_v2bg.png"
         alt="Phone"
-        className="hidden sm:block w-auto lg:h-[80vh] lg:pr-10"
+        className="hidden lg:block w-auto lg:h-[80vh] lg:pr-10"
       />
 
       {/* Text + CTA */}
       <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
-        <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center lg:text-left">
+        <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10">
           <span className="text-custom">Never</span> fall behind
         </h1>
 
@@ -37,7 +37,7 @@ const BuySectionWithPhone = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 sm:-ml-[3.8rem] -mt-10 h-[100px] scale-[0.6] "
+          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 lg:-ml-[3.8rem] -mt-10 h-[100px] scale-[0.6] "
         >
           <img
             src="/assets/button_idle.png"
