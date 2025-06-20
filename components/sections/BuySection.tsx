@@ -70,7 +70,7 @@ const BuySection = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-14 sm:-mt-20 h-[150px] scale-[0.7] sm:-ml-16"
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.6] sm:-ml-12"
         >
           <img
             src="/assets/button_idle.png"
