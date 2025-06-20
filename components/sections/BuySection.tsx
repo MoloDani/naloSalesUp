@@ -35,7 +35,7 @@ const BuySection = () => {
 
       {/* Price + CTA */}
       <div className="flex flex-col items-center lg:items-start">
-        <div className="flex items-center mb-2">
+        <div className="flex items-center mb-2 pr-36">
           <h2 className="text-2xl sm:text-2xl lg:text-4xl font-semibold px-2 sm:px-5 text-center lg:text-left">
             Get it all for <span className="text-custom">just</span>
           </h2>
@@ -70,7 +70,7 @@ const BuySection = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.6] sm:-ml-12"
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.7] "
         >
           <img
             src="/assets/button_idle.png"
