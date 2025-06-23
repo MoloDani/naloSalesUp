@@ -3,6 +3,8 @@ import BgImage from "@/components/sections/BgImage";
 import BuySection from "@/components/sections/BuySection";
 import BuySectionWithPhone from "@/components/sections/BuySectionWithPhone";
 import EditAnimation from "@/components/sections/EditAnimation";
+import FAQ from "@/components/sections/FAQ";
+import FreeSample from "@/components/sections/FreeSample";
 import InnitSection from "@/components/sections/InnitSection";
 import LaptopAnimation from "@/components/sections/LaptopAnimation";
 import LaptopAnimationPhone from "@/components/sections/LaptopAnimationPhone";
@@ -26,7 +28,8 @@ export default function Home() {
       <EditAnimation />
       <BuySectionWithPhone />
       <AffiliateTab />
-      <InnitSection />
+      <FAQ />
+      <FreeSample />
     </main>
   );
 }
