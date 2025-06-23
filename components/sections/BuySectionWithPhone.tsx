@@ -22,17 +22,12 @@ const BuySectionWithPhone = () => {
         </h1>
 
         <p className="text-base sm:text-xl mb-8 font-semibold text-center lg:text-left">
-          +5 New assets delivered to you{" "}
-          <span className="text-custom">
-            {" "}
-            every single <br />
-            month
-          </span>
-          , from out team.
+          +5 New assets delivered to you every single <br />
+          month , from out team.
         </p>
 
         <a
-          href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+          href="https://pay.nalopacks.com/b/7sY28q9rv9P48zEbRDgEg00"
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}

@@ -65,12 +65,12 @@ const BuySection = () => {
         </h1>
 
         <a
-          href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+          href="https://pay.nalopacks.com/b/7sY28q9rv9P48zEbRDgEg00"
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-8 h-[100px] scale-[0.7] "
+          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-8 h-[100px] scale-[0.7] lg:-ml-8"
         >
           <img
             src="/assets/button_idle.png"

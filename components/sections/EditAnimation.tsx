@@ -38,12 +38,10 @@ const EditAnimation = () => {
 
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
           <h1 className="text-white text-3xl sm:text-6xl font-bold">
-            Effects Made <span className="text-custom">Simple.</span>
+            Effects Made <span className="text-custom">Simple</span>.
           </h1>
           <p className="text-white text-base sm:text-lg lg:text-2xl mt-1 font-semibold">
-            Whether you are a{" "}
-            <span className="text-custom">director, editor, or artist,</span>{" "}
-            <br />
+            Whether you are a director, editor, or artist, <br />
             this pack is for you.
           </p>
         </div>

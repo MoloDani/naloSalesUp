@@ -96,7 +96,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-[130vh] mb-20"
+      className="relative h-[220vh] mb-20"
       style={{
         position: "relative",
         paddingLeft: PADDING,
@@ -117,6 +117,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           loop
           playsInline
           muted={false}
+          preload="auto"
           onLoadedMetadata={onMainLoaded}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "none" : "block" }}
@@ -135,6 +136,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           autoPlay
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ display: showAlt ? "block" : "none" }}
         >
@@ -155,7 +157,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
               Invest In Effects <span className="text-custom">Today</span>
             </p>
             <a
-              href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+              href="https://pay.nalopacks.com/b/7sY28q9rv9P48zEbRDgEg00"
               target="_blank"
               rel="noreferrer"
               className="mt-2 p-2 pb-3 text-2xl text-white border-2 border-custom rounded-xl font-bold transition-all duration-150 cursor-pointer text-center"

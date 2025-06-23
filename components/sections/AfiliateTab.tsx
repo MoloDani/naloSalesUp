@@ -39,9 +39,7 @@ const AffiliateTab = () => {
             <span className="text-custom">Earn</span> While You Edit
           </h1>
           <p className="text-white font-semibold text-base sm:text-lg lg:text-xl mt-1">
-            Get <span className="text-custom">£100+</span> per referral and{" "}
-            <span className="text-custom">50% OFF</span> the pack if accepted{" "}
-            <br />
+            Get £90+ per referral and 50% OFF the pack if accepted <br />
             into the affiliate programme.
           </p>
         </div>
