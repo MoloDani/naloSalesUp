@@ -12,9 +12,9 @@ import lottie, { AnimationItem } from "lottie-web";
 import animationData from "../../lib/laptopAnim/laptop.json";
 
 const PADDING = 20;
-const BASE_SCROLL_VH = 220;
+const BASE_SCROLL_VH = 200;
 const VIDEO_RATIO = 0.15;
-const EXTRA_SCROLL_VH = 80;
+const EXTRA_SCROLL_VH = 30;
 const WRAPPER_VH = BASE_SCROLL_VH + EXTRA_SCROLL_VH;
 
 const ALT_SRC_WEBM = "/assets/promo_video.webm";
@@ -117,7 +117,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
       >
         <div
           ref={mainContainerRef}
-          className="absolute inset-0 w-full h-full object-cover z-20"
+          className="absolute inset-0 w-full h-full object-cover z-20 scale-[1.135]"
           style={{ display: showPromo ? "none" : "block" }}
         />
 
@@ -128,7 +128,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-20"
+          className="absolute inset-0 w-full h-full object-cover z-20 ml-3"
           style={{ display: showPromo ? "block" : "none" }}
         >
           {isSafari ? (
