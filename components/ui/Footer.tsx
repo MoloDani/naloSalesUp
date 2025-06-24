@@ -103,10 +103,25 @@ function Footer() {
   ];
 
   return (
-    <div className="z-10 flex h-40 w-full flex-col gap-2.5 items-center justify-center border-t border-custom/30 bg-custom/10 text-white">
-      <span className="mt-2 flex items-center justify-center text-center">
-        © 2025 NALO Visuals. <br /> All Rights Reserved.
-      </span>
+    <div className="z-10 flex h-40 w-full flex-col gap-4 items-center justify-center border-t border-custom/30 bg-custom/10 text-white">
+      <div className="flex flex-row justify-between items-center gap-[8.5rem]">
+        <div className="flex flex-col items-start justify-center text-left">
+          <p>© 2025 NALO Visuals.</p>
+          <p>All Rights Reserved.</p>
+        </div>
+        <div className="flex flex-col items-end justify-center underline">
+          <a href="/tos" target="_blank">
+            Terms of Service
+          </a>
+          <a href="/refund" target="_blank">
+            Refund Policy
+          </a>
+          <a href="/support" target="_blank">
+            Support
+          </a>
+        </div>
+      </div>
+
       <div className="flex justify-center flex-wrap items-center gap-2.5">
         {FooterIconA.map((item, index) => (
           <div

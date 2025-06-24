@@ -5,7 +5,7 @@ export default function Refund() {
   return (
     <>
       <Head>
-        <title>Affiliate</title>
+        <title>Affiliate Terms</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"

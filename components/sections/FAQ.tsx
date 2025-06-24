@@ -112,8 +112,8 @@ const FAQData: QuestProp[] = [
 const FAQ = () => {
   return (
     <section id="FAQ">
-      <div className="flex w-[90vw] flex-row my-32 justify-center gap-32 items-start relative">
-        <div className="flex flex-col w-[25%] gap-7 sticky top-[25vh]">
+      <div className="flex w-[90vw] flex-row my-[23vh] justify-center gap-32 items-start relative">
+        <div className="flex flex-col w-[30%] gap-7 sticky top-[25vh] text-xl">
           <h1 className="text-5xl font-bold">Frequently Asked Questions</h1>
           <p>
             Don’t resell them, legal actions will be taken immediately. <br />{" "}
@@ -125,10 +125,12 @@ const FAQ = () => {
           </p>
           <p>
             <b>Contact us</b> <br />
-            <a href="mailto:support@nalovisuals.com">support@nalovisuals.com</a>
+            <a className="underline" href="mailto:support@nalovisuals.com">
+              support@nalovisuals.com
+            </a>
           </p>
         </div>
-        <div className="w-[30%] mt-1">
+        <div className="w-[35%] mt-1">
           <Questions />
         </div>
       </div>
@@ -144,7 +146,7 @@ const Questions: React.FC = ({}) => {
         return (
           <div className="my-1">
             <div
-              className="bg-custom px-5 py-2 text-black font-semibold flex flex-row justify-between items-center cursor-pointer"
+              className="bg-custom px-5 py-2 text-black text-xl font-semibold flex flex-row justify-between items-center cursor-pointer"
               onClick={() => {
                 show == item.index ? setShow(0) : setShow(item.index);
               }}

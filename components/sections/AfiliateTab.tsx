@@ -15,7 +15,7 @@ const AffiliateTab = () => {
       <div className="relative flex flex-col items-center w-full">
         <div className="mt-12 sm:mt-32">
           <video
-            className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-36"
+            className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-40"
             autoPlay
             loop
             muted
@@ -42,12 +42,12 @@ const AffiliateTab = () => {
             Get £90+ per referral and 50% OFF the pack if accepted <br />
             into the affiliate programme.
           </p>
-          <div className="mt-5">
+          <div className="mt-7">
             <a
               href="/affiliate"
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-2 text-xl text-white border-2 border-custom rounded-[1rem] font-bold transition duration-150 cursor-pointer text-center"
+              className="px-8 py-3 text-xl text-white border-2 border-custom rounded-[1rem] font-bold transition duration-150 cursor-pointer text-center"
             >
               Join now
             </a>
