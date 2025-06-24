@@ -1,7 +1,7 @@
 import LoadingScreen from "@/components/sections/LoadingScreenn";
-import Navbar from "@/components/ui/Navbar";
 import BackToTop from "@/components/utils/BackToTop";
 import "@/styles/globals.css";
+import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Head from "next/head";
@@ -13,15 +13,19 @@ const inter = Inter({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const isHome = router.pathname === "/";
+  const [loading, setLoading] = useState(isHome);
   const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
-    // Simulate an API request
-    setTimeout(() => {
+    if (!isHome) return;
+    const t1 = setTimeout(() => {
       setLoading(false);
-      setTimeout(() => setFadeIn(true), 60); // Delay fade-in slightly for smoother effect
+      // small delay so the fade-in class kicks in
+      setTimeout(() => setFadeIn(true), 60);
     }, 3100);
+    return () => clearTimeout(t1);
   }, []);
 
   return (
@@ -53,17 +57,19 @@ export default function App({ Component, pageProps }: AppProps) {
         ></meta>
         <title>NALO Sale</title>
       </Head>
-      <div>
-        {loading ? (
-          <LoadingScreen onFinish={() => setLoading(false)} />
-        ) : (
-          <div
-            className={`transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100" : "opacity-0"}`}
-          >
-            <Component {...pageProps} />
-          </div>
-        )}
-      </div>
+      {isHome && loading ? (
+        // only show the loader on `/`
+        <LoadingScreen onFinish={() => setLoading(false)} />
+      ) : (
+        // on any other page (or after loader), just fade in your actual page
+        <div
+          className={`transition-opacity duration-1000 ease-in-out ${
+            fadeIn || !isHome ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Component {...pageProps} />
+        </div>
+      )}
     </main>
   );
 }
