@@ -87,7 +87,7 @@ const FAQData: QuestProp[] = [
   },
   {
     index: 6,
-    q: <h3>Who is the pack for??</h3>,
+    q: <h3>Who is the pack for?</h3>,
     a: (
       <div className="flex flex-col gap-3">
         <p>The pack is suitable for everyone.</p>
@@ -100,7 +100,7 @@ const FAQData: QuestProp[] = [
   },
   {
     index: 7,
-    q: <h3>Mac or Windows compatible??</h3>,
+    q: <h3>Mac or Windows compatible?</h3>,
     a: (
       <div>
         <p>Works on both. No issues.</p>
@@ -112,24 +112,23 @@ const FAQData: QuestProp[] = [
 const FAQ = () => {
   return (
     <section id="FAQ">
-      <div className="flex w-[90vw] flex-row my-20 justify-evenly gap-10 items-start relative">
-        <div className="flex flex-col w-[35%] gap-10 sticky top-[25vh]">
+      <div className="flex w-[90vw] flex-row my-32 justify-center gap-32 items-start relative">
+        <div className="flex flex-col w-[25%] gap-7 sticky top-[25vh]">
           <h1 className="text-5xl font-bold">Frequently Asked Questions</h1>
           <p>
-            These are gatekeept assets from our team members. Don’t resell them,
-            legal actions will be taken immediately.
+            Don’t resell them, legal actions will be taken immediately. <br />{" "}
+            These are gatekeept assets from our team members.
           </p>
           <p>
             We do not guarantee any profits or financial success if you are
             lazy.
           </p>
           <p>
-            Support <br />
-            support@nalovisuals.com
+            <b>Contact us</b> <br />
+            <a href="mailto:support@nalovisuals.com">support@nalovisuals.com</a>
           </p>
         </div>
-        <div className="w-[35%]">
-          <h2 className="text-3xl font-bold">Nalo Partner Pack FAQs</h2>
+        <div className="w-[30%] mt-1">
           <Questions />
         </div>
       </div>
@@ -145,14 +144,14 @@ const Questions: React.FC = ({}) => {
         return (
           <div className="my-1">
             <div
-              className="bg-custom px-5 py-2 text-black font-semibold flex flex-row justify-between items-center"
+              className="bg-custom px-5 py-2 text-black font-semibold flex flex-row justify-between items-center cursor-pointer"
               onClick={() => {
                 show == item.index ? setShow(0) : setShow(item.index);
               }}
             >
               {item.q}
               <img
-                className="h-[20px] w-auto"
+                className="h-[20px] w-auto transition-all duration-100"
                 src={
                   show == item.index ? "/assets/minus.png" : "/assets/plus.png"
                 }

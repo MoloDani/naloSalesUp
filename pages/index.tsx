@@ -8,12 +8,14 @@ import FreeSample from "@/components/sections/FreeSample";
 import InnitSection from "@/components/sections/InnitSection";
 import LaptopAnimation from "@/components/sections/LaptopAnimation";
 import LaptopAnimationPhone from "@/components/sections/LaptopAnimationPhone";
+import LottieTest from "@/components/sections/LottieTest";
 
 export default function Home() {
   return (
     <main className="relative flex flex-col items-center justify-start w-full box-border">
       <BgImage />
 
+      {/* <LottieTest /> */}
       {/* show on small→medium screens */}
       <div className="w-full block lg:hidden">
         <LaptopAnimationPhone />
