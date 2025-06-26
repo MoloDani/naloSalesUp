@@ -19,7 +19,7 @@ export default function Refund() {
         <LandingAffiliate />
         <div className="flex flex-col items-start gap-10 mx-[10vw] lg:mx-[30vw] my-20 text-left lg:text-lg">
           <p>
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               What is the NALO Affiliate Program?
             </span>{" "}
             <br />A way to earn money by promoting our editing pack. You'll get
@@ -27,12 +27,15 @@ export default function Refund() {
             commission on each sale you bring in.
           </p>
           <p>
-            <span className="font-bold text-custom">How Do I Join?</span>
+            <span className="font-bold text-custom text-lg lg:text-xl">
+              How Do I Join?
+            </span>{" "}
+            <br />
             Fill out the Google Form at the bottom of this page. Only those
             accepted will be charged £90 to join.
           </p>
           <p>
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               Why Do I Have to Pay £90?
             </span>{" "}
             <br /> -You earn that back on your first sale <br />
@@ -41,7 +44,7 @@ export default function Refund() {
             -It makes sure you're committed to making content and selling
           </p>
           <p>
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               What If I Don't Make Any Sales?
             </span>{" "}
             <br /> If you don't make a sale after one full month of consistent
@@ -51,7 +54,7 @@ export default function Refund() {
           </p>
           <p>
             {" "}
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               What If I Already Bought the Pack?
             </span>{" "}
             <br />
@@ -60,14 +63,16 @@ export default function Refund() {
             from future sales depending on you
           </p>
           <p>
-            <span className="font-bold text-custom">How Much Can I Earn?</span>{" "}
+            <span className="font-bold text-custom text-lg lg:text-xl">
+              How Much Can I Earn?
+            </span>{" "}
             <br />
             -50% commission if you film & edit <br />
             -30% commission if you only film and we edit <br />
             All tracked through your unique affiliate link. <br />
           </p>
           <p>
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               What Do You Get if You're Accepted?
             </span>{" "}
             <br />
@@ -78,7 +83,7 @@ export default function Refund() {
             -Boost your personal brand <br />
           </p>
           <p>
-            <span className="font-bold text-custom">
+            <span className="font-bold text-custom text-lg lg:text-xl">
               This Is NOT for You If:
             </span>{" "}
             <br />
@@ -98,7 +103,7 @@ export default function Refund() {
               className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -ml-[3.2rem] lg:-ml-[4.7rem] -mt-[1.8rem] h-[100px] scale-[0.5] -mb-8"
             >
               <img
-                src="/assets/Apply - 1.png"
+                src="/assets/Apply Here - 1.png"
                 alt="Buy now"
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
@@ -106,7 +111,7 @@ export default function Refund() {
                 }`}
               />
               <img
-                src="/assets/Apply - 2.png"
+                src="/assets/Apply Here - 2.png"
                 alt=""
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
