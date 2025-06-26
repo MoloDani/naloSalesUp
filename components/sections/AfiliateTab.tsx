@@ -46,10 +46,27 @@ const AffiliateTab = () => {
             <a
               href="/affiliate"
               target="_blank"
-              rel="noreferrer"
-              className="px-8 py-3 text-xl text-white border-2 border-custom rounded-[1rem] font-bold transition duration-150 cursor-pointer text-center"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 lg:-ml-[3.8rem] -mt-[1.8rem] h-[100px] scale-[0.6] "
             >
-              Join now
+              <img
+                src="/assets/Apply Here - 1.png"
+                alt="Buy now"
+                draggable={false}
+                className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+                  isHovered ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <img
+                src="/assets/Apply Here - 2.png"
+                alt=""
+                draggable={false}
+                className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+                  isHovered ? "opacity-100" : "opacity-0"
+                }`}
+              />
             </a>
           </div>
         </div>
