@@ -14,7 +14,7 @@ export default function Refund() {
         <meta property="og:type" content="product"></meta>
       </Head>
       <section id="refund policy">
-        <div className="flex flex-col items-start gap-10 mx-[10vw] lg:mx-[30vw] my-20 text-left lg:text-lg">
+        <div className="flex flex-col items-start gap-10 mx-[10vw] lg:mx-[30vw] my-20 text-left lg:text-lg min-h-[70vh]">
           <p className="text-3xl font-bold mb-5">REFUND POLICY</p>
           <p>
             *We don’t offer refunds due to the nature of digital products except
@@ -43,8 +43,8 @@ export default function Refund() {
           <p>
             <span className="text-xl font-bold">How to Reach Us</span> <br />
             For any payment issues, email us at{" "}
-            <a href="mailto:suport@nalovisuals.com" className="font-bold">
-              suport@nalovisuals.com
+            <a href="mailto:support@nalovisuals.com" className="font-bold">
+              support@nalovisuals.com
             </a>
           </p>
           <p>

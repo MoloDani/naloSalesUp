@@ -47,7 +47,7 @@ export default function Policy() {
             >
               Stripe
             </a>
-            .We don’t store your payment details. Your info is secured and used
+            . We don’t store your payment details. Your info is secured and used
             only to support your order. Contact{" "}
             <a
               href="mailto: support@nalovisuals.com"
@@ -65,7 +65,7 @@ export default function Policy() {
           <p>
             <span className="text-xl font-bold">Refunds</span> <br />
             No refunds unless it qualifies under specific cases in our Refund
-            Policy.We’ll always make sure your purchase works as promised.
+            Policy. We’ll always make sure your purchase works as promised.
           </p>
 
           <p>

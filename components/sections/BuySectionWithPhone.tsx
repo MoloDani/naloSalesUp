@@ -21,7 +21,7 @@ const BuySectionWithPhone = () => {
           <span className="text-custom">Never</span> fall behind
         </h1>
 
-        <p className="text-base sm:text-xl mb-8 font-semibold text-center lg:text-left">
+        <p className="text-base sm:text-2xl mb-8 font-semibold text-center lg:text-left">
           +5 New assets delivered to you every single <br />
           month , from out team.
         </p>

@@ -15,7 +15,7 @@ const LottieTest: React.FC = () => {
     mode: "scroll",
     actions: [
       { visibility: [0, 0.4], type: "stop", frames: [0, 0] },
-      { visibility: [0.4, 0.9], type: "seek", frames: [0, 25] },
+      { visibility: [0.4, 0.9], type: "seek", frames: [10, 25] },
       { visibility: [0.9, 1], type: "stop", frames: [25, 25] },
     ],
   });
