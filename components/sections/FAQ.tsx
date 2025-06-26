@@ -112,14 +112,16 @@ const FAQData: QuestProp[] = [
 const FAQ = () => {
   return (
     <section id="FAQ">
-      <div className="flex w-[90vw] flex-row my-[23vh] justify-center gap-32 items-start relative">
-        <div className="flex flex-col w-[30%] gap-7 sticky top-[25vh] text-xl">
-          <h1 className="text-5xl font-bold">Frequently Asked Questions</h1>
-          <p>
+      <div className="flex flex-col md:flex-row w-full max-w-[90vw] mx-auto my-12 md:my-[23vh] justify-center md:gap-32 gap-8 items-start relative px-4">
+        <div className="flex flex-col w-full md:w-[30vw] gap-4 md:gap-7 text-base sm:text-lg md:text-xl md:sticky md:top-[20vh]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
+            Frequently Asked Questions
+          </h1>
+          <p className="mb-2">
             Don’t resell them, legal actions will be taken immediately. <br />{" "}
-            These are gatekeept assets from our team members.
+            These are gatekept assets from our team members.
           </p>
-          <p>
+          <p className="mb-2">
             We do not guarantee any profits or financial success if you are
             lazy.
           </p>
@@ -130,7 +132,7 @@ const FAQ = () => {
             </a>
           </p>
         </div>
-        <div className="w-[35%] mt-1">
+        <div className="w-full md:w-[32vw] mt-1">
           <Questions />
         </div>
       </div>
@@ -144,9 +146,9 @@ const Questions: React.FC = ({}) => {
     <div>
       {FAQData.map((item) => {
         return (
-          <div className="my-1">
+          <div className="my-1" key={item.index}>
             <div
-              className="bg-custom px-5 py-2 text-black text-xl font-semibold flex flex-row justify-between items-center cursor-pointer"
+              className="bg-custom px-5 py-2 text-black text-xl flex flex-row justify-between items-center cursor-pointer"
               onClick={() => {
                 show == item.index ? setShow(0) : setShow(item.index);
               }}
@@ -157,10 +159,11 @@ const Questions: React.FC = ({}) => {
                 src={
                   show == item.index ? "/assets/minus.png" : "/assets/plus.png"
                 }
+                alt={show == item.index ? "Collapse" : "Expand"}
               />
             </div>
             <div
-              className={`px-5 bg-custom/10 ${show == item.index ? "py-3" : ""} `}
+              className={`px-5 bg-custom/10 ${show == item.index ? "py-3" : "py-0 overflow-hidden"}`}
             >
               {show == item.index ? item.a : null}
             </div>
