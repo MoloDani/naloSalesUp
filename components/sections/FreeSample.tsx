@@ -1,82 +1,118 @@
+// components/FreeSample.tsx
 import React, { useState, useEffect } from "react";
+import { ArrowRight } from "lucide-react";
 
-// Extend Window to include MailerLite API
-declare global {
-  interface Window {
-    ml?: (...args: any[]) => void;
-  }
-}
+type Status = "idle" | "loading" | "success" | "error";
 
 const FreeSample: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [status, setStatus] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
+  // After success, reset status back to idle after 5s
   useEffect(() => {
-    // Inject MailerLite Universal script
-    const script = document.createElement("script");
-    script.src = "https://assets.mailerlite.com/js/universal.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      // Initialize MailerLite
-      window.ml && window.ml("account", "1378633");
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus(null);
-    if (!email) {
-      setStatus("Please enter a valid email.");
-      return;
+    if (status === "success") {
+      const timeout = setTimeout(() => setStatus("idle"), 5000);
+      return () => clearTimeout(timeout);
     }
+  }, [status]);
 
-    if (window.ml) {
-      // Subscribe user to list
-      window.ml(
-        "subscribe",
-        {
-          email: email,
-        },
-        "1378633"
-      );
-      setStatus("Thanks for subscribing! Check your inbox for a free sample.");
-      setEmail("");
-    } else {
-      setStatus("Subscription service is unavailable. Please try again later.");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
   };
 
   return (
-    <section id="free-sample">
-      <div className="flex flex-col items-center mt-10 mb-20">
-        <h1 className="text-3xl sm:text-6xl font-bold">Not Decided Yet?</h1>
-        <p className="text-base sm:text-lg lg:text-2xl mt-1 font-semibold">
+    <section id="free-sample" className="py-16 text-white">
+      <div className="max-w-2xl mx-auto text-center">
+        <h1 className="text-3xl sm:text-5xl font-bold">Not Decided Yet?</h1>
+        <p className="mt-2 text-lg sm:text-2xl font-medium mb-3">
           Get a <span className="text-custom">free</span> sample by signing up
           to our email list
         </p>
-        <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            required
-            className="px-4 py-2 mb-4 border border-green-500 rounded-md bg-black text-white placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center bg-[#111] rounded-lg shadow-lg relative"
+        >
+          {/* Arrow button above the input */}
           <button
             type="submit"
-            className="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+            disabled={status === "loading"}
+            className="p-2 hover:bg-custom/20 rounded-full disabled:opacity-50 transition absolute top-1/2 right-3 -translate-y-1/2"
           >
-            Get Free Sample
+            {status === "loading" ? (
+              <svg
+                className="animate-spin h-6 w-6 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                />
+              </svg>
+            ) : (
+              <ArrowRight className="h-6 w-6 text-white" />
+            )}
           </button>
+
+          {/* Wide email input */}
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="
+          w-full max-w-xl
+          px-4 py-3
+          bg-transparent
+          border-2 border-custom
+          rounded-md
+          placeholder-gray-500
+          focus:outline-none focus:ring-2 focus:ring-custom
+        "
+          />
         </form>
-        {status && <p className="mt-4 text-center text-green-400">{status}</p>}
+
+        {/* feedback messages */}
+        <div className="mt-4 min-h-[1.5rem]">
+          {status === "success" && (
+            <p className="text-green-400">🎉 Success! Check your inbox soon.</p>
+          )}
+          {status === "error" && (
+            <p className="text-red-500">
+              ❌ Oops! Something went wrong. Try again?
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );

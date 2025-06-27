@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 const BuySectionWithPhone = () => {
+  const isSafari =
+    /Safari/.test(navigator.userAgent) &&
+    /Apple Computer/.test(navigator.vendor);
+
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -9,11 +13,22 @@ const BuySectionWithPhone = () => {
       className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12"
     >
       {/* iPhone mock-up */}
-      <img
-        src="/assets/IPHONE_png_v2bg.png"
-        alt="Phone"
+      <video
         className="hidden lg:block w-auto lg:h-[80vh] lg:pr-10"
-      />
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        controls={false}
+        onError={() => alert("Sorry, the video couldn't load.")}
+      >
+        {isSafari ? (
+          <source src="/assets/phoneAnimMess.mov" type="video/quicktime" />
+        ) : (
+          <source src="/assets/phoneAnimMess.webm" type="video/webm" />
+        )}
+      </video>
 
       {/* Text + CTA */}
       <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">

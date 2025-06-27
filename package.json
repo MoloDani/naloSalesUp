@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mailerlite/mailerlite-nodejs": "^1.4.0",
     "@radix-ui/react-select": "^1.2.2",
     "@types/node": "20.4.6",
     "@types/react": "18.2.18",
@@ -23,8 +24,8 @@
     "lucide-react": "^0.263.1",
     "next": "^13.5.8",
     "postcss": "8.4.27",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-lottie-player": "^2.1.0",
     "react-player": "^2.12.0",
