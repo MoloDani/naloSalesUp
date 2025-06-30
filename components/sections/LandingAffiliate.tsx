@@ -153,7 +153,7 @@ function VideoSliding() {
             className={`${
               isFixed ? "opacity-100" : "opacity-30"
             } w-full h-full object-cover transition-opacity duration-300`}
-            src="assets\4th_Version_NALO_SHOWREEL.mp4"
+            src="assets\Affiliate ad Final WITH SFX.mp4"
             autoPlay
             muted
             loop
