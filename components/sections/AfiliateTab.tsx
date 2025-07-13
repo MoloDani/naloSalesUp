@@ -52,7 +52,7 @@ const AffiliateTab = () => {
               className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 -mt-[1.8rem] h-[100px] scale-[0.6] "
             >
               <img
-                src="/assets/Apply - 1.png"
+                src="/assets/Apply-1.png"
                 alt="Buy now"
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
@@ -60,7 +60,7 @@ const AffiliateTab = () => {
                 }`}
               />
               <img
-                src="/assets/Apply - 2.png"
+                src="/assets/Apply-2.png"
                 alt=""
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${

@@ -90,6 +90,7 @@ const FreeSample: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="off"
             className="
           w-full max-w-xl
           px-4 py-3

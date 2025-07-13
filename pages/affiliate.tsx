@@ -103,7 +103,7 @@ export default function Refund() {
               className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-[1.8rem] h-[100px] scale-[0.5] -mb-8"
             >
               <img
-                src="/assets/Apply Here - 1.png"
+                src="/assets/Apply_Here-1.png"
                 alt="Buy now"
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
@@ -111,7 +111,7 @@ export default function Refund() {
                 }`}
               />
               <img
-                src="/assets/Apply Here - 2.png"
+                src="/assets/Apply_Here-2.png"
                 alt=""
                 draggable={false}
                 className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
