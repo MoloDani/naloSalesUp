@@ -42,7 +42,7 @@ const BuySectionWithPhone = () => {
         </p>
 
         <a
-          href="https://pay.nalopacks.com/b/7sY28q9rv9P48zEbRDgEg00"
+          href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}

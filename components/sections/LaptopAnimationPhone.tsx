@@ -31,7 +31,7 @@ const LaptopAnimationPhone: React.FC = () => {
           Invest In Effects <span className="text-custom">Today</span>
         </p>
         <a
-          href="https://buy.stripe.com/test_bIYaFAguNcV0dPy3cd"
+          href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
           target="_blank"
           rel="noreferrer"
           className="mt-4 px-6 py-3 text-[5vw] sm:text-xl text-white border-2 border-custom font-bold transition-all duration-150 cursor-pointer rounded-full"

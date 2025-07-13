@@ -163,7 +163,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
               Invest In Effects <span className="text-custom">Today</span>
             </p>
             <a
-              href="https://pay.nalopacks.com/b/7sY28q9rv9P48zEbRDgEg00"
+              href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
               target="_blank"
               rel="noreferrer"
               className="mt-1 px-20 py-2 text-2xl text-white border-2 border-custom rounded-[2rem] font-bold transition duration-150 cursor-pointer text-center"
