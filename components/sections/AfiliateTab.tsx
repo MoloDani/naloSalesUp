@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+//I just need a small change
 const AffiliateTab = () => {
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
