@@ -1,8 +1,9 @@
 // pages/api/subscribe.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import MailerLite from "@mailerlite/mailerlite-nodejs";
 
-const mailerlite = new MailerLite({ api_key: process.env.MAILERLITE_API_KEY! });
+const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY!;
+const GROUP_ID = process.env.MAILERLITE_GROUP_ID!;
+const API_BASE = "https://api.mailerlite.com/api/v2";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -11,22 +12,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const { email } = req.body;
+
   if (!email) {
     return res.status(400).json({ error: "Email is required." });
   }
 
   try {
-    const subscriber = await mailerlite.subscribers.createOrUpdate({ email });
-    // manually extract just the JSON-safe fields you need
-    const safeSubscriber = {
-      id: subscriber.id,
-      email: subscriber.email,
-      status: subscriber.status,       // if these exist
-      subscribed_at: subscriber.subscribed_at
-    };
-    return res.status(201).json({ success: true, subscriber: safeSubscriber });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Internal error." });
+    // Add subscriber to group directly via API
+    const response = await fetch(`${API_BASE}/groups/${GROUP_ID}/subscribers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-MailerLite-ApiKey': MAILERLITE_API_KEY
+      },
+      body: JSON.stringify({ email })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('MailerLite API Error:', errorData);
+      return res.status(response.status).json({ error: "Failed to subscribe." });
+    }
+
+    const subscriberData = await response.json();
+    return res.status(201).json({ success: true, subscriber: subscriberData });
+
+  } catch (error: any) {
+    console.error("MailerLite API Error:", error);
+    return res.status(500).json({ error: "Failed to subscribe. Please try again later." });
   }
 }
