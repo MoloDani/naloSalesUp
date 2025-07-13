@@ -11,11 +11,12 @@ const LoadingScreen: FC<LoadingScreenProps> = ({ onFinish }) => {
         src="/assets/Crown_just_green_Loading_Animation.mp4"
         autoPlay
         muted
-        onEnded={onFinish}
         playsInline
         preload="auto"
         controls={false}
+        onEnded={onFinish}
         className="w-[80vw] max-w-[300px] h-auto object-cover"
+        webkit-playsinline="true"
       />
     </div>
   );

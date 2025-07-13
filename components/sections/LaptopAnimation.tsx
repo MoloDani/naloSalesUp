@@ -20,6 +20,8 @@ const WRAPPER_VH = BASE_SCROLL_VH + EXTRA_SCROLL_VH;
 const ALT_SRC_WEBM = "/assets/promo_video.webm";
 const ALT_SRC_QT = "/assets/promo_video.mov";
 
+const ASPECT_RATIO = 16 / 9; // Consistent 16:9 aspect ratio
+
 const LaptopAnimation: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   return (
@@ -62,6 +64,9 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
       loop: false,
       autoplay: false,
       animationData,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice", // Maintain aspect ratio and fill
+      },
     });
     mainAnimRef.current.addEventListener("DOMLoaded", () => {
       setTotalFrames(mainAnimRef.current!.totalFrames);
@@ -108,17 +113,23 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
     >
       <div
         ref={stickyRef}
-        className="relative overflow-hidden w-full"
+        className="relative w-full mx-auto"
         style={{
           position: "sticky",
           top: PADDING,
-          height: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
+          maxHeight: `min(calc(100vh - ${PADDING * 2}px), 80vw)`,
+          aspectRatio: `${ASPECT_RATIO}`,
+          overflow: "hidden",
         }}
       >
         <div
           ref={mainContainerRef}
-          className="absolute inset-0 w-full h-full object-cover z-20 scale-[1.135]"
-          style={{ display: showPromo ? "none" : "block" }}
+          className="absolute inset-0 w-full h-full object-cover z-20 -ml-1"
+          style={{
+            display: showPromo ? "none" : "block",
+            transform: "scale(1.05)",
+            transformOrigin: "center center",
+          }}
         />
 
         <video
@@ -128,8 +139,12 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-20 ml-3"
-          style={{ display: showPromo ? "block" : "none" }}
+          className="absolute inset-0 w-full h-full object-cover z-20"
+          style={{
+            display: showPromo ? "block" : "none",
+            transform: "scale(1.05)",
+            transformOrigin: "center center",
+          }}
         >
           {isSafari ? (
             <source src={ALT_SRC_QT} type="video/quicktime" />
