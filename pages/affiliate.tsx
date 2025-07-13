@@ -17,34 +17,34 @@ export default function Refund() {
       </Head>
       <section id="affiliate">
         <LandingAffiliate />
-        <div className="flex flex-col items-start gap-10 mx-[10vw] lg:mx-[30vw] my-20 text-left lg:text-lg">
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
-              What is the NALO Affiliate Program?
+        <div className="flex flex-col gap-10 mx-[10vw] lg:mx-[30vw] my-20 items-center lg:text-lg text-center">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
+              What Is NALO Affiliate Program?
             </span>{" "}
             <br />A way to earn money by promoting our editing pack. You'll get
             the pack for free, work 1:1 with our team, and make up to 50%
             commission on each sale you bring in.
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
               How Do I Join?
             </span>{" "}
             <br />
             Fill out the Google Form at the bottom of this page. Only those
             accepted will be charged £90 to join.
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
-              Why Do I Have to Pay £90?
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
+              Why Do I Have To Pay £90?
             </span>{" "}
             <br /> -You earn that back on your first sale <br />
             -It filters out people who just want the pack for free (main reason
             lol) <br />
             -It makes sure you're committed to making content and selling
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
               What If I Don't Make Any Sales?
             </span>{" "}
             <br /> If you don't make a sale after one full month of consistent
@@ -52,18 +52,18 @@ export default function Refund() {
             from your last post. We're confident that won't happen if you're
             consistent
           </p>
-          <p>
+          <p className="mb-20">
             {" "}
-            <span className="font-bold text-custom text-lg lg:text-xl">
-              What If I Already Bought the Pack?
+            <span className="font-bold text-custom text-lg lg:text-4xl">
+              What If I Already Bought The Pack?
             </span>{" "}
             <br />
             You'll be accepted automatically. On your first affiliate sale,
             you'll get £180 back instead of just £90. Then you earn 50% or 30%
             from future sales depending on you
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
               How Much Can I Earn?
             </span>{" "}
             <br />
@@ -71,8 +71,8 @@ export default function Refund() {
             -30% commission if you only film and we edit <br />
             All tracked through your unique affiliate link. <br />
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
               What Do You Get if You're Accepted?
             </span>{" "}
             <br />
@@ -82,8 +82,8 @@ export default function Refund() {
             -Collab posts with us <br />
             -Boost your personal brand <br />
           </p>
-          <p>
-            <span className="font-bold text-custom text-lg lg:text-xl">
+          <p className="mb-20">
+            <span className="font-bold text-custom text-lg lg:text-4xl">
               This Is NOT for You If:
             </span>{" "}
             <br />
@@ -95,12 +95,12 @@ export default function Refund() {
           </p>
           <p>
             <a
-              href="/affiliateterms"
+              href="https://forms.gle/v1F2JrDniJ47S8F77"
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -ml-[3.2rem] lg:-ml-[4.7rem] -mt-[1.8rem] h-[100px] scale-[0.5] -mb-8"
+              className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-[1.8rem] h-[100px] scale-[0.5] -mb-8"
             >
               <img
                 src="/assets/Apply Here - 1.png"

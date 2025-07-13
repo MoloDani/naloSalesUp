@@ -13,7 +13,7 @@ const AffiliateTab = () => {
       className="flex flex-col items-center justify-center w-full overflow-hidden px-4 "
     >
       <div className="relative flex flex-col items-center w-full">
-        <div className="mt-12 sm:mt-32">
+        <div className="mt-12 sm:mt-32 mb-10 lg:mb-5">
           <video
             className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-48"
             autoPlay

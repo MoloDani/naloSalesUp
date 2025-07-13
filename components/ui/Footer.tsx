@@ -103,13 +103,13 @@ function Footer() {
   ];
 
   return (
-    <div className="z-10 flex h-40 w-full flex-col gap-4 items-center justify-center border-t border-custom/30 bg-custom/10 text-white">
-      <div className="flex flex-row justify-between items-center gap-[8.5rem]">
-        <div className="flex flex-col items-start justify-center text-left">
+    <div className="z-10 flex flex-col gap-6 items-center justify-center border-t border-custom/30 bg-custom/10 text-white w-full py-6">
+      <div className="flex flex-wrap justify-between w-full max-w-5xl px-4 gap-4">
+        <div className="flex flex-col text-left">
           <p>© 2025 NALO Visuals.</p>
           <p>All Rights Reserved.</p>
         </div>
-        <div className="flex flex-col items-end justify-center underline">
+        <div className="flex flex-col text-right underline">
           <a href="/tos" target="_blank">
             Terms of Service
           </a>
@@ -122,11 +122,11 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex justify-center flex-wrap items-center gap-2.5">
+      <div className="flex flex-wrap justify-center items-center gap-2.5 mt-4 px-4">
         {FooterIconA.map((item, index) => (
           <div
             key={index}
-            className="px-3 py-2 bg-neutral-950 rounded-md w-[60px] flex flex-col justify-center items-center"
+            className="px-3 py-2 bg-neutral-950 rounded-md w-[50px] sm:w-[60px] flex justify-center items-center"
           >
             {item.icon}
           </div>
