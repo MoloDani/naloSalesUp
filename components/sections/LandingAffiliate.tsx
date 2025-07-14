@@ -87,9 +87,6 @@ function VideoSliding() {
     "With",
     "Us",
     " ",
-    " ",
-    " ",
-    " ",
   ];
   const wordsCount = words.length;
 
@@ -137,6 +134,18 @@ function VideoSliding() {
     });
   };
 
+  const calculateOpacity = (scrollPosition: number) => {
+    if (!componentRef.current) return 1;
+
+    const componentHeight =
+      componentRef.current.offsetHeight - window.innerHeight;
+    const progress = Math.min(scrollPosition / componentHeight, 1);
+
+    // Ease the opacity drop — faster initially
+    const easedProgress = Math.pow(progress, 0.5); // sqrt for faster drop
+    return 1 - easedProgress * 0.75; // reaches ~0.25 opacity at midpoint
+  };
+
   return (
     <div
       className="relative h-[150vh] w-screen overflow-hidden pb-20"
@@ -150,9 +159,11 @@ function VideoSliding() {
         <div className="relative w-full h-full">
           <video
             ref={videoRef}
-            className={`${
-              isFixed ? "opacity-100" : "opacity-30"
-            } w-full h-full object-cover transition-opacity duration-300`}
+            className="w-full h-full object-cover transition-opacity duration-300"
+            style={{
+              opacity: calculateOpacity(scrollY.get()),
+              transition: "opacity 0.3s",
+            }}
             src="assets\Affiliate ad Final WITH SFX.mp4"
             autoPlay
             muted
@@ -165,17 +176,13 @@ function VideoSliding() {
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center w-full font-bold text-white z-30">
           {/* First Line */}
-          <div>
+          <div className="whitespace-nowrap overflow-hidden text-ellipsis">
             {firstLineWords.map((word, index) => (
               <span
                 key={index}
                 className={`inline-block transition-opacity duration-500 ease-in-out transition-filter
-                  ${
-                    index <= visibleWordIndex
-                      ? "opacity-100 filter-none"
-                      : "opacity-0 blur-sm"
-                  } 
-                  mx-[0.35rem] -mb-2 lg:text-[5.5rem] md:text-[4.5rem] sm:text-[4rem] xs:text-[3rem] xxs:text-[2rem]`}
+        ${index <= visibleWordIndex ? "opacity-100 filter-none" : "opacity-0 blur-sm"} 
+        mx-[0.35rem] -mb-2 text-[min(8vw,5.5rem)]`}
               >
                 {word}
               </span>

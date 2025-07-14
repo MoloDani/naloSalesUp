@@ -45,11 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:type" content="product" />
         <meta
           name="description"
-          content={"Fastest VFX Post Production Agency"}
-        />
-        <meta
-          property="og:description"
-          content={"Fastest VFX Post Production Agency"}
+          content={"The best video editing pack there is!"}
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
@@ -60,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
           property="og:image"
           content={`https://media.discordapp.net/attachments/1044673805966135306/1148215648154046584/logo512.webp`}
         />
-        <title>NALO Sale</title>
+        <title>Nalo Packs</title>
       </Head>
       <Analytics />
 

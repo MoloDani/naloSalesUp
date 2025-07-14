@@ -37,8 +37,7 @@ const BuySectionWithPhone = () => {
         </h1>
 
         <p className="text-base sm:text-2xl mb-8 font-semibold text-center lg:text-left">
-          +5 New assets delivered to you every single <br />
-          month , from out team.
+          +5 New assets delivered to you <br /> every single month
         </p>
 
         <a

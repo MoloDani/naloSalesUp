@@ -42,13 +42,13 @@ const FAQData: QuestProp[] = [
           To make full use of project files, we also recommend other plugins
           like Red Giant Universe, and Deep Glow, but those are optional.
         </p>
-        <p>Email support</p>
+        <p>Email us to get help with the plugins.</p>
       </div>
     ),
   },
   {
     index: 3,
-    q: <h3>How will I recive the pack and get pack updates?</h3>,
+    q: <h3>How will I receive the pack and get pack updates?</h3>,
     a: (
       <div>
         <p>
@@ -61,7 +61,7 @@ const FAQData: QuestProp[] = [
   },
   {
     index: 4,
-    q: <h3>What if I don't know how to use After Effects?</h3>,
+    q: <h3>What if I don't know After Effects?</h3>,
     a: (
       <div className="flex flex-col gap-3">
         <p>Don't worry.</p>
