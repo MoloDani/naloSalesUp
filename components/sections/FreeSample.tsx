@@ -22,11 +22,14 @@ const FreeSample: React.FC = () => {
     setStatus("loading");
 
     try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        "https://nalo-sales-backend.vercel.app/api/subscribe",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
       if (res.ok) {
         setStatus("success");
         setEmail("");
