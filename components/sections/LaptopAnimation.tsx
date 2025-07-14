@@ -43,7 +43,6 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   useImperativeHandle(ref, () => wrapperRef.current!);
 
   const isSafari =
-    typeof navigator !== "undefined" &&
     /Safari/.test(navigator.userAgent) &&
     /Apple Computer/.test(navigator.vendor);
 
@@ -147,9 +146,9 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
           }}
         >
           {isSafari ? (
-            <source src={ALT_SRC_QT} type="video/quicktime" />
+            <source src="/assets/promo_video.mov" type="video/quicktime" />
           ) : (
-            <source src={ALT_SRC_WEBM} type="video/webm" />
+            <source src="/assets/promo_video.webm" type="video/webm" />
           )}
           Your browser does not support the video tag.
         </video>
