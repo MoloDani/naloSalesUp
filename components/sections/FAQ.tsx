@@ -48,7 +48,7 @@ const FAQData: QuestProp[] = [
   },
   {
     index: 3,
-    q: <h3>How will I receive the pack and get pack updates?</h3>,
+    q: <h3>How will I receive the pack and get updates?</h3>,
     a: (
       <div>
         <p>
