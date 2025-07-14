@@ -14,7 +14,7 @@ const BuySection = () => {
   return (
     <section
       id="buy-now-desktop"
-      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 pt-12"
+      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 pt-0"
     >
       {/* USB loop */}
       <video

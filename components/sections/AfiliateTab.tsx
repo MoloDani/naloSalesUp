@@ -50,7 +50,7 @@ const AffiliateTab = () => {
               rel="noopener noreferrer"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 -mt-[1.8rem] h-[100px] scale-[0.6] "
+              className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 -mt-[1.8rem] h-[100px] scale-[0.7] lg:scale-[0.6] "
             >
               <img
                 src="/assets/Apply-1.png"

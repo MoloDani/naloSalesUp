@@ -2,14 +2,8 @@ import React from "react";
 
 const LaptopAnimationPhone: React.FC = () => {
   const isSafari =
-    typeof navigator !== "undefined" &&
     /Safari/.test(navigator.userAgent) &&
     /Apple Computer/.test(navigator.vendor);
-
-  const videoSrc = isSafari
-    ? "/assets/promo_video.mov"
-    : "/assets/promo_video.webm";
-  const videoType = isSafari ? "video/mov" : "video/webm";
 
   return (
     <section
@@ -17,14 +11,17 @@ const LaptopAnimationPhone: React.FC = () => {
       className="flex flex-col items-center my-20 w-screen"
     >
       <video
-        className="w-full h-auto rounded-2xl shadow-lg -mb-14 overflow-hidden"
+        className="w-full h-auto rounded-2xl shadow-lg -mb-14 overflow-hidden scale-[1.3]"
         autoPlay
         loop
         muted
         playsInline
       >
-        <source src={videoSrc} type={videoType} />
-        Your browser does not support the video tag.
+        {isSafari ? (
+          <source src="/assets/promo_video.mov" type="video/quicktime" />
+        ) : (
+          <source src="/assets/promo_video.webm" type="video/webm" />
+        )}
       </video>
     </section>
   );
