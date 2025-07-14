@@ -32,11 +32,11 @@ const BuySectionWithPhone = () => {
 
       {/* Text + CTA */}
       <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
-        <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10">
-          <span className="text-custom">Never</span> fall behind
+        <h1 className="text-3xl sm:text-6xl font-bold mb-0 lg:mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10 ">
+          <span className="text-custom">Never</span> Fall Behind
         </h1>
 
-        <p className="text-base sm:text-2xl mb-8 font-semibold text-center lg:text-left">
+        <p className="text-base sm:text-2xl mb-7 lg:mb-8 font-semibold text-center lg:text-left">
           +5 New assets delivered to you <br /> every single month
         </p>
 

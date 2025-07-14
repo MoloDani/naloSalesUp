@@ -49,7 +49,7 @@ const BuySection = () => {
               className="sr-only peer"
             />
             <div className="w-full h-full bg-custom rounded-full peer-checked:bg-gray-300 transition-all" />
-            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[2.2rem] lg:peer-checked:left-[3rem]">
+            <div className="absolute top-1 left-1 w-10 h-5 lg:w-11 lg:h-7 bg-white rounded-full shadow-md flex items-center justify-center text-xs sm:text-sm font-semibold text-gray-700 transition-all peer-checked:left-[1.8rem] lg:peer-checked:left-[3rem]">
               {isPound ? "GBP" : "USD"}
             </div>
           </label>
@@ -57,7 +57,7 @@ const BuySection = () => {
 
         {/* ---------- PRICE (colour now swaps!) ---------- */}
         <h1
-          className={`text-[4.5rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-bold -mt-6 sm:-mt-10 md:-mt-12 lg:-mt-16
+          className={`text-[8rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-bold -mt-10 sm:-mt-10 md:-mt-12 lg:-mt-16
             ${isPound ? "white" : "text-custom"}`}
         >
           {symbol}

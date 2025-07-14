@@ -14,9 +14,9 @@ const AffiliateTab = () => {
       className="flex flex-col items-center justify-center w-full overflow-hidden px-4 "
     >
       <div className="relative flex flex-col items-center w-full">
-        <div className="mt-12 sm:mt-32 mb-10 lg:mb-5">
+        <div className="mt-12 sm:mt-32 mb-5 lg:mb-5">
           <video
-            className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-48"
+            className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-44 lg:mb-48"
             autoPlay
             loop
             muted
@@ -36,12 +36,12 @@ const AffiliateTab = () => {
         </div>
 
         <div className="absolute bottom-0 w-full text-center p-4">
-          <h1 className="text-white text-2xl sm:text-3xl lg:text-6xl font-bold">
+          <h1 className="text-white text-3xl sm:text-6xl lg:text-6xl font-bold">
             <span className="text-custom">Earn</span> While You Edit
           </h1>
           <p className="text-white font-semibold text-base sm:text-lg lg:text-2xl mt-1">
-            Get £90+ per referral and 50% OFF the pack if accepted <br />
-            into the affiliate programme.
+            Get £90+ per referral and 50% OFF the pack if
+            <br /> accepted into the affiliate programme.
           </p>
           <div className="mt-7">
             <a
