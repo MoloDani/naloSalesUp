@@ -8,21 +8,25 @@ const LaptopAnimationPhone: React.FC = () => {
   return (
     <section
       id="promo-video"
-      className="flex flex-col items-center my-20 w-screen"
+      className="flex flex-col items-center my-20 w-screen overflow-hidden"
     >
-      <video
-        className="w-full h-auto rounded-2xl shadow-lg -mb-14 overflow-hidden scale-[1.3]"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        {isSafari ? (
-          <source src="/assets/promo_video.mov" type="video/quicktime" />
-        ) : (
-          <source src="/assets/promo_video.webm" type="video/webm" />
-        )}
-      </video>
+      <div className="relative w-full max-w-[800px] overflow-hidden">
+        <div className="scale-[1.3] origin-center">
+          <video
+            className="w-full h-auto rounded-2xl shadow-lg"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            {isSafari ? (
+              <source src="/assets/promo_video.mov" type="video/quicktime" />
+            ) : (
+              <source src="/assets/promo_video.webm" type="video/webm" />
+            )}
+          </video>
+        </div>
+      </div>
     </section>
   );
 };

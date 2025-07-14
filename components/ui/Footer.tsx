@@ -104,8 +104,8 @@ function Footer() {
 
   return (
     <div className="z-10 flex flex-col gap-6 items-center justify-center border-t border-custom/30 bg-custom/10 text-white w-full py-6">
-      <div className="flex flex-wrap justify-center w-full max-w-5xl px-4 gap-36">
-        <div className="flex flex-col text-left">
+      <div className="flex flex-wrap justify-center w-full max-w-5xl gap-[4.2rem] lg:gap-36">
+        <div className="flex flex-col text-left justify-center">
           <p>© 2025 NALO Visuals.</p>
           <p>All Rights Reserved.</p>
         </div>

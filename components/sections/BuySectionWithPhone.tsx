@@ -30,6 +30,12 @@ const BuySectionWithPhone = () => {
         )}
       </video>
 
+      <img
+        src="/assets/notification.png"
+        alt=""
+        className="block lg:hidden w-[90vw] -mb-10"
+      />
+
       {/* Text + CTA */}
       <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
         <h1 className="text-3xl sm:text-6xl font-bold mb-0 lg:mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10 ">
