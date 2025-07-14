@@ -24,7 +24,6 @@ const BuySection = () => {
         muted
         playsInline
         preload="auto"
-        controls={false}
       >
         {isSafari ? (
           <source src="/assets/USB_LOOP.mov" type="video/quicktime" />
