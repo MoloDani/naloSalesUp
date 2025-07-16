@@ -14,7 +14,7 @@ const EditAnimation = () => {
     >
       <div className="flex flex-col items-center justify-center w-full relative -mb-4 sm:-mb-10">
         <video
-          className="w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 mb-6 sm:mb-16"
+          className="hidden lg:block w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 mb-6 sm:mb-16"
           autoPlay
           loop
           muted
@@ -35,6 +35,12 @@ const EditAnimation = () => {
             />
           )}
         </video>
+
+        <img
+          src="/assets/timeline-img.png"
+          alt=""
+          className="block lg:hidden w-[90vw] sm:w-[75vw] lg:w-[38vw] h-auto -mt-44 sm:-mt-60 lg:-mt-72 mb-6 sm:mb-16"
+        />
 
         <div className="absolute bottom-0 w-full text-center p-4 z-10">
           <h1 className="text-white text-3xl sm:text-6xl font-bold">

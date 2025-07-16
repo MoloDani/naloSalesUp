@@ -182,7 +182,7 @@ function VideoSliding() {
                 key={index}
                 className={`inline-block transition-opacity duration-500 ease-in-out transition-filter
         ${index <= visibleWordIndex ? "opacity-100 filter-none" : "opacity-0 blur-sm"} 
-        mx-[0.35rem] -mb-2 text-[min(8vw,5.5rem)]`}
+        mx-[0.35rem] -mb-2 text-[min(7vw,4.5rem)]`}
               >
                 {word}
               </span>

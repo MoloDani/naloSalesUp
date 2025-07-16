@@ -18,7 +18,7 @@ const BuySection = () => {
     >
       {/* USB loop */}
       <video
-        className="w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[45vw] h-auto mb-10 lg:mb-0 lg:-mx-28"
+        className="hidden lg:block w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[45vw] h-auto mb-10 lg:mb-0 lg:-mx-28"
         autoPlay
         loop
         muted
@@ -31,6 +31,12 @@ const BuySection = () => {
           <source src="/assets/USB_LOOP.webm" type="video/webm" />
         )}
       </video>
+
+      <img
+        src="/assets/usb-image.png"
+        alt=""
+        className="block lg:hidden w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[45vw] mb-16  h-auto lg:mb-0 lg:-mx-28"
+      />
 
       {/* Price + CTA */}
       <div className="flex flex-col items-center lg:items-start">

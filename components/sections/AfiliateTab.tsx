@@ -16,7 +16,7 @@ const AffiliateTab = () => {
       <div className="relative flex flex-col items-center w-full">
         <div className="mt-12 sm:mt-32 mb-5 lg:mb-5">
           <video
-            className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-44 lg:mb-48"
+            className="hidden lg:block w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-44 lg:mb-48"
             autoPlay
             loop
             muted
@@ -33,6 +33,12 @@ const AffiliateTab = () => {
               <source src="/assets/coin_laptop.webm" type="video/webm" />
             )}
           </video>
+
+          <img
+            src="/assets/laptop_affiliate-img.png"
+            alt=""
+            className="block lg:hidden w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw] h-auto -mt-16 sm:-mt-28 lg:-mt-44 mb-44 lg:mb-48"
+          />
         </div>
 
         <div className="absolute bottom-0 w-full text-center p-4">
