@@ -28,7 +28,7 @@ export default function Refund() {
             <br />
             If you were charged twice or notice an overcharge, contact us right
             away at{" "}
-            <a href="./support" className="underline font-bold">
+            <a href="./support.html" className="underline font-bold">
               Support
             </a>
             .

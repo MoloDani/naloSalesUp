@@ -110,13 +110,13 @@ function Footer() {
           <p>All Rights Reserved.</p>
         </div>
         <div className="flex flex-col text-right underline">
-          <a href="/tos" target="_blank">
+          <a href="/tos.html" target="_blank">
             Terms of Service
           </a>
-          <a href="/refund" target="_blank">
+          <a href="/refund.html" target="_blank">
             Refund Policy
           </a>
-          <a href="/support" target="_blank">
+          <a href="/support.html" target="_blank">
             Support
           </a>
         </div>

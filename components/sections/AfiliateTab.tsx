@@ -51,7 +51,7 @@ const AffiliateTab = () => {
           </p>
           <div className="mt-7">
             <a
-              href="/affiliate"
+              href="/affiliate.html"
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={() => setIsHovered(true)}

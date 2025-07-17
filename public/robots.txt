@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.nalopacks.com
+
+# Sitemaps
+Sitemap: https://www.nalopacks.com/sitemap.xml
