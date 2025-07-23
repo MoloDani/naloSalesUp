@@ -1,11 +1,26 @@
 import React, { useState } from "react";
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 const BuySection = () => {
   const [isPound, setIsPound] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
   const price = isPound ? 179 : 245;
   const symbol = isPound ? "£" : "$";
+
+  const handleClick = () => {
+    window.gtag?.('event', 'click', {
+      event_category: 'Button',
+      event_label: 'HeroButton',
+    });
+    console.log('Button clicked');
+  };
+
 
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
@@ -75,6 +90,7 @@ const BuySection = () => {
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onClick={handleClick}
           className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.7] lg:-ml-[1.8rem]"
         >
           <img

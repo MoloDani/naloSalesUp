@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script"; // ✅ Adaugă asta!
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +49,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Nalo Packs</title>
         <link rel="icon" type="image/png" href="/favicon.ico" />
       </Head>
-      <Analytics />
+
+      {/* ✅ Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-RVS8MGNQNC"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RVS8MGNQNC');
+        `}
+      </Script>
 
       {loading ? (
         <LoadingScreen onFinish={() => setLoading(false)} />
