@@ -14,7 +14,7 @@ const FAQData: QuestProp[] = [
     a: (
       <div className="flex flex-col gap-3">
         <p>
-          The pack contains over 300 premium assets made by our 8 team members:
+          The pack contains over 300 premium assets made by our 10 team members:
         </p>
         <ul
           className="mx-2"

@@ -40,12 +40,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`text-white ${inter.className} font-sans`}>
       <Head>
-        <meta name="description" content="Your description about Nalo Packs." />
+        <meta name="description" content="Best Drill Editing Pack." />
         <meta property="og:title" content="Nalo Packs" />
         <meta
           property="og:description"
-          content="Your description about Nalo Packs."
+          content="Best Drill Editing Pack."
         />
+        <meta property="og:image" content="https://nalopacks.com/preview.jpg" />
         <title>Nalo Packs</title>
         <link rel="icon" type="image/png" href="/favicon.ico" />
       </Head>

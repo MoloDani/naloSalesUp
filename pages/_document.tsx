@@ -6,12 +6,13 @@ export default function Document() {
     <Html lang="en" className="scroll-smooth">
       <Head>
         <link rel="icon" type="image/png" href="/favicon.ico" />
-        <meta name="description" content="Your description about Nalo Packs." />
+        <meta name="description" content="Best Drill Editing Pack." />
         <meta property="og:title" content="Nalo Packs" />
         <meta
           property="og:description"
-          content="Your description about Nalo Packs."
+          content="Best Drill Editing Pack."
         />
+        <meta property="og:image" content="https://nalopacks.com/preview.jpg" />
       </Head>
       <body className="relative">
         <Main />
