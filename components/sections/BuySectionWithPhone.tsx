@@ -14,13 +14,12 @@ const BuySectionWithPhone = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
-    window.gtag?.('event', 'click', {
-      event_category: 'Button',
-      event_label: 'HeroButton',
+    window.gtag?.("event", "click", {
+      event_category: "Button",
+      event_label: "BuyWithPhone_Button",
     });
-    console.log('Button clicked');
+    console.log("Button clicked");
   };
-
 
   return (
     <section

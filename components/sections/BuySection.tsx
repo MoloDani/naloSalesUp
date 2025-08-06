@@ -14,13 +14,12 @@ const BuySection = () => {
   const symbol = isPound ? "£" : "$";
 
   const handleClick = () => {
-    window.gtag?.('event', 'click', {
-      event_category: 'Button',
-      event_label: 'HeroButton',
+    window.gtag?.("event", "click", {
+      event_category: "Button",
+      event_label: "BuySection_Button",
     });
-    console.log('Button clicked');
+    console.log("Button clicked");
   };
-
 
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
