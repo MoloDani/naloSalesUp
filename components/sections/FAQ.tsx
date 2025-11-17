@@ -111,9 +111,9 @@ const FAQData: QuestProp[] = [
 
 const FAQ = () => {
   return (
-    <section id="FAQ">
-      <div className="flex flex-col md:flex-row w-full max-w-[90vw] mx-auto my-12 md:my-[23vh] justify-center md:gap-32 gap-8 items-start relative px-4">
-        <div className="flex flex-col w-full md:w-[30vw] gap-4 md:gap-7 text-base sm:text-lg md:text-xl md:sticky md:top-[20vh]">
+    <section id="FAQ-section">
+      <div className="flex flex-col md:flex-row w-full max-w-[90vw] mx-auto my-12 md:my-[7vh] justify-center md:gap-32 gap-8 items-start relative px-4">
+        <div className="flex flex-col w-full md:w-[30vw] gap-4 md:gap-7 text-base sm:text-lg md:text-xl md:sticky">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">
             Frequently Asked Questions
           </h1>

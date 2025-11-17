@@ -44,7 +44,7 @@ const FreeSample: React.FC = () => {
   return (
     <section id="free-sample" className="py-16 text-white">
       <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-3xl sm:text-5xl font-bold">Not Decided Yet?</h1>
+        {/* <h1 className="text-3xl sm:text-5xl font-bold">Not Decided Yet?</h1> */}
         <p className="mt-2 text-lg sm:text-2xl font-medium mb-3">
           Get a <span className="text-custom">free</span> sample by signing up
           to our email list
