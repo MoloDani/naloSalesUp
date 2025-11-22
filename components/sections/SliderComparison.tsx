@@ -49,10 +49,10 @@ const VideoCompareSection: React.FC<Props> = ({
 
   const [isTextVisible, setIsTextVisible] = useState(true);
 
-  // swipe state
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
-  const touchStartTime = useRef<number | null>(null);
+  // NEW: fade state for videos
+  const [isMediaVisible, setIsMediaVisible] = useState(true);
+  const fadeTimeoutRef = useRef<number | null>(null);
+  const FADE_DURATION = 300; // ms, should roughly match Tailwind duration-300
 
   const PAIRS = Math.min(leftSources.length, rightSources.length);
   const leftCurrent = leftSources[pairIndex];
@@ -70,10 +70,32 @@ const VideoCompareSection: React.FC<Props> = ({
       <div className="text-white text-center">{labelContent}</div>
     );
 
+  // helper to change slide with fade out + in
+  const changePair = (getNextIndex: (current: number) => number) => {
+    if (fadeTimeoutRef.current) {
+      window.clearTimeout(fadeTimeoutRef.current);
+    }
+
+    setIsMediaVisible(false); // fade out current
+
+    fadeTimeoutRef.current = window.setTimeout(() => {
+      setPairIndex((current) => getNextIndex(current)); // change slide
+      setIsMediaVisible(true); // fade in new
+    }, FADE_DURATION);
+  };
+
   const goPrev = () =>
-    setPairIndex((i) => (i - 1 + PAIRS) % PAIRS);
+    changePair((i) => (i - 1 + PAIRS) % PAIRS);
   const goNext = () =>
-    setPairIndex((i) => (i + 1) % PAIRS);
+    changePair((i) => (i + 1) % PAIRS);
+
+  useEffect(() => {
+    return () => {
+      if (fadeTimeoutRef.current) {
+        window.clearTimeout(fadeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // play both + drift correction
   useEffect(() => {
@@ -246,49 +268,18 @@ const VideoCompareSection: React.FC<Props> = ({
     };
   };
 
-  // fade-in text
+  // fade-in text (kept as you had it)
   useEffect(() => {
     setIsTextVisible(false);
     const id = setTimeout(() => setIsTextVisible(true), 20);
     return () => clearTimeout(id);
   }, [pairIndex]);
 
-  // Touch swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const t = e.touches[0];
-    touchStartX.current = t.clientX;
-    touchStartY.current = t.clientY;
-    touchStartTime.current = performance.now();
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (
-      touchStartX.current == null ||
-      touchStartY.current == null ||
-      touchStartTime.current == null
-    )
-      return;
-
-    const t = e.changedTouches[0];
-    const dx = t.clientX - touchStartX.current;
-    const dy = t.clientY - touchStartY.current;
-    const dt = performance.now() - touchStartTime.current;
-
-    touchStartX.current = null;
-    touchStartY.current = null;
-    touchStartTime.current = null;
-
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) && dt < 600) {
-      dx < 0 ? goNext() : goPrev();
-    }
-  };
-
   return (
     <section className="w-full flex flex-col items-center gap-6">
-      {/* ARROWS OUTSIDE */}
+      {/* ARROWS + VIDEO ROW */}
       <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-4">
-        
-        {/* Left arrow (desktop only) */}
+        {/* Left arrow (desktop only, side of video) */}
         <button
           type="button"
           aria-label="Previous"
@@ -305,9 +296,9 @@ const VideoCompareSection: React.FC<Props> = ({
           ref={containerRef}
           className={`relative mx-auto ${widthClass} ${maxWidthClass} ${
             maxHeightClass || ""
-          } aspect-[4/3] lg:aspect-video rounded-xl overflow-hidden`}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          } aspect-[4/3] lg:aspect-video rounded-xl overflow-hidden transition-opacity duration-300 ${
+            isMediaVisible ? "opacity-100" : "opacity-0"
+          }`}
         >
           {/* videos */}
           <video
@@ -377,7 +368,7 @@ const VideoCompareSection: React.FC<Props> = ({
                 <button
                   key={i}
                   type="button"
-                  onClick={() => setPairIndex(i)}
+                  onClick={() => changePair(() => i)}
                   className={`w-3 h-3 rounded-full transition-all ${
                     i === pairIndex
                       ? "bg-white scale-110"
@@ -389,7 +380,7 @@ const VideoCompareSection: React.FC<Props> = ({
           </div>
         </div>
 
-        {/* Right arrow (desktop only) */}
+        {/* Right arrow (desktop only, side of video) */}
         <button
           type="button"
           aria-label="Next"
@@ -400,7 +391,30 @@ const VideoCompareSection: React.FC<Props> = ({
             <path d="M7.22 15.78a.75.75 0 0 1 0-1.06L11.94 10 7.22 5.28a.75.75 0 1 1 1.06-1.06l5.25 5.25c.3.3.3.78 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0z"/>
           </svg>
         </button>
+      </div>
 
+      {/* Mobile arrows BELOW video */}
+      <div className="flex md:hidden items-center justify-center gap-6">
+        <button
+          type="button"
+          aria-label="Previous"
+          onClick={goPrev}
+          className="flex items-center justify-center p-3 text-white"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M12.78 4.22a.75.75 0 0 1 0 1.06L8.06 10l4.72 4.72a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0z"/>
+          </svg>
+        </button>
+        <button
+          type="button"
+          aria-label="Next"
+          onClick={goNext}
+          className="flex items-center justify-center p-3 text-white"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M7.22 15.78a.75.75 0 0 1 0-1.06L11.94 10 7.22 5.28a.75.75 0 1 1 1.06-1.06l5.25 5.25c.3.3.3.78 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0z"/>
+          </svg>
+        </button>
       </div>
 
       {/* slide text */}
