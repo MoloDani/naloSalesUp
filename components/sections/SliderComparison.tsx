@@ -47,8 +47,6 @@ const VideoCompareSection: React.FC<Props> = ({
     height: number;
   } | null>(null);
 
-  const [isTextVisible, setIsTextVisible] = useState(true);
-
   // NEW: fade state for videos
   const [isMediaVisible, setIsMediaVisible] = useState(true);
   const fadeTimeoutRef = useRef<number | null>(null);
@@ -269,11 +267,6 @@ const VideoCompareSection: React.FC<Props> = ({
   };
 
   // fade-in text (kept as you had it)
-  useEffect(() => {
-    setIsTextVisible(false);
-    const id = setTimeout(() => setIsTextVisible(true), 20);
-    return () => clearTimeout(id);
-  }, [pairIndex]);
 
   return (
     <section className="w-full flex flex-col items-center gap-6">
@@ -354,10 +347,10 @@ const VideoCompareSection: React.FC<Props> = ({
           )}
 
           {/* Before/After labels */}
-          <span className="absolute left-2 top-2 z-30 text-white text-lg md:text-4xl font-[firstFont] drop-shadow-lg">
+          <span className="absolute left-4 top-3 z-30 text-white text-lg md:text-4xl font-[firstFont] drop-shadow-lg">
             Before
           </span>
-          <span className="absolute right-2 top-2 z-30 text-white text-lg md:text-4xl font-[firstFont] drop-shadow-lg">
+          <span className="absolute right-4 top-3 z-30 text-white text-lg md:text-4xl font-[firstFont] drop-shadow-lg">
             After
           </span>
 
@@ -419,9 +412,7 @@ const VideoCompareSection: React.FC<Props> = ({
 
       {/* slide text */}
       <div
-        className={`max-w-[800px] px-4 text-center transition-opacity duration-300 ${
-          isTextVisible ? "opacity-100" : "opacity-0"
-        }`}
+        className={`max-w-[800px] px-4 text-center transition-opacity duration-300 ${"opacity-100"}`}
       >
         {labelEl}
       </div>

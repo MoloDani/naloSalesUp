@@ -137,8 +137,9 @@ const BuySectionWithPhone = () => {
         </h1>
 
         <p className="text-right text-base sm:text-2xl mb-6 font-semibol">
-             Every customer gets a free 1-1 call with us, <br />
-             to answer questions & get you started
+             Everyone has a free 15–30 min call with us <br />
+to make sure you know how to use everything right. <br />
+(Perfect for beginners).
            </p>
       
 
@@ -149,7 +150,7 @@ const BuySectionWithPhone = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={handleClick}
-          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] ml-0 lg:-ml-[3.8rem] -mt-[1.8rem] h-[100px] scale-[0.7] lg:scale-[0.6] "
+          className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] mr-0 lg:-mr-[3.8rem] -mt-[1.8rem] h-[100px] scale-[0.7] lg:scale-[0.6] "
         >
           <img
             src="/assets/button_idle.png"

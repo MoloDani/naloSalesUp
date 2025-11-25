@@ -61,22 +61,26 @@ export default function Home() {
         pairLabels={[
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Effects Made <span class='text-custom'>Simple</span></h2>
            <p class="text-base sm:text-2xl mb-6 font-semibold">
-             If you're a director or editor, you can make insane visuals like this, and start charging more
+             You ever spend an hour on one effect that still doesn’t look right? This fixes that
            </p>`,
-          `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Use On <span class='text-custom'>Any Video</span></h2>
+          `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Built for <span class='text-custom'>Any</span> Style</h2>
            <p class="text-base sm:text-2xl mb-6 font-semibold">
-             Works on every timeline, every software.
+             Doesn’t matter what video you make These effects just blend in with your style
            </p>`,
-          `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Drag & Drop In <span class='text-custom'>Seconds</span></h2>
+          `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Make 3D <span class='text-custom'>Easy Peasy</span></h2>
            <p class="text-base sm:text-2xl mb-6 font-semibold">
-             Create before & afters instantly.
+             If you’re tired of fighting with Element 3D every time then try these drag & drop overlays 
            </p>`,
-          `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Got Questions?</h2>
+          `<h2 class="text-3xl sm:text-6xl font-bold mb-2"><span class='text-custom'>Impress</span> Your Clients</h2>
            <p class="text-base sm:text-2xl mb-6 font-semibold">
-             <button id="goToFAQ" class="underline hover:text-custom">Check FAQ</button>
+             People won't skip your video with these titles. Trust me, they'll be amazed
            </p>`,
         ]}
       />
+
+      {/* <p class="text-base sm:text-2xl mb-6 font-semibold">
+        <button id="goToFAQ" class="underline hover:text-custom">Check FAQ</button>
+      </p> */}
 
       {/* <EditAnimation /> */}
       <MeetAnimation />
