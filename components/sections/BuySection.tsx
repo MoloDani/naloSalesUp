@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 declare global {
   interface Window {
@@ -9,6 +9,9 @@ declare global {
 const BuySection = () => {
   const [isPound, setIsPound] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+
+  // --- countdown state ---
+  const [timeLeft, setTimeLeft] = useState("00:00:00");
 
   const price = isPound ? 179 : 245;
   const symbol = isPound ? "£" : "$";
@@ -24,6 +27,54 @@ const BuySection = () => {
   const isSafari =
     /Safari/.test(navigator.userAgent) &&
     /Apple Computer/.test(navigator.vendor);
+
+  // ---------- COUNTDOWN LOGIC ----------
+  useEffect(() => {
+    // next 1st of December (if it's already past this year, use next year)
+    const getTargetDate = () => {
+      const now = new Date();
+      let year = now.getFullYear();
+      const dec1ThisYear = new Date(year, 11, 1, 0, 0, 0); // month 11 = December
+      if (now > dec1ThisYear) {
+        year += 1;
+      }
+      return new Date(year, 11, 1, 0, 0, 0);
+    };
+
+    const targetDate = getTargetDate();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      let diff = targetDate.getTime() - now;
+
+      if (diff <= 0) {
+        setTimeLeft("00:00:00");
+        return;
+      }
+
+      const hourMs = 1000 * 60 * 60;
+      const minMs = 1000 * 60;
+
+      const hours = Math.floor(diff / hourMs);
+      diff -= hours * hourMs;
+
+      const minutes = Math.floor(diff / minMs);
+      diff -= minutes * minMs;
+
+      const seconds = Math.floor(diff / 1000);
+
+      const h = String(hours).padStart(2, "0");
+      const m = String(minutes).padStart(2, "0");
+      const s = String(seconds).padStart(2, "0");
+
+      setTimeLeft(`${h}:${m}:${s}`);
+    };
+
+    updateCountdown(); // run immediately
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -74,41 +125,50 @@ const BuySection = () => {
           </label>
         </div>
 
-        {/* ---------- PRICE (colour now swaps!) ---------- */}
+        {/* PRICE */}
         <h1
-          className={`text-[8rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-bold -mt-10 sm:-mt-10 md:-mt-12 lg:-mt-16
-            ${isPound ? "white" : "text-custom"}`}
+          className={`text-[8rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-bold -mt-10 sm:-mt-10 md:-mt-12 lg:-mt-16 ${
+            isPound ? "white" : "text-custom"
+          }`}
         >
           {symbol}
           {price}
         </h1>
 
-        <a
-          href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
-          target="_blank"
-          rel="noopener noreferrer"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={handleClick}
-          className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] -mt-8 sm:-mt-12 h-[100px] scale-[0.7] lg:-ml-[1.8rem]"
-        >
-          <img
-            src="/assets/button_idle.png"
-            alt="Buy now"
-            draggable={false}
-            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
-              isHovered ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <img
-            src="/assets/button_hovered.png"
-            alt=""
-            draggable={false}
-            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        </a>
+        {/* BUTTON + COUNTDOWN */}
+        <div className="flex items-center gap-6 -mt-8 sm:-mt-12 lg:-ml-[1.8rem]">
+          <a
+            href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={handleClick}
+            className="relative inline-block rounded-[1.6rem] w-[240px] sm:w-[300px] h-[100px] scale-[0.7]"
+          >
+            <img
+              src="/assets/button_idle.png"
+              alt="Buy now"
+              draggable={false}
+              className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+                isHovered ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <img
+              src="/assets/button_hovered.png"
+              alt=""
+              draggable={false}
+              className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          </a>
+
+          {/* Countdown text */}
+          <div className="text-3xl sm:text-4xl font-semibold text-white">
+            {timeLeft}
+          </div>
+        </div>
       </div>
     </section>
   );
