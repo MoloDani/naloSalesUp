@@ -13,6 +13,7 @@ import LaptopAnimation from "@/components/sections/LaptopAnimation";
 import LaptopAnimationPhone from "@/components/sections/LaptopAnimationPhone";
 import LottieTest from "@/components/sections/LottieTest";
 import MeetAnimation from "@/components/sections/MeetAnimation";
+import Props from "@/components/sections/SliderComparison";
 import VideoCompareSection from "@/components/sections/SliderComparison";
 import { useEffect } from "react";
 
@@ -45,6 +46,7 @@ export default function Home() {
       <BuySection />
 
       <VideoCompareSection
+        youtubeFirstId="7g3PuW2kVZ4" // ⬅️ put your real YT id here
         leftSources={[
           { src: "/assets/nalo_before-afters-website_2025-10-01_1703/1 - Before.mp4", type: "video/mp4" },
           { src: "/assets/nalo_before-afters-website_2025-10-01_1703/2 - Before.mp4", type: "video/mp4" },
@@ -59,24 +61,26 @@ export default function Home() {
         ]}
         maxHeightClass="max-h-[65vh]"
         pairLabels={[
+          // these now map to the 4 BEFORE/AFTER slides (not the YT slide)
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Effects Made <span class='text-custom'>Simple</span></h2>
-           <p class="text-base sm:text-2xl mb-6 font-semibold">
-             You ever spend an hour on one effect that still doesn’t look right? This fixes that
-           </p>`,
+          <p class="text-base sm:text-2xl mb-6 font-semibold">
+            You ever spend an hour on one effect that still doesn’t look right? This fixes that
+          </p>`,
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Built for <span class='text-custom'>Any</span> Style</h2>
-           <p class="text-base sm:text-2xl mb-6 font-semibold">
-             Doesn’t matter what video you make These effects just blend in with your style
-           </p>`,
+          <p class="text-base sm:text-2xl mb-6 font-semibold">
+            Doesn’t matter what video you make These effects just blend in with your style
+          </p>`,
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Make 3D <span class='text-custom'>Easy Peasy</span></h2>
-           <p class="text-base sm:text-2xl mb-6 font-semibold">
-             If you’re tired of fighting with Element 3D every time then try these drag & drop overlays 
-           </p>`,
+          <p class="text-base sm:text-2xl mb-6 font-semibold">
+            If you’re tired of fighting with Element 3D every time then try these drag & drop overlays 
+          </p>`,
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2"><span class='text-custom'>Impress</span> Your Clients</h2>
-           <p class="text-base sm:text-2xl mb-6 font-semibold">
-             People won't skip your video with these titles. Trust me, they'll be amazed
-           </p>`,
+          <p class="text-base sm:text-2xl mb-6 font-semibold">
+            People won't skip your video with these titles. Trust me, they'll be amazed
+          </p>`,
         ]}
       />
+
 
       {/* <p class="text-base sm:text-2xl mb-6 font-semibold">
         <button id="goToFAQ" class="underline hover:text-custom">Check FAQ</button>
