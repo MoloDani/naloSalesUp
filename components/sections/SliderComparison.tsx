@@ -18,6 +18,7 @@ type Props = {
   pairLabels?: (string | React.ReactNode)[];
   maxHeightClass?: string;
   youtubeFirstId?: string; // ⬅️ YouTube slide at index 0
+  youtubeLabel?: string | React.ReactNode; // ⬅️ NEW: heading+paragraph for YT slide
 };
 
 const clamp = (v: number, min = 0, max = 100) =>
@@ -34,6 +35,7 @@ const VideoCompareSection: React.FC<Props> = ({
   pairLabels,
   maxHeightClass = "max-h-[80vh]",
   youtubeFirstId,
+  youtubeLabel, // ⬅️ NEW
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLVideoElement>(null);
@@ -72,7 +74,7 @@ const VideoCompareSection: React.FC<Props> = ({
   const leftCurrent = !isYoutubeSlide ? leftSources[compareIndex] : undefined;
   const rightCurrent = !isYoutubeSlide ? rightSources[compareIndex] : undefined;
 
-  // ---- LABELS (NO LABEL ON YOUTUBE SLIDE) ----
+  // ---- LABELS FOR COMPARE SLIDES ----
   const compareLabelIndex = hasYoutubeFirst ? pairIndex - 1 : pairIndex;
 
   const rawLabel =
@@ -98,6 +100,21 @@ const VideoCompareSection: React.FC<Props> = ({
         )
       : (
           <div className="text-white text-center">{labelContent}</div>
+        );
+
+  // ---- LABEL FOR YOUTUBE SLIDE ----
+  const youtubeLabelEl =
+    youtubeLabel == null
+      ? null
+      : typeof youtubeLabel === "string"
+      ? (
+          <div
+            className="text-white text-center"
+            dangerouslySetInnerHTML={{ __html: youtubeLabel }}
+          />
+        )
+      : (
+          <div className="text-white text-center">{youtubeLabel}</div>
         );
 
   // helper to change slide with fade out + in
@@ -478,12 +495,17 @@ const VideoCompareSection: React.FC<Props> = ({
         </div>
       )}
 
-      {/* slide text (HIDDEN ON YOUTUBE SLIDE) */}
-      {labelEl && (
-        <div
-          className={`max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100`}
-        >
+      {/* slide text (COMPARE SLIDES) */}
+      {!isYoutubeSlide && labelEl && (
+        <div className="max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100">
           {labelEl}
+        </div>
+      )}
+
+      {/* slide text (YOUTUBE SLIDE) */}
+      {isYoutubeSlide && youtubeLabelEl && (
+        <div className="max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100">
+          {youtubeLabelEl}
         </div>
       )}
     </section>

@@ -60,6 +60,14 @@ export default function Home() {
           { src: "/assets/nalo_before-afters-website_2025-10-01_1703/4 - After.mp4", type: "video/mp4" },
         ]}
         maxHeightClass="max-h-[65vh]"
+        youtubeLabel={`
+          <h2 class="text-3xl sm:text-6xl font-bold mb-2">
+            Watch This <span class='text-custom'>First</span>
+          </h2>
+          <p class="text-base sm:text-2xl mb-6 font-semibold">
+            Don't buy it yet, seriously g <br /> We want you to actually see what’s inside before spending yo money
+          </p>
+        `}
         pairLabels={[
           // these now map to the 4 BEFORE/AFTER slides (not the YT slide)
           `<h2 class="text-3xl sm:text-6xl font-bold mb-2">Effects Made <span class='text-custom'>Simple</span></h2>
