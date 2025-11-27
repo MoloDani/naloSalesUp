@@ -150,43 +150,50 @@ const BuySection = () => {
             {price}
           </h1>
 
-          {/* BUTTON + COUNTDOWN – responsive, same line */}
-          <div className="mt-4 flex w-full max-w-[350px] lg:max-w-[400px] items-center gap-4 mx-auto lg:mx-0">
-            {/* Button grows/shrinks with available space */}
-            <a
-              href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={handleClick}
-              className="relative flex-1 min-w-0 inline-block rounded-[1.6rem]"
-            >
-              {/* Use the container width, not fixed px – makes it responsive */}
-              <img
-                src="/assets/button_idle.png"
-                alt="Buy now"
-                draggable={false}
-                className={`w-full h-auto transition-opacity duration-150 ${
-                  isHovered ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <img
-                src="/assets/button_hovered.png"
-                alt=""
-                draggable={false}
-                className={`w-full h-auto absolute inset-0 transition-opacity duration-150 ${
-                  isHovered ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </a>
+          {/* BUTTON + COUNTDOWN – vertical & centered */}
+          {/* BUTTON + COUNTDOWN – aligned nicely */}
+<div className="mt-6 flex flex-col items-center gap-4 lg:flex-row lg:justify-center lg:gap-6 max-w-[420px] w-full mx-auto">
+  {/* Button */}
+  <a
+    href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
+    target="_blank"
+    rel="noopener noreferrer"
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+    onClick={handleClick}
+    className="relative inline-block w-full max-w-[220px] rounded-[1.6rem]"
+  >
+    <img
+      src="/assets/button_idle.png"
+      alt="Buy now"
+      draggable={false}
+      className={`w-full h-auto transition-opacity duration-150 ${
+        isHovered ? "opacity-0" : "opacity-100"
+      }`}
+    />
+    <img
+      src="/assets/button_hovered.png"
+      alt=""
+      draggable={false}
+      className={`w-full h-auto absolute inset-0 transition-opacity duration-150 ${
+        isHovered ? "opacity-100" : "opacity-0"
+      }`}
+    />
+  </a>
 
-            {/* Countdown keeps its natural width, stays on same line */}
-            <div className="flex-none text-2xl sm:text-3xl md:text-4xl font-semibold text-white whitespace-nowrap">
-              {timeLeft}
-            </div>
-          </div>
-
+  {/* Countdown */}
+  <div className="flex lg:flex-col items-center justify-center rounded-full border border-white/30 bg-black/30 px-4 py-2 text-lg sm:text-xl md:text-2xl font-semibold text-white">
+    <span className="block lg:hidden mr-2 text-[0.65rem] sm:text-xs uppercase tracking-[0.25em] text-white/70">
+      Offer ends in
+    </span>
+    <span className="tabular-nums whitespace-nowrap">
+      {timeLeft}
+    </span>
+    <span className="hidden lg:block mr-2 text-[0.65rem] sm:text-xs uppercase tracking-[0.25em] text-white/70">
+      Offer ends in
+    </span>
+  </div>
+</div>
 
         </div>
       </div>

@@ -25,7 +25,7 @@ const BuySectionWithPhone = () => {
   return (
     <section
       id="buy-now-phone"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12 my-10 lg:my-0"
     >
       {/* MEDIA (Image on mobile, Video on desktop) */}
       <div className="order-1 lg:order-2 w-full flex justify-center">
@@ -69,8 +69,8 @@ const BuySectionWithPhone = () => {
 
         <p className="text-center lg:text-right text-base sm:text-2xl mb-6 font-semibold">
           Everyone has a free 15–30 min call with us <br />
-          to make sure you know how to use everything right. <br />
-          (Perfect for beginners).
+          to make sure you know how to use everything <br />
+          (Perfect for beginners)
         </p>
 
         <a

@@ -11,7 +11,7 @@ const AffiliateTab = () => {
   return (
     <section
       id="affiliate"
-      className="flex flex-col items-center justify-center w-full overflow-hidden px-4 "
+      className="flex flex-col items-center justify-center w-full overflow-hidden px-4 lg:my-0 my-20"
     >
       <div className="relative flex flex-col items-center w-full">
         <div className="mt-12 sm:mt-32 mb-5 lg:mb-5">

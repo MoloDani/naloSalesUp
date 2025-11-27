@@ -352,7 +352,7 @@ const VideoCompareSection: React.FC<Props> = ({
             // --- YOUTUBE ONLY SLIDE ---
             <iframe
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/${youtubeFirstId}?autoplay=1&mute=1&loop=1&controls=1&rel=0&modestbranding=1&playsinline=1&playlist=${youtubeFirstId}`}
+              src={`https://www.youtube.com/embed/${youtubeFirstId}?autoplay=1&mute=0&loop=1&controls=1&rel=0&modestbranding=1&playsinline=1&playlist=${youtubeFirstId}`}
               title="Overview video"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
@@ -497,7 +497,7 @@ const VideoCompareSection: React.FC<Props> = ({
 
       {/* slide text (COMPARE SLIDES) */}
       {!isYoutubeSlide && labelEl && (
-        <div className="max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100">
+        <div className={`max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100`}>
           {labelEl}
         </div>
       )}

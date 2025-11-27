@@ -24,7 +24,7 @@ const BuySectionWithPhone = () => {
   return (
     <section
       id="buy-now-phone"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12 lg:my-0 mt-20"
     >
       {/* iPhone mock-up */}
       <video
