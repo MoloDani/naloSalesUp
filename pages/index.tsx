@@ -13,6 +13,11 @@ import LaptopAnimation from "@/components/sections/LaptopAnimation";
 import LaptopAnimationPhone from "@/components/sections/LaptopAnimationPhone";
 import LottieTest from "@/components/sections/LottieTest";
 import MeetAnimation from "@/components/sections/MeetAnimation";
+import NotificationSection from "@/components/sections/NotificationSection";
+import TutorialsSection from "@/components/sections/TutorialsSection";
+import VFXUtilitySection from "@/components/sections/VFXUtilitySection";
+import EditingMadeSimpleSection from "@/components/sections/EditingMadeSimpleSection";
+import PreviewApplySection from "@/components/sections/PreviewApplySection";
 import Props from "@/components/sections/SliderComparison";
 import VideoCompareSection from "@/components/sections/SliderComparison";
 import { useEffect } from "react";
@@ -95,9 +100,14 @@ export default function Home() {
       </p> */}
 
       {/* <EditAnimation /> */}
+      <EditingMadeSimpleSection />
+      <PreviewApplySection />
+      <VFXUtilitySection />
       <MeetAnimation />
-      <BuySectionWithPhone />
-      <AffiliateTab />
+      <NotificationSection />
+      <TutorialsSection />
+      {/* <BuySectionWithPhone /> */}
+      {/* <AffiliateTab /> */}
 
       {/* anchor target */}
       <div id="faq-section">

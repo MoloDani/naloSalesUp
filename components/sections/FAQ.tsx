@@ -10,24 +10,23 @@ interface QuestProp {
 const FAQData: QuestProp[] = [
   {
     index: 1,
-    q: <h3>What does the pack contain?</h3>,
+    q: <h3>What does the Plugin Contain?</h3>,
     a: (
       <div className="flex flex-col gap-3">
         <p>
-          The pack contains over 300 premium assets made by our 10 team members:
+          You'll get access to:
         </p>
         <ul
           className="mx-2"
           style={{ listStyleType: "circle", listStylePosition: "inside" }}
         >
-          <li>100+ AE presets</li>
-          <li>90+ Essential overlays</li>
-          <li>35+ 3D overlays</li>
-          <li>55+ SFX</li>
-          <li>8 project files, from all theam members</li>
-          <li>10+ 3D title cards</li>
-          <li>40+ 3D objects</li>
-          <li>Clear & detailed tutorials on how to use everything</li>
+          <li>147 Presets</li>
+          <li>60 3D Overlays</li>
+          <li>95 Essential (2D) Overlays</li>
+          <li>62 3D Objects</li>
+          <li>55 SFX</li>
+          <li>10 3D Titlecards</li>
+          <li>9 Project Files</li>
         </ul>
       </div>
     ),
@@ -39,23 +38,27 @@ const FAQData: QuestProp[] = [
       <div className="flex flex-col gap-3">
         <p>You’ll only need Sapphire, RSMB, and Element 3D.</p>
         <p>
-          To make full use of project files, we also recommend other plugins
-          like Red Giant Universe, and Deep Glow, but those are optional.
+          We'll provide you with all plugins required. We'll sort you out.
         </p>
-        <p>Email us to get help with the plugins.</p>
       </div>
     ),
   },
   {
     index: 3,
-    q: <h3>How will I receive the pack and get updates?</h3>,
+    q: <h3>How will I receive the plugin and get monthly updates?</h3>,
     a: (
-      <div>
-        <p>
-          After purchase, we will provide you with a download link via email,
-          and add you to an email list where we will email you new assets
-          monthly, for free, forever.
-        </p>
+      <div className="flex flex-col gap-2">
+        <p>It's simple:</p>
+        <ol className="mx-2 flex flex-col gap-1" style={{ listStyleType: "decimal", listStylePosition: "inside" }}>
+          <li>Buy the plugin</li>
+          <li>Receive an email with your license</li>
+          <li>Create your password</li>
+          <li>Install the plugin in After Effects</li>
+          <li>Log in with your credentials</li>
+          <li>Connect your device</li>
+          <li>Start using the plugin</li>
+        </ol>
+        <p className="mt-2">Monthly updates are delivered automatically through the plugin.</p>
       </div>
     ),
   },
@@ -66,8 +69,7 @@ const FAQData: QuestProp[] = [
       <div className="flex flex-col gap-3">
         <p>Don't worry.</p>
         <p>
-          We include clear tutorials that walk you through everything. Also,
-          overlays and sound effects can be used in other editing software.
+          We include clear tutorials that walk you through everything. Also, overlays and sound effects can be used in other editing software.
         </p>
       </div>
     ),
@@ -78,22 +80,19 @@ const FAQData: QuestProp[] = [
     a: (
       <div className="flex flex-col gap-3">
         <p>
-          What softwares are compatible/required? After Effects 2021+ for
-          presets, title cards, and project files.
+          After Effects 2021 and newer.
         </p>
-        <p>Overlays and sound effects can be used in other softwares.</p>
       </div>
     ),
   },
   {
     index: 6,
-    q: <h3>Who is the pack for?</h3>,
+    q: <h3>Who is the plugin for?</h3>,
     a: (
       <div className="flex flex-col gap-3">
-        <p>The pack is suitable for everyone.</p>
+        <p>The plugin, and all assets are suitable for everyone..</p>
         <p>
-          This includes beginner directors with no After Effects experience, as
-          well as professional editors.
+          This includes beginner directors with no After Effects experience, as well as professional editors.
         </p>
       </div>
     ),

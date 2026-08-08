@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BUY_LINK } from "@/lib/constants";
 
 declare global {
   interface Window {
@@ -24,11 +25,11 @@ const BuySectionWithPhone = () => {
   return (
     <section
       id="buy-now-phone"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 sm:pt-12 lg:my-0 mt-20"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 py-16 lg:py-28"
     >
       {/* iPhone mock-up */}
       <video
-        className="hidden lg:block w-auto lg:h-[80vh] lg:pr-10"
+        className="hidden lg:block w-auto lg:h-[45vh] lg:pr-10"
         autoPlay
         loop
         muted
@@ -52,16 +53,16 @@ const BuySectionWithPhone = () => {
 
       {/* Text + CTA */}
       <div className="flex flex-col items-center lg:items-start w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[32vw]">
-        <h1 className="text-3xl sm:text-6xl font-bold mb-0 lg:mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10 ">
+        <h1 className="text-3xl sm:text-6xl lg:text-5xl font-bold mb-0 lg:mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10 ">
           <span className="text-custom">Never</span> Fall Behind
         </h1>
 
-        <p className="text-base sm:text-2xl mb-7 lg:mb-8 font-semibold text-center lg:text-left">
+        <p className="text-base sm:text-2xl lg:text-xl mb-6 font-semibold text-center lg:text-left">
           +5 New assets delivered to you <br /> every single month
         </p>
 
         <a
-          href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
+          href={BUY_LINK}
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}

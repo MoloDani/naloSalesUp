@@ -10,6 +10,8 @@ import React, {
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import lottie, { AnimationItem } from "lottie-web";
 import animationData from "../../lib/laptopAnim/laptop.json";
+import { ChevronDown } from "lucide-react";
+import { BUY_LINK } from "@/lib/constants";
 
 const PADDING = 20;
 const BASE_SCROLL_VH = 200;
@@ -162,7 +164,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
               Invest In Effects <span className="text-custom">Today</span>
             </p>
             <a
-              href="https://pay.nalopacks.com/b/7sYeVcavzgds2bg2h3gEg01"
+              href={BUY_LINK}
               target="_blank"
               rel="noreferrer"
               className="mt-1 px-20 py-2 text-2xl text-white border-2 border-custom rounded-[2rem] font-bold transition duration-150 cursor-pointer text-center"
@@ -170,6 +172,11 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
               Buy Now
             </a>
           </div>
+        </div>
+
+        {/* Scroll indicator arrow */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 opacity-50">
+          <ChevronDown className="w-10 h-10 text-white animate-bounce" />
         </div>
       </div>
     </div>

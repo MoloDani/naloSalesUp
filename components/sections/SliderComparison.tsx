@@ -17,8 +17,8 @@ type Props = {
   maxWidthClass?: string;
   pairLabels?: (string | React.ReactNode)[];
   maxHeightClass?: string;
-  youtubeFirstId?: string; // ⬅️ YouTube slide at index 0
-  youtubeLabel?: string | React.ReactNode; // ⬅️ NEW: heading+paragraph for YT slide
+  youtubeFirstId?: string; // YouTube slide at index 0
+  youtubeLabel?: string | React.ReactNode;
 };
 
 const clamp = (v: number, min = 0, max = 100) =>
@@ -35,7 +35,7 @@ const VideoCompareSection: React.FC<Props> = ({
   pairLabels,
   maxHeightClass = "max-h-[80vh]",
   youtubeFirstId,
-  youtubeLabel, // ⬅️ NEW
+  youtubeLabel,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLVideoElement>(null);
@@ -51,17 +51,15 @@ const VideoCompareSection: React.FC<Props> = ({
     height: number;
   } | null>(null);
 
-  // NEW: fade state for videos
   const [isMediaVisible, setIsMediaVisible] = useState(true);
   const fadeTimeoutRef = useRef<number | null>(null);
-  const FADE_DURATION = 300; // ms, should roughly match Tailwind duration-300
+  const FADE_DURATION = 300;
 
   // ---- SLIDE COUNT / MAPPING ----
   const hasYoutubeFirst = !!youtubeFirstId;
   const pairsCount = Math.min(leftSources.length, rightSources.length);
   const TOTAL_SLIDES = pairsCount + (hasYoutubeFirst ? 1 : 0);
 
-  // ensure index stays in range if sources change
   useEffect(() => {
     setPairIndex((i) =>
       TOTAL_SLIDES === 0 ? 0 : ((i % TOTAL_SLIDES) + TOTAL_SLIDES) % TOTAL_SLIDES
@@ -69,7 +67,7 @@ const VideoCompareSection: React.FC<Props> = ({
   }, [TOTAL_SLIDES]);
 
   const isYoutubeSlide = hasYoutubeFirst && pairIndex === 0;
-  const compareIndex = hasYoutubeFirst ? pairIndex - 1 : pairIndex; // index into left/right arrays
+  const compareIndex = hasYoutubeFirst ? pairIndex - 1 : pairIndex;
 
   const leftCurrent = !isYoutubeSlide ? leftSources[compareIndex] : undefined;
   const rightCurrent = !isYoutubeSlide ? rightSources[compareIndex] : undefined;
@@ -123,7 +121,7 @@ const VideoCompareSection: React.FC<Props> = ({
       window.clearTimeout(fadeTimeoutRef.current);
     }
 
-    setIsMediaVisible(false); // fade out current
+    setIsMediaVisible(false);
 
     fadeTimeoutRef.current = window.setTimeout(() => {
       setPairIndex((current) =>
@@ -131,8 +129,8 @@ const VideoCompareSection: React.FC<Props> = ({
           ? 0
           : ((getNextIndex(current) % TOTAL_SLIDES) + TOTAL_SLIDES) %
             TOTAL_SLIDES
-      ); // change slide
-      setIsMediaVisible(true); // fade in new
+      );
+      setIsMediaVisible(true);
     }, FADE_DURATION);
   };
 
@@ -151,7 +149,7 @@ const VideoCompareSection: React.FC<Props> = ({
 
   // play both + drift correction (ONLY for compare slides)
   useEffect(() => {
-    if (isYoutubeSlide) return; // nothing to sync on YT slide
+    if (isYoutubeSlide) return;
     const lv = leftRef.current,
       rv = rightRef.current;
     if (!lv || !rv || !leftCurrent || !rightCurrent) return;
@@ -321,6 +319,64 @@ const VideoCompareSection: React.FC<Props> = ({
     };
   };
 
+  // ---------- YOUTUBE HD AUTOPLAY (SAFE VERSION) ----------
+  const ytPlayerRef = useRef<any | null>(null);
+
+  useEffect(() => {
+    if (!isYoutubeSlide || !youtubeFirstId) return;
+    if (typeof window === "undefined") return;
+
+    const w = window as any;
+
+    const initPlayer = () => {
+      if (!w.YT || !w.YT.Player) return;
+      if (ytPlayerRef.current) return; // already created
+
+      const el = document.getElementById("yt-slide");
+      if (!el) return;
+
+      ytPlayerRef.current = new w.YT.Player("yt-slide", {
+        events: {
+          onReady: (ev: any) => {
+            ev.target.mute();
+            ev.target.playVideo();
+            try {
+              ev.target.setPlaybackQuality("hd1080");
+              if (ev.target.setPlaybackQualityRange) {
+                ev.target.setPlaybackQualityRange(["hd1080", "hd720"]);
+              }
+            } catch {
+              // ignore if not supported
+            }
+          },
+        },
+      });
+    };
+
+    if (w.YT && w.YT.Player) {
+      initPlayer();
+    } else {
+      if (
+        !document.querySelector(
+          'script[src="https://www.youtube.com/iframe_api"]'
+        )
+      ) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+      }
+
+      const prev = w.onYouTubeIframeAPIReady;
+      w.onYouTubeIframeAPIReady = () => {
+        if (typeof prev === "function") prev();
+        initPlayer();
+      };
+    }
+
+    // ⚠️ no destroy() here -> avoids NotFoundError from removeChild
+  }, [isYoutubeSlide, youtubeFirstId]);
+  // --------------------------------------------------------
+
   return (
     <section className="w-full flex flex-col items-center gap-6">
       {/* ARROWS + VIDEO ROW */}
@@ -351,8 +407,9 @@ const VideoCompareSection: React.FC<Props> = ({
           {isYoutubeSlide && youtubeFirstId ? (
             // --- YOUTUBE ONLY SLIDE ---
             <iframe
+              id="yt-slide"
               className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/${youtubeFirstId}?autoplay=1&mute=0&loop=1&controls=1&rel=0&modestbranding=1&playsinline=1&playlist=${youtubeFirstId}`}
+              src={`https://www.youtube.com/embed/${youtubeFirstId}?autoplay=1&mute=1&loop=1&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&playlist=${youtubeFirstId}`}
               title="Overview video"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
@@ -360,7 +417,6 @@ const VideoCompareSection: React.FC<Props> = ({
           ) : (
             // --- ORIGINAL BEFORE / AFTER COMPARE ---
             <>
-              {/* videos */}
               {leftCurrent && (
                 <video
                   key={leftCurrent.src}
@@ -495,16 +551,9 @@ const VideoCompareSection: React.FC<Props> = ({
         </div>
       )}
 
-      {/* slide text (COMPARE SLIDES) */}
-      {!isYoutubeSlide && labelEl && (
-        <div className={`max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100`}>
-          {labelEl}
-        </div>
-      )}
-
-      {/* slide text (YOUTUBE SLIDE) */}
-      {isYoutubeSlide && youtubeLabelEl && (
-        <div className="max-w-[800px] px-4 text-center transition-opacity duration-300 opacity-100">
+      {/* slide text (YOUTUBE SLIDE ONLY) */}
+      {youtubeLabelEl && (
+        <div className={`max-w-[800px] px-4 text-center transition-opacity duration-300 ${isYoutubeSlide && isMediaVisible ? "opacity-100" : "opacity-0 absolute pointer-events-none"}`}>
           {youtubeLabelEl}
         </div>
       )}
