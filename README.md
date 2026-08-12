@@ -2,7 +2,7 @@
 
 A marketing and sales site for a set of VFX and motion-graphics packs aimed at video editors — drag-and-drop overlays, titles, and 3D effects that drop into an existing editing workflow.
 
-**Live site:** [nalopacks.com](https://www.nalopacks.com) · [nalo-sales-up.vercel.app](https://nalo-sales-up.vercel.app)
+**Live site:** [nalopacks.com](https://www.nalopacks.com)
 
 <!-- Add a screenshot or short GIF here — it does more work than any paragraph below.
      Save it to public/ and reference it like:
