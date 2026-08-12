@@ -22,7 +22,8 @@ The site is a single long-form landing page built from independent, self-contain
 
 ## Built with
 
-| | |
+| Layer | Stack |
+|---|---|
 | Framework | Next.js 13 (Pages Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS, `tailwind-merge`, `class-variance-authority` |
