@@ -4,9 +4,9 @@ A marketing and sales site for a set of VFX and motion-graphics packs aimed at v
 
 **Live site:** [nalopacks.com](https://www.nalopacks.com)
 
-<!-- Add a screenshot or short GIF here — it does more work than any paragraph below.
-     Save it to public/ and reference it like:
-     ![Nalo Packs landing page](public/screenshot.png) -->
+
+https://github.com/user-attachments/assets/d7eef214-da99-4bd1-b652-67e09b3457ed
+
 
 ## What it does
 
