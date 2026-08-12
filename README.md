@@ -21,8 +21,7 @@ The site is a single long-form landing page built from independent, self-contain
 - **SEO** — `next-sitemap` generates `sitemap.xml` and `robots.txt` at build time via a `postbuild` hook.
 
 ## Built with
-
-|---|---|
+| | |
 | Framework | Next.js 13 (Pages Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS, `tailwind-merge`, `class-variance-authority` |
