@@ -20,7 +20,7 @@ const EditingMadeSimpleSection = () => {
   return (
     <section
       id="editing-made-simple"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-2 w-full overflow-hidden px-4 py-16 lg:py-28"
     >
       {/* TEXT + CTA - Left side on desktop */}
       <div className="order-2 lg:order-1 flex flex-col items-center lg:items-end w-full max-w-[95vw] sm:max-w-[70vw] lg:max-w-[40vw]">
@@ -35,7 +35,6 @@ const EditingMadeSimpleSection = () => {
 
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -64,7 +63,7 @@ const EditingMadeSimpleSection = () => {
       {/* MEDIA (Video) - Right side on desktop */}
       <div className="order-1 lg:order-2 w-full flex justify-center">
         <video
-          className="w-auto h-[18vh] lg:h-[45vh] rounded-2xl"
+          className="w-auto h-[22vh] lg:h-[45vh] rounded-2xl"
           autoPlay
           loop
           muted

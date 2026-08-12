@@ -25,10 +25,11 @@ export default function Login() {
   useEffect(() => {
     if (!router.isReady) return;
     if (isLoggedIn()) {
-      router.replace("/account");
+      router.replace(router.query.next === "checkout" ? "/account?next=checkout" : "/account");
       return;
     }
     if (router.query.tab === "register") setTab("register");
+    if (router.query.reset === "1") setNotice("Password updated — sign in below.");
   }, [router.isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function switchTab(t: Tab) {
@@ -46,12 +47,8 @@ export default function Login() {
     try {
       const { status, data } = await login(email.trim(), password);
       if (status === 200 && data.ok) {
-        router.replace("/account");
+        router.replace(router.query.next === "checkout" ? "/account?next=checkout" : "/account");
       } else {
-        if (data.code === "PENDING_CLAIM") {
-          router.push("/claim");
-          return;
-        }
         setError(data.error || "Login failed. Try again.");
       }
     } catch {
@@ -76,15 +73,18 @@ export default function Login() {
         password
       );
       if (status === 200 && data.ok) {
+        // Straight in — no reason to make them retype the password they just chose.
+        const r = await login(email.trim(), password);
+        if (r.status === 200 && r.data.ok) {
+          router.replace(router.query.next === "checkout" ? "/account?next=checkout" : "/account");
+          return;
+        }
+        // Auto-login failed for some reason; fall back to the manual path.
         setNotice("Account created — sign in below.");
         setTab("login");
         setPassword("");
         setPassword2("");
       } else {
-        if (data.code === "PENDING_CLAIM") {
-          router.push("/claim");
-          return;
-        }
         setError(data.error || "Registration failed.");
       }
     } catch {
@@ -97,7 +97,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>{tab === "login" ? "Login" : "Register"} — Nalo Packs</title>
+        <title>{tab === "login" ? "Login" : "Register"} - Nalo Packs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content="Nalo Packs" />
       </Head>
@@ -209,10 +209,13 @@ export default function Login() {
               </p>
 
               <p className="text-center text-xs text-white/40">
-                Forgot your password?{" "}
-                <a href="/support.html" className="text-[#37f349] hover:underline">
-                  Contact support
-                </a>
+                <button
+                  type="button"
+                  onClick={() => router.push("/reset")}
+                  className="text-[#37f349] hover:underline"
+                >
+                  Forgot your password?
+                </button>
               </p>
             </form>
           ) : (
@@ -314,11 +317,6 @@ export default function Login() {
                 >
                   Login
                 </button>
-              </p>
-
-              <p className="text-center text-xs text-white/40">
-                Buy first, register after — use the same email at checkout and
-                your plan links automatically.
               </p>
             </form>
           )}

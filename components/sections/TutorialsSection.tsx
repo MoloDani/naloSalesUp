@@ -52,14 +52,15 @@ const TutorialsSection = () => {
     const position = getRelativePosition(cardIndex);
 
     // Responsive spacing - smaller on mobile, wider for 16:9 cards
-    const spacing = isMobile ? 140 : 320;
+    const spacing = isMobile ? 140 : 280;
 
     // Hide cards that are too far from center (only show 3)
     if (position < -1 || position > 1) {
       return {
-        transform: `translateX(${position < 0 ? -spacing * 2 : spacing * 2}px) scale(0.5)`,
+        transform: `translateX(${position < 0 ? -spacing * 1.5 : spacing * 1.5}px) scale(0.5)`,
         zIndex: 0,
         opacity: 0,
+        transition: 'all 300ms ease-in-out',
       };
     }
 
@@ -84,7 +85,7 @@ const TutorialsSection = () => {
       className="flex flex-col items-center justify-center w-full overflow-hidden py-16 lg:py-28"
     >
       {/* Fan Carousel */}
-      <div className="relative w-full flex justify-center items-center h-[140px] sm:h-[200px] lg:h-[260px] mb-4 sm:mb-10">
+      <div className="relative w-full flex justify-center items-center h-[160px] sm:h-[200px] lg:h-[260px] mb-2 sm:mb-10">
         {thumbnails.map((src, cardIndex) => {
           const style = getCardStyle(cardIndex);
 
@@ -94,7 +95,7 @@ const TutorialsSection = () => {
               className="absolute transition-all duration-500 ease-in-out"
               style={style}
             >
-              <div className="w-[160px] h-[90px] sm:w-[256px] sm:h-[144px] lg:w-[320px] lg:h-[180px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="w-[200px] h-[112px] sm:w-[288px] sm:h-[162px] lg:w-[360px] lg:h-[202px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src={src}
                   alt={`Tutorial thumbnail ${cardIndex + 1}`}
@@ -108,12 +109,12 @@ const TutorialsSection = () => {
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl sm:text-6xl font-bold mb-4 text-center">
+      <h1 className="text-3xl sm:text-6xl font-bold mb-1 sm:mb-4 text-center">
         Unlimited <span className="text-custom">Tutorials</span>
       </h1>
 
       {/* Subtitle */}
-      <p className="text-center text-base sm:text-2xl mb-6 font-semibold max-w-[90vw] sm:max-w-[70vw] whitespace-nowrap lg:max-w-[50vw]">
+      <p className="text-center text-base sm:text-2xl mb-2 font-semibold max-w-[90vw] sm:max-w-[70vw] whitespace-nowrap lg:max-w-[50vw]">
         Get all our 30+ VFX Masterclass tutorials and project files worth <br /> 24.99£/month. We upload weekly
       </p>
 

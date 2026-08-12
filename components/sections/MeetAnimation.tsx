@@ -26,13 +26,13 @@ const BuySectionWithPhone = () => {
   return (
     <section
       id="buy-now-phone"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-2 w-full overflow-hidden px-4 py-16 lg:py-28"
     >
       {/* MEDIA (Image on mobile, Video on desktop) */}
       <div className="order-1 lg:order-2 w-full flex justify-center">
         {/* Desktop video */}
         <video
-          className="hidden lg:block w-auto lg:h-[45vh] lg:pr-10"
+          className="hidden lg:block w-auto lg:h-[65vh] lg:pr-10"
           autoPlay
           loop
           muted
@@ -76,7 +76,6 @@ const BuySectionWithPhone = () => {
 
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

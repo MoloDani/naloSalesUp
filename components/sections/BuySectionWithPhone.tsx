@@ -63,7 +63,6 @@ const BuySectionWithPhone = () => {
 
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

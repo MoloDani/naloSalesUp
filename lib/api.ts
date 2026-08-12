@@ -2,31 +2,14 @@
 // Talks to the Phase 1 backend (192.168.3.109:3000 behind api.nalopacks.com).
 // Session JWT lives in localStorage under "nalo_token".
 
-const API_BASE =
+export const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE || "http://api.nalopacks.com";
-
-// Import the centralized buy link
-import { BUY_LINK } from "./constants";
-
-// Alias for backward compatibility in this file
-const STRIPE_LINK = BUY_LINK;
 
 export type Device = {
   fingerprint: string;
   machineName: string;
   activatedAt: string;
   lastSeen: string;
-};
-
-export type Account = {
-  ok: boolean;
-  email: string;
-  username: string | null;
-  tier: string;
-  active: boolean;
-  expiresAt: string | null;
-  limit: number;
-  devices: Device[];
 };
 
 export const TIER_LABELS: Record<string, string> = {
@@ -106,23 +89,59 @@ export async function deactivateDevice(fingerprint: string) {
   });
 }
 
-// Send the user to your existing Stripe Payment Link with their account
-// email locked in, so the webhook can't miss.
-export function buyUrl(email: string): string {
-  const sep = STRIPE_LINK.includes("?") ? "&" : "?";
-  return STRIPE_LINK + sep + "prefilled_email=" + encodeURIComponent(email);
+export async function verifyRequest(email: string) {
+  return request("/auth/verify/request", { body: { email } });
+}
+export async function verifyConfirm(token: string) {
+  return request("/auth/verify/confirm", { body: { token } });
+}
+export async function resetRequest(email: string) {
+  return request("/auth/reset/request", { body: { email } });
+}
+export async function resetConfirm(token: string, password: string) {
+  return request("/auth/reset/confirm", { body: { token, password } });
 }
 
-export async function claimCheck(token: string) {
-  return request("/auth/claim/check?token=" + encodeURIComponent(token));
+export type Account = {
+  ok: boolean;
+  email: string;
+  username: string | null;
+  emailVerified: boolean;
+  tier: string;
+  active: boolean;
+  expiresAt: string | null;
+  limit: number;
+  devices: Device[];
+  state: "none" | "active" | "canceling" | "past_due" | "lapsed" | "lifetime" | "disabled";
+  subscriptionStatus: string | null;
+  cancelAtPeriodEnd: boolean;
+  canManageBilling: boolean;
+  manualBilling: boolean;
+};
+
+export async function startCheckout() {
+  return request("/billing/checkout", { method: "POST", auth: true });
 }
 
-export async function claimSet(token: string, password: string, username?: string) {
-  return request("/auth/claim", {
-    body: { token, password, username: username || undefined },
-  });
+export async function openPortal() {
+  return request("/billing/portal", { method: "POST", auth: true });
 }
 
-export async function claimResend(email: string) {
-  return request("/auth/claim/resend", { body: { email } });
+export async function confirmCheckout(sessionId: string) {
+  return request("/billing/session?session_id=" + encodeURIComponent(sessionId), { auth: true });
+}
+
+export async function cancelSubscription() {
+  return request("/billing/cancel", { method: "POST", auth: true });
+}
+
+export async function resumeSubscription() {
+  return request("/billing/resume", { method: "POST", auth: true });
+}
+
+export async function downloadInfo() {
+  return request("/download/info", { auth: true });
+}
+export async function downloadLink() {
+  return request("/download/link", { method: "POST", auth: true });
 }

@@ -20,12 +20,12 @@ const PreviewApplySection = () => {
   return (
     <section
       id="preview-apply"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-2 w-full overflow-hidden px-4 py-16 lg:py-28"
     >
       {/* MEDIA (Video) - Left side on desktop */}
       <div className="order-1 w-full flex justify-center">
         <video
-          className="w-auto h-[18vh] lg:h-[45vh] rounded-2xl"
+          className="w-auto h-[22vh] lg:h-[45vh] rounded-2xl"
           autoPlay
           loop
           muted
@@ -53,7 +53,6 @@ const PreviewApplySection = () => {
 
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

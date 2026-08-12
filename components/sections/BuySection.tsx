@@ -25,11 +25,11 @@ const BuySection = () => {
   return (
     <section
       id="buy-now-desktop"
-      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 pt-0 pb-4 lg:py-28"
     >
       {/* Price Animation Video - Both phone and PC */}
       <video
-        className="w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[35vw] h-auto mb-8 lg:mb-0 lg:-mr-10 -rotate-90"
+        className="w-full max-w-[70vw] sm:max-w-[70vw] lg:max-w-[40vw] h-auto mb-8 lg:mb-0 lg:mr-8 -rotate-90"
         autoPlay
         loop
         muted
@@ -51,14 +51,13 @@ const BuySection = () => {
         </p>
 
         {/* Current price */}
-        <h1 className="text-white text-[6rem] sm:text-[8rem] lg:text-[10rem] font-bold leading-none -mt-2 lg:-mt-4">
+        <h1 className="text-white text-[6rem] sm:text-[8rem] lg:text-[11rem] font-bold leading-none -mt-2 lg:-mt-4">
           £59
         </h1>
 
         {/* Buy Now Button */}
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

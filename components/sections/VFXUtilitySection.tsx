@@ -29,7 +29,7 @@ const VFXUtilitySection = () => {
 
         {/* Video */}
         <video
-          className="w-full max-w-[300px] sm:max-w-[450px] h-auto -mb-6"
+          className="w-full max-w-[300px] sm:max-w-[450px] lg:max-w-[650px] h-auto -mb-6"
           autoPlay
           loop
           muted
@@ -54,7 +54,7 @@ const VFXUtilitySection = () => {
 
       {/* All In One */}
       <h3 className="text-3xl sm:text-5xl lg:text-5xl font-bold text-white text-center mb-4">
-        All In One
+        <span className="text-custom">All</span> In One
       </h3>
 
       {/* Description */}
@@ -67,7 +67,6 @@ const VFXUtilitySection = () => {
       {/* Buy Now button - same as MeetAnimation */}
       <a
         href={BUY_LINK}
-        target="_blank"
         rel="noopener noreferrer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

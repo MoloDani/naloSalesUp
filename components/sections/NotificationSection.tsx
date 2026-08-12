@@ -26,12 +26,12 @@ const NotificationSection = () => {
   return (
     <section
       id="always-updated"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-2 w-full overflow-hidden px-4 py-16 lg:py-28"
     >
       {/* MEDIA (Video) - Left side on desktop */}
       <div className="order-1 w-full flex justify-center">
         <video
-          className="w-[70vw] sm:w-[50vw] lg:w-[22vw] h-auto lg:pl-10"
+          className="w-[70vw] sm:w-[50vw] lg:w-[35vw] h-auto lg:pl-10"
           autoPlay
           loop
           muted
@@ -67,7 +67,6 @@ const NotificationSection = () => {
 
         <a
           href={BUY_LINK}
-          target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

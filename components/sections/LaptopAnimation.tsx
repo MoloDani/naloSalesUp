@@ -103,7 +103,7 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
   return (
     <div
       ref={wrapperRef}
-      className="relative mb-20"
+      className="relative -mb-20 lg:mb-20"
       style={{
         position: "relative",
         paddingLeft: PADDING,
@@ -165,7 +165,6 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
             </p>
             <a
               href={BUY_LINK}
-              target="_blank"
               rel="noreferrer"
               className="mt-1 px-20 py-2 text-2xl text-white border-2 border-custom rounded-[2rem] font-bold transition duration-150 cursor-pointer text-center"
             >
@@ -175,8 +174,8 @@ const LaptopVideo = forwardRef<HTMLDivElement, LaptopVideoProps>((_, ref) => {
         </div>
 
         {/* Scroll indicator arrow */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 opacity-50">
-          <ChevronDown className="w-10 h-10 text-white animate-bounce" />
+        <div className={`absolute bottom-4 left-1/2 -translate-x-1/2 z-30 transition-opacity duration-300 ${showPromo ? 'opacity-50' : 'opacity-0'}`}>
+          <ChevronDown className="w-14 h-14 text-white animate-bounce" />
         </div>
       </div>
     </div>
