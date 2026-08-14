@@ -1,25 +1,25 @@
 // pages/account.tsx — user dashboard
-// Three panels: who you are, what you pay for, and the product itself.
+// Three panels: who you are, what you own, and the product itself.
+// NaloTools is a one-time purchase granting lifetime access, so there is
+// nothing to renew, cancel, or manage — the licence panel only ever shows
+// "not bought yet", "owned", or "closed".
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
 import {
-  API_BASE,
   Account,
+  API_BASE,
   TIER_LABELS,
-  cancelSubscription,
   confirmCheckout,
   deactivateDevice,
   downloadLink,
   isLoggedIn,
   logout,
   me,
-  openPortal,
-  resumeSubscription,
   startCheckout,
   verifyRequest,
 } from "@/lib/api";
+import { ArrowLeft } from "lucide-react";
 
 const PANEL =
   "rounded-2xl bg-[#111111] border border-white/10 p-8 shadow-[0_0_40px_rgba(55,243,73,0.05)]";
@@ -27,10 +27,6 @@ const LABEL =
   "text-[11px] font-semibold uppercase tracking-wider text-neutral-500";
 const BTN_PRIMARY =
   "rounded-xl bg-[#37f349] px-6 py-2.5 text-sm font-bold text-black hover:opacity-90 transition-opacity disabled:opacity-50";
-const BTN_GHOST =
-  "rounded-xl border border-white/15 bg-[#1a1a1a] px-6 py-2.5 text-sm font-bold text-neutral-300 hover:text-white transition-colors disabled:opacity-50";
-const BTN_DANGER =
-  "rounded-xl border border-red-500/30 bg-red-500/10 px-6 py-2.5 text-sm font-bold text-red-400 hover:bg-red-500/20 transition-colors disabled:opacity-50";
 
 function fmtDate(d: string | null) {
   if (!d) return "";
@@ -41,51 +37,22 @@ function fmtDate(d: string | null) {
   });
 }
 
-/* Colour and wording for each plan state. */
-const STATES: Record<
-  string,
-  { pill: string; label: string; line: (a: Account) => string }
-> = {
+/* Colour and wording per licence state. */
+const STATES: Record<string, { pill: string; label: string; line: string }> = {
   none: {
     pill: "bg-white/10 text-neutral-300",
-    label: "No plan",
-    line: () => "Subscribe to unlock NaloTools inside After Effects.",
-  },
-  active: {
-    pill: "bg-[#37f349]/15 text-[#37f349]",
-    label: "Active",
-    line: (a) => "Renews automatically on " + fmtDate(a.expiresAt) + ".",
-  },
-  canceling: {
-    pill: "bg-amber-500/15 text-amber-400",
-    label: "Cancelling",
-    line: (a) =>
-      "Your plan stays active until " +
-      fmtDate(a.expiresAt) +
-      ", then it will not renew.",
-  },
-  past_due: {
-    pill: "bg-red-500/15 text-red-400",
-    label: "Payment failed",
-    line: (a) =>
-      "We could not charge your card. We'll keep retrying — update it to avoid losing access on " +
-      fmtDate(a.expiresAt) +
-      ".",
-  },
-  lapsed: {
-    pill: "bg-red-500/15 text-red-500",
-    label: "Expired",
-    line: (a) => "Your plan ended on " + fmtDate(a.expiresAt) + ".",
+    label: "Not purchased",
+    line: "Buy once and keep NaloTools forever — no subscription, no renewals.",
   },
   lifetime: {
     pill: "bg-[#37f349]/15 text-[#37f349]",
-    label: "Lifetime",
-    line: () => "Lifetime access — nothing to renew.",
+    label: "Owned",
+    line: "Lifetime access. Every pack we add is included, at no extra cost.",
   },
   disabled: {
     pill: "bg-red-500/15 text-red-500",
     label: "Closed",
-    line: () => "This account is closed. Contact support if that's unexpected.",
+    line: "This account is closed. Contact support if that's unexpected.",
   },
 };
 
@@ -94,9 +61,9 @@ export default function AccountPage() {
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
   const [busyFp, setBusyFp] = useState("");
-  const [busyBilling, setBusyBilling] = useState(false);
+  const [busyBuy, setBusyBuy] = useState(false);
+  const [busyDownload, setBusyDownload] = useState(false);
   const [busyVerify, setBusyVerify] = useState(false);
-  const [confirmCancel, setConfirmCancel] = useState(false);
   const [msg, setMsg] = useState("");
   const [msgBad, setMsgBad] = useState(false);
 
@@ -109,15 +76,20 @@ export default function AccountPage() {
     boot();
   }, [router.isReady]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function say(text: string, bad: boolean) {
+    setMsg(text);
+    setMsgBad(bad);
+  }
+
   async function boot() {
-    // Back from Stripe? Confirm the session server-side first, so the plan
-    // reads Active immediately instead of flickering "No plan" while the
-    // webhook is still in flight.
+    // Back from Stripe? Confirm the session server-side first, so the
+    // licence reads Owned immediately instead of flickering "Not purchased"
+    // while the webhook is still in flight.
     const sid = String(router.query.session_id || "");
     if (router.query.checkout === "success" && sid) {
       try {
         await confirmCheckout(sid);
-        say("Payment received - your plan is active.", false);
+        say("Payment received — NaloTools is yours.", false);
       } catch {
         /* the webhook will catch up */
       }
@@ -125,28 +97,22 @@ export default function AccountPage() {
     } else if (router.query.checkout === "cancelled") {
       say("Checkout cancelled — nothing was charged.", false);
       router.replace("/account", undefined, { shallow: true });
-    }
-
-    if (router.query.next === "checkout") {
-    router.replace("/account", undefined, { shallow: true });
-    const { status, data } = await me();
-    // Already paying? Don't bounce them to Stripe — show the panel instead.
-    if (status === 200 && data.ok && (data.state === "none" || data.state === "lapsed")) {
-      const r = await startCheckout();
-      if (r.status === 200 && r.data.ok && r.data.url) {
-        window.location.href = r.data.url;
-        return;
+    } else if (router.query.next === "checkout") {
+      // Arrived from a Buy button on the marketing site.
+      router.replace("/account", undefined, { shallow: true });
+      const { status, data } = await me();
+      if (status === 200 && data.ok && data.state === "none") {
+        const r = await startCheckout();
+        if (r.status === 200 && r.data.ok && r.data.url) {
+          window.location.href = r.data.url;
+          return;
+        }
+        // Couldn't start — usually an unverified email. Fall through so the
+        // page loads and the banner explains why.
+        say(r.data.error || "Could not start checkout.", true);
       }
-      say(r.data.error || "Could not start checkout.", true);
     }
-  }
-
     refresh();
-  }
-
-  function say(text: string, bad: boolean) {
-    setMsg(text);
-    setMsgBad(bad);
   }
 
   async function refresh() {
@@ -165,33 +131,41 @@ export default function AccountPage() {
     }
   }
 
-  /* Wraps the billing calls that all behave the same way: run, report,
-     refresh. Redirects (checkout, portal) leave the page instead. */
-  async function billingAction(
-    fn: () => Promise<{ status: number; data: any }>,
-    redirect = false
-  ) {
-    if (busyBilling) return;
-    setBusyBilling(true);
+  async function handleBuy() {
+    if (busyBuy) return;
+    setBusyBuy(true);
     setMsg("");
     try {
-      const { status, data } = await fn();
-      if (status === 200 && data.ok) {
-        if (redirect && data.url) {
-          window.open(data.url, "_blank", "noopener");
-  await refresh();
-          return;
-        }
-        say(data.message || "Done.", false);
-        await refresh();
-      } else {
-        say(data.error || "Something went wrong.", true);
+      const { status, data } = await startCheckout();
+      if (status === 200 && data.ok && data.url) {
+        window.location.href = data.url;
+        return;
       }
+      say(data.error || `Could not start checkout (${status}).`, true);
     } catch {
       say("Cannot reach the Nalo servers. Try again shortly.", true);
     } finally {
-      setBusyBilling(false);
-      setConfirmCancel(false);
+      setBusyBuy(false);
+    }
+  }
+
+  async function handleDownload() {
+    if (busyDownload) return;
+    setBusyDownload(true);
+    setMsg("");
+    try {
+      const { status, data } = await downloadLink();
+      if (status === 200 && data.ok && data.url) {
+        // Signed link, valid a few minutes. Navigating directly lets the
+        // browser handle progress and resume for a large file.
+        window.location.href = API_BASE + data.url;
+        return;
+      }
+      say(data.error || `Download unavailable (${status}).`, true);
+    } catch {
+      say("Cannot reach the Nalo servers. Try again shortly.", true);
+    } finally {
+      setBusyDownload(false);
     }
   }
 
@@ -243,7 +217,7 @@ export default function AccountPage() {
   }
 
   const s = STATES[account.state] || STATES.none;
-  const canDownload = account.state !== "none" && account.state !== "disabled";
+  const owned = account.state === "lifetime";
 
   return (
     <>
@@ -302,10 +276,10 @@ export default function AccountPage() {
             )}
           </div>
 
-          {/* ---------- subscription ---------- */}
+          {/* ---------- licence ---------- */}
           <div className={PANEL}>
             <div className="flex items-center justify-between mb-4">
-              <p className={LABEL}>Subscription</p>
+              <p className={LABEL}>Licence</p>
               <span
                 className={`rounded-full px-3 py-1 text-[11px] font-bold ${s.pill}`}
               >
@@ -316,73 +290,21 @@ export default function AccountPage() {
             <p className="text-lg font-bold">
               {TIER_LABELS[account.tier] || account.tier}
             </p>
-            <p className="text-sm text-neutral-400 mt-1">{s.line(account)}</p>
+            <p className="text-sm text-neutral-400 mt-1">{s.line}</p>
 
-            <div className="flex flex-wrap gap-3 mt-5">
-              {(account.state === "none" || account.state === "lapsed") && (
-                <button
-                  onClick={() => billingAction(startCheckout, true)}
-                  disabled={busyBilling}
-                  className={BTN_PRIMARY}
-                >
-                  {busyBilling
-                    ? "Opening..."
-                    : account.state === "none"
-                    ? "Subscribe"
-                    : "Subscribe again"}
-                </button>
-              )}
+            {account.state === "none" && (
+              <button
+                onClick={handleBuy}
+                disabled={busyBuy}
+                className={`${BTN_PRIMARY} mt-5`}
+              >
+                {busyBuy ? "Opening..." : "Buy Now"}
+              </button>
+            )}
 
-              {account.state === "canceling" && (
-                <button
-                  onClick={() => billingAction(resumeSubscription)}
-                  disabled={busyBilling}
-                  className={BTN_PRIMARY}
-                >
-                  {busyBilling ? "Working..." : "Keep my subscription"}
-                </button>
-              )}
-
-              {(account.state === "active" || account.state === "past_due") &&
-                (confirmCancel ? (
-                  <>
-                    <button
-                      onClick={() => billingAction(cancelSubscription)}
-                      disabled={busyBilling}
-                      className={BTN_DANGER}
-                    >
-                      {busyBilling ? "Cancelling..." : "Yes, cancel"}
-                    </button>
-                    <button
-                      onClick={() => setConfirmCancel(false)}
-                      className={BTN_GHOST}
-                    >
-                      Keep it
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    onClick={() => setConfirmCancel(true)}
-                    className={BTN_DANGER}
-                  >
-                    Cancel subscription
-                  </button>
-                ))}
-
-              {account.canManageBilling && (
-                <button
-                  onClick={() => billingAction(openPortal, true)}
-                  disabled={busyBilling}
-                  className={BTN_GHOST}
-                >
-                  {busyBilling ? "Opening..." : "Payment & invoices"}
-                </button>
-              )}
-            </div>
-
-            {confirmCancel && (
+            {owned && account.expiresAt && (
               <p className="text-xs text-neutral-500 mt-3">
-                You'll keep full access until {fmtDate(account.expiresAt)}.
+                Purchased {fmtDate(account.expiresAt)}
               </p>
             )}
           </div>
@@ -397,19 +319,15 @@ export default function AccountPage() {
             </p>
 
             <button
-              onClick={async () => {
-                const { status, data } = await downloadLink();
-                if (status === 200 && data.ok) window.location.href = API_BASE + data.url;
-                else say(data.error || "Download unavailable.", true);
-              }}
-              disabled={!canDownload}
-              className={BTN_PRIMARY + " mt-4"}
+              onClick={handleDownload}
+              disabled={!owned || busyDownload}
+              className={`${BTN_PRIMARY} mt-4`}
             >
-              Download installer
+              {busyDownload ? "Preparing..." : "Download Installer"}
             </button>
-            {!canDownload && (
+            {!owned && (
               <p className="text-xs text-neutral-500 mt-2">
-                Subscribe to download the plugin.
+                Buy NaloTools to download the plugin.
               </p>
             )}
 

@@ -123,20 +123,8 @@ export async function startCheckout() {
   return request("/billing/checkout", { method: "POST", auth: true });
 }
 
-export async function openPortal() {
-  return request("/billing/portal", { method: "POST", auth: true });
-}
-
 export async function confirmCheckout(sessionId: string) {
   return request("/billing/session?session_id=" + encodeURIComponent(sessionId), { auth: true });
-}
-
-export async function cancelSubscription() {
-  return request("/billing/cancel", { method: "POST", auth: true });
-}
-
-export async function resumeSubscription() {
-  return request("/billing/resume", { method: "POST", auth: true });
 }
 
 export async function downloadInfo() {

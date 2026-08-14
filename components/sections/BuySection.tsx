@@ -25,11 +25,12 @@ const BuySection = () => {
   return (
     <section
       id="buy-now-desktop"
-      className="flex flex-col lg:flex-row items-center justify-center w-full overflow-hidden px-4 pt-0 pb-4 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-8 w-full overflow-hidden px-4 py-24 lg:py-28"
     >
       {/* Price Animation Video - Both phone and PC */}
+      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
       <video
-        className="w-full max-w-[70vw] sm:max-w-[70vw] lg:max-w-[40vw] h-auto mb-8 lg:mb-0 lg:mr-8 -rotate-90"
+        className="w-full max-w-[70vw] sm:max-w-[70vw] lg:max-w-[40vw] h-auto"
         autoPlay
         loop
         muted
@@ -37,13 +38,15 @@ const BuySection = () => {
         preload="auto"
       >
         {isSafari ? (
-          <source src="/assets/PRICE_GIF_ANIMATION.mov" type="video/quicktime" />
+          <source src="/assets/PRICE_GIF_ANIMATION-1.mov" type="video/quicktime" />
         ) : (
           <source src="/assets/PRICE_GIF_ANIMATION.webm" type="video/webm" />
         )}
       </video>
+      </div>
 
       {/* PRICE + CTA */}
+      <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
       <div className="flex flex-col items-center lg:items-start">
         {/* Original price crossed out */}
         <p className="text-custom text-3xl sm:text-4xl lg:text-5xl font-bold line-through opacity-80">
@@ -81,6 +84,7 @@ const BuySection = () => {
             }`}
           />
         </a>
+      </div>
       </div>
     </section>
   );

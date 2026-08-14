@@ -23,9 +23,9 @@ const VFXUtilitySection = () => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center w-full overflow-hidden px-4 py-16 lg:py-28">
+    <section className="flex flex-col items-center justify-center w-full overflow-hidden px-4 py-24 lg:py-28">
       {/* Title + Video row */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-8 mb-4">
 
         {/* Video */}
         <video
@@ -71,13 +71,13 @@ const VFXUtilitySection = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleClick}
-        className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] h-[100px] scale-[0.7] sm:scale-[0.8]"
+        className="relative inline-block rounded-[1.6rem] w-[180px] sm:w-[220px]"
       >
         <img
           src="/assets/button_idle.png"
           alt="Buy now"
           draggable={false}
-          className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+          className={`w-full h-auto transition-opacity duration-150 ${
             isHovered ? "opacity-0" : "opacity-100"
           }`}
         />

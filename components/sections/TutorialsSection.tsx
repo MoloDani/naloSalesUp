@@ -82,7 +82,7 @@ const TutorialsSection = () => {
   return (
     <section
       id="tutorials"
-      className="flex flex-col items-center justify-center w-full overflow-hidden py-16 lg:py-28"
+      className="flex flex-col items-center justify-center w-full overflow-hidden px-4 py-24 lg:py-28"
     >
       {/* Fan Carousel */}
       <div className="relative w-full flex justify-center items-center h-[160px] sm:h-[200px] lg:h-[260px] mb-2 sm:mb-10">
@@ -126,13 +126,13 @@ const TutorialsSection = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleClick}
-        className="relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] h-[100px] scale-[0.7] lg:scale-[0.6]"
+        className="relative inline-block rounded-[1.6rem] w-[170px] sm:w-[212px]"
       >
         <img
           src="/assets/See_Tutorials-Idle.png"
           alt="See Tutorials"
           draggable={false}
-          className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+          className={`w-full h-auto transition-opacity duration-150 ${
             isHovered ? "opacity-0" : "opacity-100"
           }`}
         />

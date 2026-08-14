@@ -26,12 +26,12 @@ const NotificationSection = () => {
   return (
     <section
       id="always-updated"
-      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-2 w-full overflow-hidden px-4 py-16 lg:py-28"
+      className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-8 w-full overflow-hidden px-4 py-24 lg:py-28"
     >
       {/* MEDIA (Video) - Left side on desktop */}
-      <div className="order-1 w-full flex justify-center">
+      <div className="order-1 w-full lg:w-1/2 flex justify-center lg:justify-end">
         <video
-          className="w-[70vw] sm:w-[50vw] lg:w-[35vw] h-auto lg:pl-10"
+          className="w-[70vw] sm:w-[50vw] lg:w-[35vw] h-auto"
           autoPlay
           loop
           muted
@@ -55,7 +55,7 @@ const NotificationSection = () => {
       </div>
 
       {/* TEXT + CTA - Right side on desktop */}
-      <div className="order-2 flex flex-col items-center lg:items-start w-full max-w-[95vw] sm:max-w-[70vw] lg:max-w-[40vw]">
+      <div className="order-2 flex flex-col items-center lg:items-start w-full lg:w-1/2 max-w-[95vw] sm:max-w-[70vw] lg:max-w-none">
         <h1 className="text-3xl sm:text-6xl lg:text-5xl font-bold mb-0 lg:mb-4 text-center lg:text-left lg:mx-0 sm:-mx-10">
           Always <span className="text-custom">Updated</span>
         </h1>
@@ -71,13 +71,13 @@ const NotificationSection = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={handleClick}
-          className="lg:origin-left align-center lg:align-left relative inline-block rounded-[1.6rem] w-[200px] sm:w-[300px] -mt-[1.8rem] h-[100px] scale-[0.7] lg:scale-[0.6]"
+          className="lg:origin-left align-center lg:align-left relative inline-block rounded-[1.6rem] w-[180px] sm:w-[220px]"
         >
           <img
             src="/assets/button_idle.png"
             alt="Buy now"
             draggable={false}
-            className={`absolute inset-0 w-full h-auto transition-opacity duration-150 ${
+            className={`w-full h-auto transition-opacity duration-150 ${
               isHovered ? "opacity-0" : "opacity-100"
             }`}
           />
