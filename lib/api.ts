@@ -3,7 +3,7 @@
 // Session JWT lives in localStorage under "nalo_token".
 
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "http://api.nalopacks.com";
+  process.env.NEXT_PUBLIC_API_BASE || "https://api.nalopacks.com";
 
 export type Device = {
   fingerprint: string;
